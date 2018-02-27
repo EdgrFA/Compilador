@@ -10,23 +10,23 @@ public class Estado {
     
     //Variables propias de cada clase
     public int idEdo;
-    private ArrayList<Transicion> trancisiones;
+    private ArrayList<Transicion> transiciones;
     private boolean esAceptacion;
 
     public Estado() {
         this.idEdo = idEstado++;
-        this.trancisiones = new ArrayList<>();
+        this.transiciones = new ArrayList<>();
         this.esAceptacion = false;
     }
     
     public void crearTrancision(char c, Estado estadoDestino){
         Transicion t = new Transicion(c, estadoDestino);
-        trancisiones.add(t);
+        transiciones.add(t);
     }
     
     public void crearTrancision(char carMin, char carMax, Estado estadoDestino){
         Transicion t = new Transicion(carMin, carMax, estadoDestino);
-        trancisiones.add(t);
+        transiciones.add(t);
     }
     
     public HashSet<Estado> Union(HashSet<Estado> edos){
@@ -43,6 +43,6 @@ public class Estado {
     }
 
     public ArrayList<Transicion> getTrancisiones() {
-        return trancisiones;
+        return transiciones;
     }
 }

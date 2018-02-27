@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Stack;
 
 
-public class AFN extends Automata implements Movimiento{
+public class AFN extends Automata {
     int idAFN;
     private Estado estadoInicial;
     private HashSet<Character> alfabeto;
@@ -194,33 +194,6 @@ public class AFN extends Automata implements Movimiento{
 
     public HashSet<Character> getAlfabeto() {
         return alfabeto;
-    }
-    
-    @Override
-    public HashSet<Estado> Mover(Estado e, char c) {
-        HashSet<Estado> R = new HashSet<>();
-        for(Transicion tran : e.getTrancisiones()) {
-            if(tran.SeEncuentra(c))
-                R.add(tran.getEstadoDestino());
-        }
-        return R;
-    }
-
-    @Override
-    public HashSet<Estado> MoverC(HashSet<Estado> E, char c) {
-        HashSet<Estado> R = new HashSet<>();
-        for(Estado e : E){
-            R.addAll(Mover(e, c));
-        }
-        return R;
-    }
-    
-    public HashSet<Estado> IrA(HashSet<Estado> E, char c) {
-        HashSet<Estado> R = new HashSet<>();
-        for(Estado e : E){
-            R.addAll(Mover(e, c));
-        }
-        return CerraduraE(R);
     }
     
     public boolean AnalizarCardena(String s){

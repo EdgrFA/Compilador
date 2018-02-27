@@ -7,7 +7,7 @@ import java.util.Stack;
  *
  * @author Edgar Flores
  */
-public class Automata {
+public class Automata implements Movimiento{
     public static char EPSILON = 0x00;
     
     public HashSet<Estado> CerraduraE(Estado e){
@@ -41,5 +41,32 @@ public class Automata {
             c.addAll(CerraduraE(e));
         }
         return c;
+    }
+    
+    public HashSet<Estado> IrA(HashSet<Estado> E, char c) {
+        HashSet<Estado> R = new HashSet<>();
+        for(Estado e : E){
+            R.addAll(Mover(e, c));
+        }
+        return CerraduraE(R);
+    }
+    
+    @Override
+    public HashSet<Estado> Mover(Estado e, char c) {
+        HashSet<Estado> R = new HashSet<>();
+        for(Transicion tran : e.getTrancisiones()) {
+            if(tran.SeEncuentra(c))
+                R.add(tran.getEstadoDestino());
+        }
+        return R;
+    }
+
+    @Override
+    public HashSet<Estado> MoverC(HashSet<Estado> E, char c) {
+        HashSet<Estado> R = new HashSet<>();
+        for(Estado e : E){
+            R.addAll(Mover(e, c));
+        }
+        return R;
     }
 }
