@@ -42,5 +42,4 @@ public class Automata {
         }
         return c;
     }
-    
 }

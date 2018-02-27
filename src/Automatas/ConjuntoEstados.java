@@ -14,6 +14,22 @@ public class ConjuntoEstados {
         this.analizado = false;
     }
     
+    public boolean isAnalizado(){
+        return analizado;
+    }
+
+    public void setAnalizado(boolean analizado) {
+        this.analizado = analizado;
+    }
     
+    public HashSet<Estado> getColeccionEstados(){
+        return coleccion;
+    }
     
+    public boolean existeEstadoFinal(){
+        for (Estado estado : coleccion)
+            if(estado.isEsAceptacion())
+                return true;
+        return false;
+    }
 }
