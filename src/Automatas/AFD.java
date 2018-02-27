@@ -11,11 +11,11 @@ public class AFD extends Automata{
     private HashSet<Character> alfabeto;
     //La tabla de transiciones solo se consultaria
     
-    public AFD(ArrayList<AFN> afns){
+    public AFD(AFNs afns){
         //Union de todos los afns con el estado inicial de cada afn.
         alfabeto = new HashSet<>();
         Estado estadoP = new Estado();
-        for (AFN afn : afns){
+        for (AFN afn : afns.getAutomatas()){
             estadoP.crearTrancision(EPSILON, afn.getEstadoInicial());
             alfabeto.addAll(afn.getAlfabeto());
         }
@@ -35,6 +35,7 @@ public class AFD extends Automata{
                     HashSet<Estado> estadosD = IrA(ce.getColeccionEstados(), caracter);
                     //Si no se obtuvo ningun conjunto seguir con la siguiente letra
                     if(estadosD.isEmpty()){
+                        System.out.println(estadosD);
                         ce.crearTrancision(caracter, null);
                         continue;
                     }
@@ -57,7 +58,21 @@ public class AFD extends Automata{
                 ce.setAnalizado(true);
             }
         }
-        //CrearTabladeTransiciones
     }
     
+    public void imprimirTablaTransiciones(){
+        //Cabezera
+        System.out.print("CE\t");
+        for (Character caracter : alfabeto)
+            System.out.print(caracter + "\t");
+        System.out.println("EA");
+        for (ConjuntoEstados ce : conjuntosEdos) {
+            System.out.println("S" + ce.getId());
+        }
+        
+    }
+    
+    public HashSet<Character> getAlfabeto(){
+        return alfabeto;
+    }
 }

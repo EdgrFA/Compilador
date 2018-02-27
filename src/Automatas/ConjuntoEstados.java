@@ -57,4 +57,8 @@ public class ConjuntoEstados {
         }
         return true;
     }
+
+    public int getId() {
+        return id;
+    }
 }

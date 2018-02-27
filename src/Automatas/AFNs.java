@@ -1,4 +1,3 @@
-
 package Automatas;
 
 import java.util.ArrayList;
@@ -31,10 +30,12 @@ public class AFNs {
     */
     public void union(int id1, int id2){
         automatas.get(id1).unirAFN(automatas.get(id2));
+        automatas.remove(id2);
     }
     
     public void concatenar(int id1, int id2){
         automatas.get(id1).concatenarAFN(automatas.get(id2));
+        automatas.remove(id2);
     }
     
     public void cerraduraSuma(int id1){

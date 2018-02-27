@@ -33,7 +33,7 @@ public class AFN extends Automata {
         //Agregar estados a las listas
         estados.add(estadoInicial);
         estados.add(estadoFinal);
-        alfabeto.add(c);    //Agregar caracter al alfabeto    
+        alfabeto.add(c);    //Agregar caracter al alfabeto
         
         //EXPRESION REGULAR
         expresionR = c + "";
@@ -114,7 +114,7 @@ public class AFN extends Automata {
         estadosAceptacion.addAll(afn2.estadosAceptacion);
 
         //EXPRESION REGULAR
-        expresionR = "(" + expresionR + ")" + (char)186 + "(" + afn2.expresionR + ")";
+        expresionR = expresionR + (char)186 + afn2.expresionR;
         
         return this;
     }
@@ -138,7 +138,7 @@ public class AFN extends Automata {
         estadosAceptacion.add(nuevoEstadoF);
 
         //EXPRESION REGULAR
-        expresionR = "(" + expresionR + ")" + (char)177;
+        expresionR += (char)177;
         
         return this;
     }
@@ -163,7 +163,7 @@ public class AFN extends Automata {
         estadosAceptacion.add(nuevoEstadoF);
         
         //EXPRESION REGULAR
-        expresionR = "(" + expresionR + ")" + (char)164;
+        expresionR += (char)164;
         
         return this;
     }
@@ -187,7 +187,7 @@ public class AFN extends Automata {
         estadosAceptacion.add(nuevoEstadoF);
         
         //EXPRESION REGULAR
-        expresionR = "(" + expresionR + ")" + "?";
+        expresionR += "?";
         
         return this;
     }
@@ -200,6 +200,7 @@ public class AFN extends Automata {
         HashSet<Estado> R = new HashSet<>();
         int l;
         R = CerraduraE(this.estadoInicial);
+        
         l= s.length();
         for(int i=0; i < l; i++){
             R = IrA(R,s.charAt(i));

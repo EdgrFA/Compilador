@@ -12,7 +12,7 @@ public class Transicion {
     }
 
     public Transicion(char caracter, Estado estadoDestino) {
-        this.carMin =  this.carMax = carMin;
+        this.carMin =  this.carMax = caracter;
         this.estadoDestino = estadoDestino;
     }
     

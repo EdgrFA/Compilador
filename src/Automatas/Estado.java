@@ -1,4 +1,3 @@
-
 package Automatas;
 
 import java.util.ArrayList;
@@ -45,4 +44,16 @@ public class Estado {
     public ArrayList<Transicion> getTrancisiones() {
         return transiciones;
     }
+
+    @Override
+    public String toString() {
+        String str = "\nEstado: " + idEdo + ", con las transiciones: \n";
+        for (Transicion t : transiciones) {
+            str += "C: "+t.getCarMax()+"\n ";
+        }
+        str += "Final: " + isEsAceptacion();
+        return str;
+    }
+    
+    
 }
