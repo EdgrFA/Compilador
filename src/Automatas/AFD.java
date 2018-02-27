@@ -6,7 +6,6 @@ import java.util.HashSet;
 
 
 public class AFD extends Automata{
-    
     private ConjuntoEstados conjuntoInicial;
     private ArrayList<ConjuntoEstados> conjuntosEdos;
     private HashSet<Character> alfabeto;
