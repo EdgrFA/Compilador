@@ -2,6 +2,7 @@
 package Automatas;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 
 public class AFD extends Automata{
@@ -12,9 +13,10 @@ public class AFD extends Automata{
         Estado edoP = new Estado();
         for (AFN afn : afns)
             edoP.crearTrancision(EPSILON, afn.getEstadoInicial());
-        
+                
         //Crear las cerraduras epsilon
-        CerraduraE(edoP);
+        HashSet<Estado> conjuntoE = CerraduraE(edoP);
+        
         //CrearTabladeTransiciones
     }
     
