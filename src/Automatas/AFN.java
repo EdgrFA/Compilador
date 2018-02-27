@@ -195,12 +195,6 @@ public class AFN extends Automata implements Movimiento{
     public HashSet<Character> getAlfabeto() {
         return alfabeto;
     }
-    /**
-     * CerraduraEpsilon
-     * @param Estado e
-     * @return HashSet<Estado> 
-     */
-
     
     @Override
     public HashSet<Estado> Mover(Estado e, char c) {

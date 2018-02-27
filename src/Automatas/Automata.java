@@ -35,7 +35,6 @@ public class Automata {
      * @param Estado e
      * @return HashSet<Estado> 
      */
-    
     public HashSet<Estado> CerraduraE(HashSet<Estado> E){
         HashSet<Estado> c = new HashSet<>();
         for(Estado e : E){
