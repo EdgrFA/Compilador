@@ -8,4 +8,8 @@ public class TransicionCE {
         this.caracter =  caracter;
         this.conjuntoDestino = conjuntoDestino;
     }
+    
+    public ConjuntoEstados getConjuntoD(){
+        return conjuntoDestino;
+    }
 }

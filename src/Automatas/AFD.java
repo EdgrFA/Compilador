@@ -6,8 +6,9 @@ import java.util.HashSet;
 
 
 public class AFD extends Automata{
+    
     private ConjuntoEstados conjuntoInicial;
-    private HashSet<ConjuntoEstados> conjuntosEdos;
+    private ArrayList<ConjuntoEstados> conjuntosEdos;
     private HashSet<Character> alfabeto;
     //La tabla de transiciones solo se consultaria
     
@@ -22,27 +23,27 @@ public class AFD extends Automata{
         alfabeto.remove(EPSILON); //Remover Epsilon del Alfabeto
         
         //Crear la cerradura Epsilon Inicial
-        conjuntosEdos = new HashSet<>();
+        conjuntosEdos = new ArrayList<>();
         conjuntoInicial = new ConjuntoEstados(CerraduraE(estadoP));
         conjuntosEdos.add(conjuntoInicial) ;
         
         //Obtener todos los conjuntos 
         //***talvez falta reiniciar el ciclo cada vez que se encuentre algun conjunto sin analizar
-        for (ConjuntoEstados ce : conjuntosEdos) {
+        for (int i = 0; i < conjuntosEdos.size(); i++) {
+            ConjuntoEstados ce = conjuntosEdos.get(i);
             if(!ce.isAnalizado()){
                 //Analizar el conjunto con el alfabeto
                 for (Character caracter : alfabeto) {
                     HashSet<Estado> estadosD = IrA(ce.getColeccionEstados(), caracter);
                     //Si no se obtuvo ningun conjunto seguir con la siguiente letra
                     if(estadosD.isEmpty()){
-                        System.out.println(estadosD);
                         ce.crearTrancision(caracter, null);
                         continue;
                     }
                     //Comprobar que el conjunto no existe
                     Boolean esNuevo = true;
                     for (ConjuntoEstados ces : conjuntosEdos){
-                        if(!ces.compararConjuntos(estadosD)){
+                        if(ces.compararConjuntos(estadosD)){
                             ce.crearTrancision(caracter, ces);
                             esNuevo = false;
                             break;
@@ -67,7 +68,14 @@ public class AFD extends Automata{
             System.out.print(caracter + "\t");
         System.out.println("EA");
         for (ConjuntoEstados ce : conjuntosEdos) {
-            System.out.println("S" + ce.getId());
+            System.out.print("S" + ce.getId() + "\t");
+            for (TransicionCE t : ce.getTransiciones()) {
+                if(t.getConjuntoD() == null)
+                    System.out.print("-1\t");
+                else
+                    System.out.print("S" + t.getConjuntoD().getId() + "\t");
+            }
+            System.out.println(ce.getToken());
         }
         
     }

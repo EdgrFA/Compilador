@@ -16,21 +16,24 @@ public class Main {
     
     public static void main(String[] args) {
         AFNs afns = new AFNs();
-        afns = atm1(afns);//0
+        atm1(afns);//0
         atm2(afns);//1
         atm3(afns);//2
         atm4(afns);//3
         
         //Pruebas
-        System.out.println("PRUEBA 0: "+afns.getAutomata(0).AnalizarCardena("S"));
-        
+        System.out.println("PRUEBA 0: "+afns.getAutomata(0).AnalizarCardena("SDDDD"));
+        System.out.println("PRUEBA 1: "+afns.getAutomata(1).AnalizarCardena("SDDDD.D"));
+        System.out.println("PRUEBA 2: "+afns.getAutomata(2).AnalizarCardena("LLDLDLDLD"));
+        System.out.println("PRUEBA 3: "+afns.getAutomata(3).AnalizarCardena("EEEE"));
+        System.out.println("");
         //Convertir AFD
         AFD afd = new AFD(afns);
         afd.imprimirTablaTransiciones();
     }
     
     //S?|D+
-    public static AFNs atm1(AFNs afns){
+    public static void atm1(AFNs afns){
         afns.crearAFN('S'); //0
         afns.operacionSigno(0);
         afns.crearAFN('D'); //1
@@ -38,7 +41,6 @@ public class Main {
         afns.concatenar(0, 1);
         System.out.println(afns.getAutomata(0).getExpresionR());
         System.out.println(afns.getAutomata(0).getAlfabeto()+ "\n");
-        return afns;
     }
     
     public static void atm2(AFNs afns){

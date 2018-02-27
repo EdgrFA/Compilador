@@ -6,6 +6,7 @@ import java.util.HashSet;
 
 public class ConjuntoEstados {
     private static int id = 0;
+    private int idCE;
     private HashSet<Estado> coleccion;
     private boolean analizado;
     private ArrayList<TransicionCE> transiciones;
@@ -13,7 +14,7 @@ public class ConjuntoEstados {
     private int token = -1; //****Falta hacer el cambio de este dato en el metodo esEstadoFinal
 
     public ConjuntoEstados(HashSet<Estado> coleccion) {
-        this.id = id++;
+        this.idCE = id++;
         this.coleccion = coleccion;
         this.analizado = false;
         this.transiciones = new ArrayList<>();
@@ -36,11 +37,11 @@ public class ConjuntoEstados {
         return coleccion;
     }
     
-    public int existeEstadoFinal(){ //***Modificable a entero utilizando tokens y a agregar un dato esFinal
+    public int getToken(){ //***Modificable a entero utilizando tokens y a agregar un dato esFinal
         for (Estado estado : coleccion)
             if(estado.isEsAceptacion())
                 return token;
-        return -1;
+        return token;
     }
     
     /**
@@ -57,8 +58,12 @@ public class ConjuntoEstados {
         }
         return true;
     }
+    
+    public ArrayList<TransicionCE> getTransiciones(){
+        return transiciones;
+    }
 
     public int getId() {
-        return id;
+        return idCE;
     }
 }
