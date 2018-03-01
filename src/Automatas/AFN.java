@@ -1,9 +1,7 @@
 package Automatas;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Stack;
-
 
 public class AFN extends Automata {
     int idAFN;
@@ -75,6 +73,7 @@ public class AFN extends Automata {
         nuevoEstadoI.crearTrancision(EPSILON, estadoInicial);
         nuevoEstadoI.crearTrancision(EPSILON, afn2.estadoInicial);
         
+        //Elimina Edos de aceptacion de los anteriores Automatas
         for (Estado estado : estadosAceptacion) {
             estado.crearTrancision(EPSILON, nuevoEstadoF);
             estado.setEsAceptacion(false);
@@ -223,6 +222,10 @@ public class AFN extends Automata {
         return estadoInicial;
     }
     
+    public HashSet<Estado> getEdosAceptacion(){
+        return estadosAceptacion;
+    }
+    
     public static void main(String[] args) {
         AFN afn = new AFN('d','r');
         //afn.cerraduraAsterisco();
@@ -259,59 +262,5 @@ public class AFN extends Automata {
             }
         }
         System.out.println("----------------------");
-        afn.cerraduraAsterisco();
-        System.out.println(afn.alfabeto);
-        System.out.println("Soy el Edo Inicial= "+afn.estadoInicial.getTrancisiones().get(0).getCarMin());
-        System.out.println("numero de Esdos= "+afn.estados.size());
-        for(Estado e : afn.estados){
-            System.out.println("Mi id= "+e.idEdo);
-            for(Transicion t : e.getTrancisiones()){
-                System.out.println(t.getCarMax());
-            }
-        }
-        
-        System.out.println("------------------------");
-        edosX.clear();
-        edosX = afn.CerraduraE(afn.estadoInicial);
-        for(Estado e : edosX){
-            System.out.println("Mi id= "+e.idEdo);
-            for(Transicion t : e.getTrancisiones()){
-                System.out.println(t.getCarMax());
-            }
-            i++;
-        }
-        
-        System.out.println("------------------------");
-        edosX.clear();
-        edosX = afn.Mover(afn.estadoInicial,EPSILON);
-        for(Estado e : edosX){
-            System.out.println("Mi id= "+e.idEdo);
-            for(Transicion t : e.getTrancisiones()){
-                System.out.println(t.getCarMax());
-            }
-            i++;
-        }
-        
-        System.out.println("-----------------------------");
-        afn2 = new AFN('d','g');
-        afn.unirAFN(afn2);
-        System.out.println(afn.alfabeto);
-        System.out.println("Soy el Edo Inicial= "+afn.estadoInicial.getTrancisiones().get(0).getCarMin());
-        System.out.println("numero de Esdos= "+afn.estados.size());
-        for(Estado e : afn.estados){
-            System.out.println("Mi id= "+e.idEdo);
-            for(Transicion t : e.getTrancisiones()){
-                System.out.println(t.getCarMax());
-            }
-        }
-        System.out.println("----------Cerradura Canijota XD -------------------");
-        edosX = afn.IrA(afn.CerraduraE(afn.estadoInicial), 'g');
-        for(Estado e : edosX){
-            System.out.println("Mi id= "+e.idEdo);
-            for(Transicion t : e.getTrancisiones()){
-                System.out.println(t.getCarMax());
-            }
-            i++;
-        }
     }
 }

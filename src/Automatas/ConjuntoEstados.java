@@ -11,13 +11,14 @@ public class ConjuntoEstados {
     private boolean analizado;
     private ArrayList<TransicionCE> transiciones;
     //TOKEN SI EXISTE
-    private int token = -1; //****Falta hacer el cambio de este dato en el metodo esEstadoFinal
+    private int token; //****Falta hacer el cambio de este dato en el metodo esEstadoFinal
 
-    public ConjuntoEstados(HashSet<Estado> coleccion) {
+    public ConjuntoEstados(HashSet<Estado> coleccion, int token) {
         this.idCE = id++;
         this.coleccion = coleccion;
         this.analizado = false;
         this.transiciones = new ArrayList<>();
+        this.token = token;
     }
     
     public void crearTrancision(char c, ConjuntoEstados conjuntoDestino){
@@ -65,5 +66,9 @@ public class ConjuntoEstados {
 
     public int getId() {
         return idCE;
+    }
+    
+    public void setToken(int valorToken){
+        token= valorToken;
     }
 }

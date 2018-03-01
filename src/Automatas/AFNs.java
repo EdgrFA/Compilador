@@ -1,12 +1,19 @@
 package Automatas;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class AFNs {
     private ArrayList<AFN> automatas;
-
+    HashSet<Estado> edosAceptacion;
+    HashMap<Estado,Integer> tokens;
+    private int contadorToken = 10;
+    
     public AFNs() {
         automatas = new ArrayList<>();
+        edosAceptacion = new HashSet<>();
+        tokens = new HashMap<>();
     }
     
     /**
@@ -24,10 +31,7 @@ public class AFNs {
         automatas.add(automata);
     }
     
-    
-    /*
-    LLamada a los metodos
-    */
+    //LLamada a los metodos
     public void union(int id1, int id2){
         automatas.get(id1).unirAFN(automatas.get(id2));
         automatas.remove(id2);
@@ -61,6 +65,34 @@ public class AFNs {
         return automatas;
     }
     
+    public HashSet<Estado> getEdosAceptacion(){
+        for(AFN afn: automatas){
+            edosAceptacion.addAll(afn.getEdosAceptacion());
+        }
+        return edosAceptacion;
+    }
+    
+    public void actualizarTokens(){
+        for(AFN afn: automatas){
+            edosAceptacion.addAll(afn.getEdosAceptacion());
+        }
+        contadorToken = 10;
+        for(Estado e: edosAceptacion){
+            tokens.put(e, contadorToken);
+            contadorToken+=10;
+        }
+        
+    }
+
+    public int containsEdoAcept(HashSet<Estado> cjtoEdos){
+        actualizarTokens();
+        for(Estado edo: edosAceptacion){
+            if(cjtoEdos.contains(edo))
+                return tokens.get(edo);
+        }
+        return -1;
+    }
+    
     public int getNoAutomatas() {
         return automatas.size();
     }
@@ -77,10 +109,9 @@ public class AFNs {
         AFN afnaux= new AFN(c);
     }
     
-    
     public static void main(String[] args) {
         AFNs afns = new AFNs();
-        afns.crearAFN('1');
+        afns.crearAFN('1','1');
         afns.crearAFN('3','9');
         afns.getAutomata(0).concatenarAFN(afns.getAutomata(1));
         System.out.println("Llego aqui merenges");

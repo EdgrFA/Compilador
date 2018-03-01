@@ -1,4 +1,3 @@
-
 package Automatas;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ public class AFD extends Automata{
     private ConjuntoEstados conjuntoInicial;
     private ArrayList<ConjuntoEstados> conjuntosEdos;
     private HashSet<Character> alfabeto;
-    //La tabla de transiciones solo se consultaria
+  //La tabla de transiciones solo se consultaria
     
     public AFD(AFNs afns){
         //Union de todos los afns con el estado inicial de cada afn.
@@ -23,7 +22,7 @@ public class AFD extends Automata{
         
         //Crear la cerradura Epsilon Inicial
         conjuntosEdos = new ArrayList<>();
-        conjuntoInicial = new ConjuntoEstados(CerraduraE(estadoP));
+        conjuntoInicial = new ConjuntoEstados(CerraduraE(estadoP),-1);
         conjuntosEdos.add(conjuntoInicial) ;
         
         //Obtener todos los conjuntos 
@@ -50,7 +49,8 @@ public class AFD extends Automata{
                     }
                     //Agregar Transiciones para generar al final la tabla
                     if(esNuevo){
-                        ConjuntoEstados nuevoCE = new ConjuntoEstados(estadosD);
+                        int token = afns.containsEdoAcept(estadosD);
+                        ConjuntoEstados nuevoCE = new ConjuntoEstados(estadosD,token);
                         ce.crearTrancision(caracter, nuevoCE);
                         conjuntosEdos.add(nuevoCE);
                     }
@@ -65,7 +65,7 @@ public class AFD extends Automata{
         System.out.print("CE\t");
         for (Character caracter : alfabeto)
             System.out.print(caracter + "\t");
-        System.out.println("EA");
+        System.out.println("Edos Acept");
         for (ConjuntoEstados ce : conjuntosEdos) {
             System.out.print("S" + ce.getId() + "\t");
             for (TransicionCE t : ce.getTransiciones()) {
@@ -76,10 +76,22 @@ public class AFD extends Automata{
             }
             System.out.println(ce.getToken());
         }
-        
     }
     
     public HashSet<Character> getAlfabeto(){
         return alfabeto;
+    }
+    
+    /**
+     * Algoritmo LEX, verifica si la cadena es valida en caso de ser cierto regresa los Tokens
+     */
+    public int algoritmoLEX(){
+        int edoActual = 0;
+        int caracterActual = 0;
+        boolean edoAceptPrevio = false;
+        int indiceCaracterAct = -1; 
+        
+        
+        return -1;
     }
 }

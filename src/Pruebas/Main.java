@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Pruebas;
 
 import Automatas.AFD;
@@ -13,7 +8,6 @@ import Automatas.AFNs;
  * @author Edgar Flores
  */
 public class Main {
-    
     public static void main(String[] args) {
         AFNs afns = new AFNs();
         atm1(afns);//0
