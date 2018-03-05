@@ -3,7 +3,6 @@ package Automatas;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-
 public class AFD extends Automata{
     private ConjuntoEstados conjuntoInicial;
     private ArrayList<ConjuntoEstados> conjuntosEdos;
@@ -89,14 +88,14 @@ public class AFD extends Automata{
      * @return 
      */
     public int algoritmoLEX(String cadena){
-        boolean edoAceptPrevio;
-        int caracterActual = 0;
-        int caracterInicial = 0;
+        boolean edoAceptPrevio=false;
+        int indiceActual = 0;
+        int indiceInicio = 0;
         int valorToken = -1;
         ConjuntoEstados edoAct = conjuntoInicial;
-        for(caracterActual=0;caracterActual <= cadena.length()-1;caracterActual++){
-            System.out.println(cadena.charAt(caracterActual));
-            edoAct = edoAct.buscarTransicion(cadena.charAt(caracterActual));
+        for(indiceActual=0;indiceActual < cadena.length();indiceActual++){
+            System.out.println(cadena.charAt(indiceActual));
+            edoAct = edoAct.buscarTransicion(cadena.charAt(indiceActual));
             if(edoAct!=null){
                 if(edoAct.isAceptacion()){
                     edoAceptPrevio = true;
@@ -104,9 +103,19 @@ public class AFD extends Automata{
                 }
             }else{
                 //Dos casos, ninguna transición con caracter o el caracter no esta dentro del alfabeto
-                System.out.println("NO coincide: "+edoAct);
-                System.out.println("Error, no contiene dentro del alfabeto al caracter: "+cadena.charAt(caracterActual));
-                return 0;
+                if(edoAceptPrevio){
+                    String lexema = cadena.substring(indiceInicio, indiceActual);
+                    System.out.println("Lexema: "+lexema);
+                    System.out.println("Token: "+ valorToken);
+                    //System.out.println("cadena : "+cadena);
+                    edoAceptPrevio = false;
+                    edoAct = conjuntoInicial;//conjuntosEdos.get(idEstadoPrev);
+                    indiceInicio=indiceActual;
+                    indiceActual--;
+                }else{
+                    System.out.println("El caracter \""+cadena.charAt(indiceActual)+"\" no pertenece al alfabeto");
+                    return -1;
+                }
             }
         }
         return valorToken;

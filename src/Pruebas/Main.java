@@ -27,7 +27,7 @@ public class Main {
         //Convertir AFD
         AFD afd = new AFD(afns);
         afd.imprimirTablaTransiciones();
-        afd.algoritmoLEX("LLDDLDLDR");
+        afd.algoritmoLEX("DDEEESDD.DELLDESDDESDD.D");
     }
     /* //Prueba en el salón
     public static void atm1(AFNs afns){
