@@ -26,13 +26,14 @@ public class AFD extends Automata{
         conjuntosEdos.add(conjuntoInicial) ;
         
         //Obtener todos los conjuntos 
-        //***talvez falta reiniciar el ciclo cada vez que se encuentre algun conjunto sin analizar
+        //***talvez falta reiniciar el ciclo cada vez que se encuentre algun 
+        //conjunto sin analizar
         for (int i = 0; i < conjuntosEdos.size(); i++) {
             ConjuntoEstados ce = conjuntosEdos.get(i);
             if(!ce.isAnalizado()){
                 //Analizar el conjunto con el alfabeto
                 for (Character caracter : alfabeto) {
-                    HashSet<Estado> estadosD = IrA(ce.getColeccionEstados(), caracter);
+                    HashSet<Estado> estadosD = IrA(ce.getColeccionEstados(),caracter);
                     //Si no se obtuvo ningun conjunto seguir con la siguiente letra
                     if(estadosD.isEmpty()){
                         ce.crearTrancision(caracter, null);
@@ -84,14 +85,30 @@ public class AFD extends Automata{
     
     /**
      * Algoritmo LEX, verifica si la cadena es valida en caso de ser cierto regresa los Tokens
+     * @param cadena: cadena que se va a validar
+     * @return 
      */
-    public int algoritmoLEX(){
-        int edoActual = 0;
+    public int algoritmoLEX(String cadena){
+        boolean edoAceptPrevio;
         int caracterActual = 0;
-        boolean edoAceptPrevio = false;
-        int indiceCaracterAct = -1; 
-        
-        
-        return -1;
+        int caracterInicial = 0;
+        int valorToken = -1;
+        ConjuntoEstados edoAct = conjuntoInicial;
+        for(caracterActual=0;caracterActual <= cadena.length()-1;caracterActual++){
+            System.out.println(cadena.charAt(caracterActual));
+            edoAct = edoAct.buscarTransicion(cadena.charAt(caracterActual));
+            if(edoAct!=null){
+                if(edoAct.isAceptacion()){
+                    edoAceptPrevio = true;
+                    valorToken = edoAct.getToken();
+                }
+            }else{
+                //Dos casos, ninguna transición con caracter o el caracter no esta dentro del alfabeto
+                System.out.println("NO coincide: "+edoAct);
+                System.out.println("Error, no contiene dentro del alfabeto al caracter: "+cadena.charAt(caracterActual));
+                return 0;
+            }
+        }
+        return valorToken;
     }
 }

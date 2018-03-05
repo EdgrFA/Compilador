@@ -2,15 +2,17 @@
 package Automatas;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class ConjuntoEstados {
     private static int id = 0;
-    private int idCE;
+    private final int idCE;
     private HashSet<Estado> coleccion;
     private boolean analizado;
     private ArrayList<TransicionCE> transiciones;
-    //TOKEN SI EXISTE
+    private HashMap<Character,ConjuntoEstados> transicionesMap;
+    private boolean aceptacion = false;
     private int token; //****Falta hacer el cambio de este dato en el metodo esEstadoFinal
 
     public ConjuntoEstados(HashSet<Estado> coleccion, int token) {
@@ -18,12 +20,16 @@ public class ConjuntoEstados {
         this.coleccion = coleccion;
         this.analizado = false;
         this.transiciones = new ArrayList<>();
+        this.transicionesMap = new HashMap<>();
         this.token = token;
+        if(token>0)
+            this.aceptacion=true;
     }
     
     public void crearTrancision(char c, ConjuntoEstados conjuntoDestino){
         TransicionCE t = new TransicionCE(c, conjuntoDestino);
         transiciones.add(t);
+        transicionesMap.put(c, conjuntoDestino);
     }
     
     public boolean isAnalizado(){
@@ -38,7 +44,7 @@ public class ConjuntoEstados {
         return coleccion;
     }
     
-    public int getToken(){ //***Modificable a entero utilizando tokens y a agregar un dato esFinal
+    public int getToken(){ //***Modificable a entero utilizando tokens y a agregar un dato aceptacion
         for (Estado estado : coleccion)
             if(estado.isEsAceptacion())
                 return token;
@@ -48,6 +54,7 @@ public class ConjuntoEstados {
     /**
      * Este método comparara los dos conjuntos de estados para verificar si son los mismos.
      * @param conjunto: Conjunto con el que se hara la comparacion.
+     * @return 
      * @return: true - Si son iguales, false - Si son distintos.
      */
     public boolean compararConjuntos(HashSet<Estado> conjunto){
@@ -63,12 +70,16 @@ public class ConjuntoEstados {
     public ArrayList<TransicionCE> getTransiciones(){
         return transiciones;
     }
+    
+    public ConjuntoEstados buscarTransicion(char caracter){
+        return transicionesMap.get(caracter);
+    }
+
+    public boolean isAceptacion() {
+        return aceptacion;
+    }
 
     public int getId() {
         return idCE;
-    }
-    
-    public void setToken(int valorToken){
-        token= valorToken;
     }
 }

@@ -14,9 +14,9 @@ public class Main {
         atm2(afns);//1
         atm3(afns);//2
         atm4(afns);//3
-        atm5(afns);//3
-        atm6(afns);//3
-        atm7(afns);//3
+        //atm5(afns);//4
+        //atm6(afns);//5
+        //atm7(afns);//6
         
         //Pruebas
         System.out.println("PRUEBA 0: "+afns.getAutomata(0).AnalizarCardena("SDDDD"));
@@ -27,8 +27,9 @@ public class Main {
         //Convertir AFD
         AFD afd = new AFD(afns);
         afd.imprimirTablaTransiciones();
+        afd.algoritmoLEX("LLDDLDLDR");
     }
-    
+    /* //Prueba en el salón
     public static void atm1(AFNs afns){
         afns.crearAFN('S');
         afns.operacionSigno(0);
@@ -90,8 +91,8 @@ public class Main {
         afns.concatenar(6, 7); 
         System.out.println(afns.getAutomata(6).getExpresionR());
         System.out.println(afns.getAutomata(6).getAlfabeto()+ "\n");
-    }
-    /*
+    }*/
+
     //S?|D+
     public static void atm1(AFNs afns){
         afns.crearAFN('S'); //0
@@ -135,5 +136,5 @@ public class Main {
         System.out.println(afns.getAutomata(3).getExpresionR());
         System.out.println(afns.getAutomata(3).getAlfabeto()+ "\n");
     }
-    */
+    
 }
