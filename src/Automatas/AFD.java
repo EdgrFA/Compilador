@@ -102,22 +102,24 @@ public class AFD extends Automata{
                     valorToken = edoAct.getToken();
                 }
             }else{
-                //Dos casos, ninguna transición con caracter o el caracter no esta dentro del alfabeto
                 if(edoAceptPrevio){
                     String lexema = cadena.substring(indiceInicio, indiceActual);
                     System.out.println("Lexema: "+lexema);
                     System.out.println("Token: "+ valorToken);
-                    //System.out.println("cadena : "+cadena);
                     edoAceptPrevio = false;
                     edoAct = conjuntoInicial;//conjuntosEdos.get(idEstadoPrev);
                     indiceInicio=indiceActual;
                     indiceActual--;
                 }else{
+                    //Dos casos, ninguna transición con caracter o el caracter no esta dentro del alfabeto
                     System.out.println("El caracter \""+cadena.charAt(indiceActual)+"\" no pertenece al alfabeto");
                     return -1;
                 }
             }
         }
+        String lexema = cadena.substring(indiceInicio, indiceActual);
+        System.out.println("Lexema: "+lexema);
+        System.out.println("Token: "+ valorToken);
         return valorToken;
     }
 }
