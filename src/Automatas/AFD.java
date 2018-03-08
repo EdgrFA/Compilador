@@ -93,7 +93,7 @@ public class AFD extends Automata{
         int indiceInicio = 0;
         int valorToken = -1;
         ConjuntoEstados edoAct = conjuntoInicial;
-        for(indiceActual=0;indiceActual < cadena.length();indiceActual++){
+        for(indiceActual=0; indiceActual < cadena.length(); indiceActual++){
             System.out.println(cadena.charAt(indiceActual));
             edoAct = edoAct.buscarTransicion(cadena.charAt(indiceActual));
             if(edoAct!=null){
@@ -121,5 +121,9 @@ public class AFD extends Automata{
         System.out.println("Lexema: "+lexema);
         System.out.println("Token: "+ valorToken);
         return valorToken;
+    }
+
+    public ConjuntoEstados getConjuntoInicial() {
+        return conjuntoInicial;
     }
 }

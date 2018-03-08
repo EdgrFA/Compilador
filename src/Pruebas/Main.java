@@ -1,5 +1,6 @@
 package Pruebas;
 
+import Analizadores.*;
 import Automatas.AFD;
 import Automatas.AFNs;
 
@@ -27,7 +28,14 @@ public class Main {
         //Convertir AFD
         AFD afd = new AFD(afns);
         afd.imprimirTablaTransiciones();
-        afd.algoritmoLEX("DDEEESDD.DELLDESDDESDD.D");
+        //afd.algoritmoLEX("DDEEESDD.DELLDESDDESDD.D");
+        
+        AnalizadorLexico aL = new AnalizadorLexico("DDEEESDD.DELLDESDDESDD.D", afd.getConjuntoInicial());
+        int token;
+        while((token = aL.obtenerToken()) != 0){
+            System.out.println("\nLexema: " + aL.getLexema());
+            System.out.println("Token del Lexema: " + token);
+        }
     }
     /* //Prueba en el salón
     public static void atm1(AFNs afns){
