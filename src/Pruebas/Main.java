@@ -30,7 +30,7 @@ public class Main {
         afd.imprimirTablaTransiciones();
         //afd.algoritmoLEX("DDEEESDD.DELLDESDDESDD.D");
         
-        AnalizadorLexico aL = new AnalizadorLexico("DDEEESDD.DELLDESDDESDD.D", afd.getConjuntoInicial());
+        AnalizadorLexico aL = new AnalizadorLexico("DDEEESDD.DELLDESDDESDD.D", afd);
         int token;
         while((token = aL.obtenerToken()) != 0){
             System.out.println("\nLexema: " + aL.getLexema());

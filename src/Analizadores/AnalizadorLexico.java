@@ -1,6 +1,7 @@
 
 package Analizadores;
 
+import Automatas.AFD;
 import Automatas.ConjuntoEstados;
 
 public class AnalizadorLexico {
@@ -10,26 +11,23 @@ public class AnalizadorLexico {
     private boolean edoAceptPrevio;
     private int indiceIniLex; //Indice del inicio del Lexema
     private int indiceActual;
-    private char carActual;
+    private char carActual; //Se puede quitar
     private int valorToken;
     private String lexema;
-    //Poner caracter actual
 
-    public AnalizadorLexico(String cadena, ConjuntoEstados conjuntoInicial) {
+    public AnalizadorLexico(String cadena, AFD afd) {
         this.cadena = cadena;
-        edoInicial = conjuntoInicial;
-        edoActual = conjuntoInicial;
+        edoInicial = afd.getConjuntoInicial();
+        edoActual = edoInicial;
         edoAceptPrevio = edoActual.isAceptacion();
         indiceIniLex = 0;
         indiceActual = 0;
     }
     
     public int obtenerToken(){
-        System.out.println("");
         if(indiceActual >= cadena.length())
             return 0;
-        for(indiceActual = indiceIniLex; indiceActual < cadena.length(); indiceActual++){ //indiceActual++ agregar esta wea
-            System.out.println("Leyendo: " + cadena.charAt(indiceActual) + ", en indice: " + indiceActual);
+        for(indiceActual = indiceIniLex; indiceActual < cadena.length(); indiceActual++){
             carActual = cadena.charAt(indiceActual);
             edoActual = edoActual.buscarTransicion(carActual);
             if(edoActual != null){
@@ -46,26 +44,19 @@ public class AnalizadorLexico {
                     return valorToken;
                 }else{
                     //Dos casos, ninguna transición con caracter o el caracter no esta dentro del alfabeto
-                    System.out.println("No existe transicion con el caracter \""+cadena.charAt(indiceActual)+"\"");
-                    //return -1;
+                    System.out.println("\nNo existe transicion con el caracter \""+cadena.charAt(indiceActual)+"\"");
                     edoActual = edoInicial;
+                    indiceIniLex++;
                 }
             }
         }
-        
-        System.out.println("FIN DE CADENA");
-        
         if(edoAceptPrevio){
             lexema = cadena.substring(indiceIniLex, indiceActual);
             edoAceptPrevio = false;
-            edoActual = edoInicial; //conjuntosEdos.get(idEstadoPrev);
+            edoActual = edoInicial;
             indiceIniLex = indiceActual;
             return valorToken;
         }
-//        lexema = cadena.substring(indiceIniLex, indiceActual);
-//        System.out.println("Lexema: "+lexema);
-//        System.out.println("Token: "+ valorToken);
-//        return valorToken;
         return 0;
     }
 

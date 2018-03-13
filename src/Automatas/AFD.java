@@ -82,47 +82,6 @@ public class AFD extends Automata{
         return alfabeto;
     }
     
-    /**
-     * Algoritmo LEX, verifica si la cadena es valida en caso de ser cierto regresa los Tokens
-     * @param cadena: cadena que se va a validar
-     * @return 
-     */
-    public int algoritmoLEX(String cadena){
-        boolean edoAceptPrevio=false;
-        int indiceActual = 0;
-        int indiceInicio = 0;
-        int valorToken = -1;
-        ConjuntoEstados edoAct = conjuntoInicial;
-        for(indiceActual=0; indiceActual < cadena.length(); indiceActual++){
-            System.out.println(cadena.charAt(indiceActual));
-            edoAct = edoAct.buscarTransicion(cadena.charAt(indiceActual));
-            if(edoAct!=null){
-                if(edoAct.isAceptacion()){
-                    edoAceptPrevio = true;
-                    valorToken = edoAct.getToken();
-                }
-            }else{
-                if(edoAceptPrevio){
-                    String lexema = cadena.substring(indiceInicio, indiceActual);
-                    System.out.println("Lexema: "+lexema);
-                    System.out.println("Token: "+ valorToken);
-                    edoAceptPrevio = false;
-                    edoAct = conjuntoInicial;//conjuntosEdos.get(idEstadoPrev);
-                    indiceInicio=indiceActual;
-                    indiceActual--;
-                }else{
-                    //Dos casos, ninguna transición con caracter o el caracter no esta dentro del alfabeto
-                    System.out.println("El caracter \""+cadena.charAt(indiceActual)+"\" no pertenece al alfabeto");
-                    return -1;
-                }
-            }
-        }
-        String lexema = cadena.substring(indiceInicio, indiceActual);
-        System.out.println("Lexema: "+lexema);
-        System.out.println("Token: "+ valorToken);
-        return valorToken;
-    }
-
     public ConjuntoEstados getConjuntoInicial() {
         return conjuntoInicial;
     }
