@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Calculadora;
 
-/**
- *
- * @author xXEdG
- */
 public class Tokens {
     public static int NUM;
     public static int SUM;
@@ -42,6 +33,4 @@ public class Tokens {
         System.out.println("Token LOG = " + Tokens.LOG);
         System.out.println("");
     }
-    
-    
 }

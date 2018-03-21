@@ -52,6 +52,11 @@ public class Calculadora {
         return true;
     }
     
+    boolean F(FloatM v){
+        
+        return false;
+    }
+    
     public static void cambiar(FloatM v ){
 
     }

@@ -9,36 +9,37 @@ public class Calculadora {
     
     public static void main(String[] args) {
         AFNs afns = new AFNs();
-        atmNum(afns); //0
+        atmNum(afns);       //0
         afns.crearAFN('+'); //1
         afns.crearAFN('-'); //2
         afns.crearAFN('*'); //3
         afns.crearAFN('/'); //4
         afns.crearAFN('('); //5
         afns.crearAFN(')'); //6     
-        atmSEN(afns); //7
-        atmCOS(afns); //8
-        atmTAN(afns); //9
+        atmSEN(afns);       //7
+        atmCOS(afns);       //8
+        atmTAN(afns);       //9
         afns.crearAFN('^'); //10
-        atmEXP(afns); //11
-        atmLN(afns); //12
-        atmLOG(afns); //13
+        atmEXP(afns);       //11
+        atmLN(afns);        //12
+        atmLOG(afns);       //13
+        
         AFD afd = new AFD(afns);
         
-        Tokens.NUM = afns.getTokenAFN(0);
-        Tokens.SUM = afns.getTokenAFN(1);
-        Tokens.REST = afns.getTokenAFN(2);
-        Tokens.PROD = afns.getTokenAFN(3);
-        Tokens.DIV = afns.getTokenAFN(4);
+        Tokens.NUM   = afns.getTokenAFN(0);
+        Tokens.SUM   = afns.getTokenAFN(1);
+        Tokens.REST  = afns.getTokenAFN(2);
+        Tokens.PROD  = afns.getTokenAFN(3);
+        Tokens.DIV   = afns.getTokenAFN(4);
         Tokens.PAR_I = afns.getTokenAFN(5);
         Tokens.PAR_D = afns.getTokenAFN(6);
-        Tokens.SIN = afns.getTokenAFN(7);
-        Tokens.COS = afns.getTokenAFN(8);
-        Tokens.TAN = afns.getTokenAFN(9);
-        Tokens.POT = afns.getTokenAFN(10);
-        Tokens.EXP = afns.getTokenAFN(11);
-        Tokens.LN = afns.getTokenAFN(12);
-        Tokens.LOG = afns.getTokenAFN(13);
+        Tokens.SIN   = afns.getTokenAFN(7);
+        Tokens.COS   = afns.getTokenAFN(8);
+        Tokens.TAN   = afns.getTokenAFN(9);
+        Tokens.POT   = afns.getTokenAFN(10);
+        Tokens.EXP   = afns.getTokenAFN(11);
+        Tokens.LN    = afns.getTokenAFN(12);
+        Tokens.LOG   = afns.getTokenAFN(13);
         
         Tokens.TokenInfo();
         afd.imprimirTablaTransiciones();
