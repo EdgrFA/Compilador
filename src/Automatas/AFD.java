@@ -24,8 +24,7 @@ public class AFD extends Automata{
         conjuntoInicial = new ConjuntoEstados(CerraduraE(estadoP),-1);
         conjuntosEdos.add(conjuntoInicial) ;
         
-        //Obtener todos los conjuntos 
-        //***talvez falta reiniciar el ciclo cada vez que se encuentre algun 
+        //Obtener todos los conjuntos
         //conjunto sin analizar
         for (int i = 0; i < conjuntosEdos.size(); i++) {
             ConjuntoEstados ce = conjuntosEdos.get(i);
