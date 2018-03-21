@@ -1,6 +1,8 @@
 
 package Automatas.descensoRecursivo;
 
+import Calculadora.FloatM;
+
 public class Calculadora {
     boolean E(FloatM v){
         if(T(v))

@@ -1,4 +1,4 @@
-package Automatas.descensoRecursivo;
+package Calculadora;
 
 public class FloatM {
     private float valor;
