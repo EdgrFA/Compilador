@@ -1,4 +1,3 @@
-
 package Automatas;
 
 import java.util.ArrayList;
