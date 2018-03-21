@@ -9,6 +9,7 @@ public class AnalizadorLexico {
     private ConjuntoEstados edoInicial;
     private ConjuntoEstados edoActual;
     private boolean edoAceptPrevio;
+    private int indiceTokenAnterior;
     private int indiceIniLex; //Indice del inicio del Lexema
     private int indiceActual;
     private char carActual; //Se puede quitar
@@ -22,6 +23,7 @@ public class AnalizadorLexico {
         edoAceptPrevio = edoActual.isAceptacion();
         indiceIniLex = 0;
         indiceActual = 0;
+        indiceTokenAnterior = 0;
     }
     
     public int obtenerToken(){
@@ -40,6 +42,7 @@ public class AnalizadorLexico {
                     lexema = cadena.substring(indiceIniLex, indiceActual);
                     edoAceptPrevio = false;
                     edoActual = edoInicial; //conjuntosEdos.get(idEstadoPrev);
+                    indiceTokenAnterior = indiceIniLex;
                     indiceIniLex = indiceActual;
                     return valorToken;
                 }else{
@@ -60,7 +63,17 @@ public class AnalizadorLexico {
         return 0;
     }
 
+    public int getTokenActual() {
+        return valorToken;
+    }
+
     public String getLexema() {
         return lexema;
+    }
+    
+    public void regresarToken(){
+        indiceActual = indiceTokenAnterior;
+        indiceIniLex = indiceTokenAnterior;
+        System.out.println("Se regresaron los indices al lexema anterior.");
     }
 }

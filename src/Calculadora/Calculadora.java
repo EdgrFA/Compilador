@@ -29,7 +29,17 @@ public class Calculadora {
         Tokens.TokenInfo();
         afd.imprimirTablaTransiciones();
         
-        
+        AnalizadorLexico al = new AnalizadorLexico("5.5+(4-2)", afd);
+        int token = al.obtenerToken();
+        System.out.println("Token: " + token + ", Lexema: " + al.getLexema());
+        al.regresarToken();
+        token = al.obtenerToken();
+        System.out.println("Token: " + token + ", Lexema: " + al.getLexema());
+        token = al.obtenerToken();
+        System.out.println("Token: " + token + ", Lexema: " + al.getLexema());
+        al.regresarToken();
+        token = al.obtenerToken();
+        System.out.println("Token: " + token + ", Lexema: " + al.getLexema());
     }
 
     //NUM -> 0

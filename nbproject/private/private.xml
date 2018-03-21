@@ -12,9 +12,35 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Calculadora/Calculadora.java</file>
             <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Calculadora/Tokens.java</file>
             <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Automatas/descensoRecursivo/Calculadora.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/D:/Edgar%20Flores/Documentos/Github/Compiladores/Compilador/src/Calculadora/Calculadora.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Automatas/Transicion.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Automatas/TransicionCE.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Automatas/AFD.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Automatas/ConjuntoEstados.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Automatas/descensoRecursivo/Tokens.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Automatas/descensoRecursivo/Scanner.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Automatas/Estado.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Pruebas/Main.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Automatas/descensoRecursivo/Calculadora.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Pruebas/PruebaLaboratorio1.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Analizadores/AnalizadorLexico.java</file>
+=======
+            <file>file:/C:/Users/xXEdG/OneDrive/Documentos/Github/Compilador/src/Automatas/Automata.java</file>
+            <file>file:/C:/Users/xXEdG/OneDrive/Documentos/Github/Compilador/src/Automatas/AFNs.java</file>
+            <file>file:/C:/Users/xXEdG/OneDrive/Documentos/Github/Compilador/src/Automatas/AFN.java</file>
+            <file>file:/C:/Users/xXEdG/OneDrive/Documentos/Github/Compilador/src/Calculadora/Calculadora.java</file>
+            <file>file:/C:/Users/xXEdG/OneDrive/Documentos/Github/Compilador/src/Calculadora/Tokens.java</file>
+>>>>>>> 6d3a731a101eb73dd2c466d41b294d2545b4c948
+>>>>>>> d20704443a31fc6f3388d57870d788b9d78afbe6
+>>>>>>> 5c52d622879f75d46201a330b856bb151d53e5be
         </group>
     </open-files>
 </project-private>
