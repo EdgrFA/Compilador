@@ -29,7 +29,6 @@ public class Calculadora {
         Tokens.TokenInfo();
         afd.imprimirTablaTransiciones();
         
-        
     }
 
     //NUM -> 0
