@@ -109,6 +109,14 @@ public class AFNs {
         AFN afnaux= new AFN(c);
     }
     
+    public int getTokenAFN(int index){
+        for(Estado e : automatas.get(index).getEdosAceptacion()){
+            if(tokens.get(e)!= null)
+                return tokens.get(e);
+        }
+        return -1;
+    }
+    
     public static void main(String[] args) {
         AFNs afns = new AFNs();
         afns.crearAFN('1','1');
