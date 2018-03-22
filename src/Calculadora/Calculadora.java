@@ -9,20 +9,20 @@ public class Calculadora {
     
     public static void main(String[] args) {
         AFNs afns = new AFNs();
-        atmNum(afns);       //0
+        afnNum(afns);       //0
         afns.crearAFN('+'); //1
         afns.crearAFN('-'); //2
         afns.crearAFN('*'); //3
         afns.crearAFN('/'); //4
         afns.crearAFN('('); //5
         afns.crearAFN(')'); //6     
-        atmSEN(afns);       //7
-        atmCOS(afns);       //8
-        atmTAN(afns);       //9
+        afnSEN(afns);       //7
+        afnCOS(afns);       //8
+        afnTAN(afns);       //9
         afns.crearAFN('^'); //10
-        atmEXP(afns);       //11
-        atmLN(afns);        //12
-        atmLOG(afns);       //13
+        afnEXP(afns);       //11
+        afnLN(afns);        //12
+        afnLOG(afns);       //13
         
         AFD afd = new AFD(afns);
         
@@ -47,12 +47,13 @@ public class Calculadora {
         AnalizadorLexico al = new AnalizadorLexico("5.5+(4-2)", afd);
         
         AnalizadorSintactico as = new AnalizadorSintactico(afd);
-        as.AnalizarCadena("5.5+6.5*25");
+        //as.AnalizarCadena("70*(4+6)+40*SIN(90)+10^4");
+        as.AnalizarCadena("e^(2)+10*48/10");
         System.out.println(as.getResultado());
     }
 
     //NUM -> 0
-    public static void atmNum(AFNs afns){
+    public static void afnNum(AFNs afns){
         afns.crearAFN('0', '9'); //0
         afns.cerraduraSuma(0);
         afns.crearAFN('.'); //1
@@ -63,7 +64,7 @@ public class Calculadora {
         afns.concatenar(0, 1);
     }
 
-    public static void atmSEN(AFNs afns){
+    public static void afnSEN(AFNs afns){
         afns.crearAFN('S'); //7
         afns.crearAFN('I'); //8
         afns.crearAFN('N'); //9
@@ -71,7 +72,7 @@ public class Calculadora {
         afns.concatenar(7, 8);
     }
     
-    public static void atmCOS(AFNs afns){
+    public static void afnCOS(AFNs afns){
         afns.crearAFN('C'); //8
         afns.crearAFN('O'); //9
         afns.crearAFN('S'); //10
@@ -79,7 +80,7 @@ public class Calculadora {
         afns.concatenar(8, 9);
     }
     
-    public static void atmTAN(AFNs afns){
+    public static void afnTAN(AFNs afns){
         afns.crearAFN('T'); //9
         afns.crearAFN('A'); //10
         afns.crearAFN('N'); //11
@@ -87,19 +88,19 @@ public class Calculadora {
         afns.concatenar(9, 10);
     }
     
-    public static void atmEXP(AFNs afns){
+    public static void afnEXP(AFNs afns){
         afns.crearAFN('e'); //11
         afns.crearAFN('^'); //12
         afns.concatenar(11, 12);
     }
     
-    public static void atmLN(AFNs afns){
+    public static void afnLN(AFNs afns){
         afns.crearAFN('L'); //12
         afns.crearAFN('N'); //13
         afns.concatenar(12, 13);
     }
     
-    public static void atmLOG(AFNs afns){
+    public static void afnLOG(AFNs afns){
         afns.crearAFN('L'); //13
         afns.crearAFN('O'); //14
         afns.crearAFN('G'); //15

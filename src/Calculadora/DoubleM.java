@@ -36,11 +36,11 @@ public class DoubleM {
     }
     
     public void potencia(DoubleM exponente){
-        valor = Math.cos(valor);
+        valor = Math.pow(valor,exponente.valor);
     }
     
-    public void exponencial(DoubleM divisor){
-        valor = Math.cos(valor);
+    public void exponencial(){
+        valor = Math.exp(valor);
     }
     
     public void ln(){

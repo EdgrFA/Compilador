@@ -25,6 +25,7 @@ public class AnalizadorSintactico {
     }
     
     public boolean E(DoubleM v){
+        System.out.println("E");
         if(T(v))
             if(Ep(v))
                 return true;
@@ -32,17 +33,20 @@ public class AnalizadorSintactico {
     }
     
     public boolean Ep(DoubleM v){
+        System.out.println("Ep");
         int tok;
         DoubleM v1 = new DoubleM(1.0);
         tok = Lexic.obtenerToken();
+        System.out.println("Mi Token: "+tok);
         if(tok == Tokens.SUMA || tok == Tokens.RESTA){
             if(T(v1)){
                 if(tok == Tokens.SUMA)
                     v.suma(v1);
                 else
                     v.resta(v1);
-                if(Ep(v))
+                if(Ep(v)){
                     return true;
+                }
             }
             return false;
         }
@@ -51,6 +55,7 @@ public class AnalizadorSintactico {
     }
     
     public boolean T(DoubleM v){
+        System.out.println("T");
         if(F(v))
             if(Tp(v))
                 return true;
@@ -58,7 +63,8 @@ public class AnalizadorSintactico {
     }
     
     public boolean Tp(DoubleM v){
-        int tok=0;
+        System.out.println("Tp");
+        int tok;
         DoubleM v1 = new DoubleM(1.0);
         tok = Lexic.obtenerToken();
         if(tok == Tokens.PROD || tok == Tokens.DIV){
@@ -79,7 +85,6 @@ public class AnalizadorSintactico {
     public boolean F(DoubleM v){
         int tok;
         tok = Lexic.obtenerToken();
-        System.out.println("Token: "+tok);
         if (tok == Tokens.PAR_I) {
             if(E(v)){
                 tok = Lexic.obtenerToken();
@@ -90,30 +95,37 @@ public class AnalizadorSintactico {
             v.setValor(Double.parseDouble(Lexic.getLexema()));
             System.out.println("Lexema: "+Lexic.getLexema());
             return true;
-        }else if(tok == Tokens.SIN || tok == Tokens.COS || tok == Tokens.TAN || tok == Tokens.EXP || tok == Tokens.LN || tok == Tokens.LOG){
-            if(E(v)){
-                //PONER OPERACIONES para "v"
-                if(tok == Tokens.SIN){
-                    
-                }else if(tok == Tokens.COS){
-
-                }else if(tok == Tokens.TAN){
-
-                }else if(tok == Tokens.EXP){
-
-                }else if(tok == Tokens.LN){
-
-                }else if(tok == Tokens.LOG){
-
+        }else if(tok == Tokens.SIN || tok == Tokens.COS || tok == Tokens.TAN ||
+                tok == Tokens.POT ||  tok == Tokens.EXP || tok == Tokens.LN || tok == Tokens.LOG){
+            //PONER OPERACIONES para "v"
+            int AuxTok = tok;
+            tok = Lexic.obtenerToken();
+            if (tok == Tokens.PAR_I) {
+                if(E(v)){
+                    tok = Lexic.obtenerToken();
+                    if(AuxTok == Tokens.SIN){
+                        v.sin();
+                    }else if(AuxTok == Tokens.COS){
+                        v.cos();
+                    }else if(AuxTok == Tokens.TAN){
+                        v.tan();
+                    }else if(AuxTok == Tokens.POT){
+                        v.potencia(v);
+                    }else if(AuxTok == Tokens.EXP){
+                        v.exponencial();
+                    }else if(AuxTok == Tokens.LN){
+                        v.ln();
+                    }else if(AuxTok == Tokens.LOG){
+                        v.log();
+                    }
+                    if(tok == Tokens.PAR_D)
+                        return true;
+                    return false;
                 }
-                return true;
             }
+            
         }
         return false;
-    }
-    
-    public static void cambiar(DoubleM v ){
-
     }
 
     public double getResultado() {
@@ -121,11 +133,9 @@ public class AnalizadorSintactico {
     }
     
     public static void main(String[] args) {
-        DoubleM v = new DoubleM(1.5);
-        DoubleM v1 = new DoubleM(1);
-        v.ln();
-        
-        
+        DoubleM v = new DoubleM(10);
+        DoubleM v1 = new DoubleM(3);
+        v.exponencial();
         System.out.println(v.getValor());
     } 
     
