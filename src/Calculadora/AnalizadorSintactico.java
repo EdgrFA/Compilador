@@ -6,34 +6,41 @@ import Automatas.AFD;
 
 public class AnalizadorSintactico {
     private AnalizadorLexico Lexic;
-    private AFD afd;
+    private final AFD afd;
+    private DoubleM resultado;
 
     public AnalizadorSintactico(AFD afd) {
         this.afd = afd;
+        resultado = new DoubleM(1.0);
     }
     
-    public boolean AnalizarCadena(String cadena, FloatM v){
+    public boolean AnalizarCadena(String cadena, DoubleM v){
         Lexic = new AnalizadorLexico(cadena, afd);
         return E(v);
     }
     
-    public boolean E(FloatM v){
+    public boolean AnalizarCadena(String cadena){
+        Lexic = new AnalizadorLexico(cadena, afd);
+        return E(resultado);
+    }
+    
+    public boolean E(DoubleM v){
         if(T(v))
             if(Ep(v))
                 return true;
         return false;
     }
     
-    public boolean Ep(FloatM v){
+    public boolean Ep(DoubleM v){
         int tok;
-        FloatM v1 = new FloatM(0.0f);
+        DoubleM v1 = new DoubleM(1.0);
         tok = Lexic.obtenerToken();
-        if(tok == Tokens.SUM || tok == Tokens.REST){
+        if(tok == Tokens.SUMA || tok == Tokens.RESTA){
             if(T(v1)){
-                if(tok == Tokens.SUM)
-                    v.suma(v, v1);
+                if(tok == Tokens.SUMA)
+                    v.suma(v1);
                 else
-                    v.resta(v, v1);
+                    v.resta(v1);
                 if(Ep(v))
                     return true;
             }
@@ -43,23 +50,23 @@ public class AnalizadorSintactico {
         return true;
     }
     
-    public boolean T(FloatM v){
+    public boolean T(DoubleM v){
         if(F(v))
             if(Tp(v))
                 return true;
         return false;
     }
     
-    public boolean Tp(FloatM v){
+    public boolean Tp(DoubleM v){
         int tok=0;
-        FloatM v1 = new FloatM(0.0f);
+        DoubleM v1 = new DoubleM(1.0);
         tok = Lexic.obtenerToken();
         if(tok == Tokens.PROD || tok == Tokens.DIV){
             if(F(v1)){
                 if(tok == Tokens.PROD)
-                    v.producto(v, v1);
+                    v.producto(v1);
                 else
-                    v.division(v, v1);
+                    v.division(v1);
                 if(Tp(v))
                     return true;
             }
@@ -69,9 +76,10 @@ public class AnalizadorSintactico {
         return true;
     }
     
-    public boolean F(FloatM v){
+    public boolean F(DoubleM v){
         int tok;
         tok = Lexic.obtenerToken();
+        System.out.println("Token: "+tok);
         if (tok == Tokens.PAR_I) {
             if(E(v)){
                 tok = Lexic.obtenerToken();
@@ -79,7 +87,8 @@ public class AnalizadorSintactico {
                     return true;
             }
         }else if(tok == Tokens.NUM){
-            v = new FloatM(Float.parseFloat(Lexic.getLexema()));
+            v.setValor(Double.parseDouble(Lexic.getLexema()));
+            System.out.println("Lexema: "+Lexic.getLexema());
             return true;
         }else if(tok == Tokens.SIN || tok == Tokens.COS || tok == Tokens.TAN || tok == Tokens.EXP || tok == Tokens.LN || tok == Tokens.LOG){
             if(E(v)){
@@ -103,15 +112,21 @@ public class AnalizadorSintactico {
         return false;
     }
     
-    public static void cambiar(FloatM v ){
+    public static void cambiar(DoubleM v ){
 
+    }
+
+    public double getResultado() {
+        return resultado.getValor();
     }
     
     public static void main(String[] args) {
-        FloatM v = new FloatM(1.5f);
-        FloatM v1 = new FloatM(1/4);
+        DoubleM v = new DoubleM(1.5);
+        DoubleM v1 = new DoubleM(1);
+        v.ln();
         
-        System.out.println(v);
+        
+        System.out.println(v.getValor());
     } 
     
 }

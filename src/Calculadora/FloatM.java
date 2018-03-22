@@ -15,20 +15,28 @@ public class FloatM {
         return numerador.getValor()/divisor.getValor();
     }
     
-    public void suma(FloatM sumando1, FloatM sumando2){
-        valor = sumando1.getValor()+sumando2.getValor();
+    public void suma(FloatM sumando){
+        valor = valor + sumando.getValor();
     }
     
-    public void resta(FloatM minuendo, FloatM sustraendo){
-        valor = minuendo.getValor()+sustraendo.getValor();
+    public void resta(FloatM sustraendo){
+        valor = valor - sustraendo.getValor();
     }
     
-    public void producto(FloatM factor1, FloatM factor2){
-        valor = factor1.getValor()*factor2.getValor();
+    public void producto(FloatM factor2){
+        valor = valor * factor2.getValor();
     }
     
-    public void division(FloatM numerador, FloatM divisor){
-        valor = numerador.getValor()/divisor.getValor();
+    public void division(FloatM divisor){
+        valor = valor / divisor.getValor();
+    }
+    
+    public void sin(FloatM divisor){
+        valor = (float) Math.sin((double)valor);
+    }
+    
+    public void cos(FloatM divisor){
+        valor = valor / divisor.getValor();
     }
     
     public float getValor() {

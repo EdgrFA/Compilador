@@ -18,9 +18,9 @@ public class Calculadora {
         if(tok == Tokens.MAS || tok == Tokens.MENOS){
             if(T(v1)){
                 if(tok == Tokens.MAS)
-                    v.suma(v, v1);
+                    v.suma(v1);
                 else
-                    v.resta(v, v1);
+                    v.resta(v1);
                 if(Ep(v))
                     return true;
             }
@@ -43,9 +43,9 @@ public class Calculadora {
         if(tok == Tokens.MAS || tok == Tokens.MENOS){
             if(T(v1)){
                 if(tok == Tokens.MAS)
-                    v.suma(v, v1);
+                    v.suma(v1);
                 else
-                    v.resta(v, v1);
+                    v.resta(v1);
                 if(Ep(v))
                     return true;
             }
