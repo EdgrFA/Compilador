@@ -27,8 +27,8 @@ public class Calculadora {
         AFD afd = new AFD(afns);
         
         Tokens.NUM   = afns.getTokenAFN(0);
-        Tokens.SUM   = afns.getTokenAFN(1);
-        Tokens.REST  = afns.getTokenAFN(2);
+        Tokens.SUMA  = afns.getTokenAFN(1);
+        Tokens.RESTA = afns.getTokenAFN(2);
         Tokens.PROD  = afns.getTokenAFN(3);
         Tokens.DIV   = afns.getTokenAFN(4);
         Tokens.PAR_I = afns.getTokenAFN(5);
@@ -44,7 +44,10 @@ public class Calculadora {
         Tokens.TokenInfo();
         afd.imprimirTablaTransiciones();
         
-        AnalizadorLexico al = new AnalizadorLexico("5.5+(4-2)*LOG(e^5)", afd);
+        AnalizadorLexico al = new AnalizadorLexico("5.5+(4-2)", afd);
+        AnalizadorSintactico as = new AnalizadorSintactico(afd);
+        as.AnalizarCadena("5.5+6.5");
+        System.out.println(as.getResultado());
     }
 
     //NUM -> 0

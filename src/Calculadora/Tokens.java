@@ -2,8 +2,8 @@ package Calculadora;
 
 public class Tokens {
     public static int NUM;
-    public static int SUM;
-    public static int REST;
+    public static int SUMA;
+    public static int RESTA;
     public static int DIV;
     public static int PROD;
     public static int PAR_I;
@@ -18,8 +18,8 @@ public class Tokens {
 
     public static void TokenInfo() {
         System.out.println("Token NUM = " + Tokens.NUM);
-        System.out.println("Token SUM = " + Tokens.SUM);
-        System.out.println("Token REST = " + Tokens.REST);
+        System.out.println("Token SUM = " + Tokens.SUMA);
+        System.out.println("Token REST = " + Tokens.RESTA);
         System.out.println("Token DIV = " + Tokens.DIV);
         System.out.println("Token PROD = " + Tokens.PROD);
         System.out.println("Token PAR_I = " + Tokens.PAR_I);
