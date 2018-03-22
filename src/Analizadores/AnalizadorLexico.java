@@ -27,8 +27,6 @@ public class AnalizadorLexico {
     }
     
     public int obtenerToken(){
-        if(indiceActual >= cadena.length())
-            return 0;
         for(indiceActual = indiceIniLex; indiceActual < cadena.length(); indiceActual++){
             carActual = cadena.charAt(indiceActual);
             edoActual = edoActual.buscarTransicion(carActual);
@@ -57,10 +55,16 @@ public class AnalizadorLexico {
             lexema = cadena.substring(indiceIniLex, indiceActual);
             edoAceptPrevio = false;
             edoActual = edoInicial;
+            indiceTokenAnterior = indiceIniLex;
             indiceIniLex = indiceActual;
+            indiceActual++;
             return valorToken;
         }
-        return 0;
+        lexema = "";
+        indiceTokenAnterior = indiceIniLex;
+        indiceIniLex = indiceActual;
+        valorToken = 0;
+        return valorToken;
     }
 
     public int getTokenActual() {

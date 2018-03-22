@@ -45,8 +45,9 @@ public class Calculadora {
         afd.imprimirTablaTransiciones();
         
         AnalizadorLexico al = new AnalizadorLexico("5.5+(4-2)", afd);
+        
         AnalizadorSintactico as = new AnalizadorSintactico(afd);
-        as.AnalizarCadena("5.5+6.5");
+        as.AnalizarCadena("5.5+6.5*25");
         System.out.println(as.getResultado());
     }
 
