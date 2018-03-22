@@ -1,7 +1,6 @@
 
 package Calculadora;
 
-import Analizadores.AnalizadorLexico;
 import Automatas.AFD;
 import Automatas.AFNs;
 
@@ -67,6 +66,10 @@ public class Calculadora {
     public boolean evaluarSintactico(String expresion){
         return as.AnalizarCadena(expresion,resultado);
     }
+    
+    public boolean evaluarSintactico(String expresion,String v, int opc){
+        return as.AnalizarCadena(expresion,v,opc);
+    }
 
     public DoubleM getResultado() {
         return resultado;
@@ -74,9 +77,11 @@ public class Calculadora {
     
     public static void main(String[] args) {
         Calculadora cal = new Calculadora();
-        boolean paso = cal.evaluarSintactico("(10^4*e^(2)+15)/10000+3");
+        String cadenaResultado="";
+        int opc=1;
+        boolean paso = cal.evaluarSintactico("(10^4*e^(2)+15)/10000+3",cadenaResultado,opc);
         if(paso)
-            System.out.println("El resultado fue: "+cal.getResultado().getValor());
+            System.out.println("El resultado fue: "+cadenaResultado);
         else
             System.out.println("ERROR sintáctico");
     }
