@@ -122,7 +122,7 @@ public class AFNs {
         afns.crearAFN('1','1');
         afns.crearAFN('3','9');
         afns.getAutomata(0).concatenarAFN(afns.getAutomata(1));
-        System.out.println("Llego aqui merenges");
+        System.out.println("Llego aqui");
         afns.getAutomata(0).cerraduraAsterisco();
         afns.getAutomata(0).cerraduraSuma();
         afns.getAutomata(0).operacionSigno();

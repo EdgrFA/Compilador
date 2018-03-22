@@ -160,13 +160,5 @@ public class AnalizadorSintactico {
 
     public double getResultado() {
         return resultado.getValor();
-    }
-    
-    public static void main(String[] args) {
-        DoubleM v = new DoubleM(10);
-        DoubleM v1 = new DoubleM(3);
-        v.exponencial();
-        System.out.println(v.getValor());
-    } 
-    
+    }       
 }

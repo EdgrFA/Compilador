@@ -6,8 +6,10 @@ import Automatas.AFD;
 import Automatas.AFNs;
 
 public class Calculadora {
-    
-    public static void main(String[] args) {
+    private final AFD afd;
+    private AnalizadorSintactico as;
+        
+    public Calculadora() {
         AFNs afns = new AFNs();
         afnNum(afns);       //0
         afns.crearAFN('+'); //1
@@ -25,8 +27,9 @@ public class Calculadora {
         afnLOG(afns);       //13
         afnRAIZ(afns);      //14
         
-        AFD afd = new AFD(afns);
+        afd = new AFD(afns);
         
+        //Asignación de los Tokens
         Tokens.NUM   = afns.getTokenAFN(0);
         Tokens.SUMA  = afns.getTokenAFN(1);
         Tokens.RESTA = afns.getTokenAFN(2);
@@ -46,13 +49,25 @@ public class Calculadora {
         Tokens.TokenInfo();
         afd.imprimirTablaTransiciones();
         
-        AnalizadorLexico al = new AnalizadorLexico("5.5+(4-2)", afd);
-        
-        AnalizadorSintactico as = new AnalizadorSintactico(afd);
+        as = new AnalizadorSintactico(afd);
         //as.AnalizarCadena("70*(4+6)+40*SIN(90)+10^4");
         boolean salida = as.AnalizarCadena("(10^4*e^(2)+15)/10000+27SQRT3");
         System.out.println("\nLa salida fue "+salida);
         System.out.println(as.getResultado());
+    }
+    
+    public boolean evaluarLex(String expresion){
+        AnalizadorLexico al = new AnalizadorLexico("5.5+(4-2)", afd);
+        return false;
+    }
+    
+    public boolean evaluarSintactico(){
+        
+        return false;
+    }
+    
+    public static void main(String[] args) {
+        Calculadora cal = new Calculadora();
     }
 
     //NUM -> 0
