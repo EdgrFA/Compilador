@@ -23,6 +23,14 @@ public class DoubleM {
         valor = valor / divisor.getValor();
     }
     
+    public void potencia(DoubleM exponente){
+        valor = Math.pow(valor,exponente.valor);
+    }
+    
+    public void raiz(DoubleM exponente){
+        valor = Math.pow(valor,1.0/exponente.valor);
+    }
+    
     public void sin(){
         valor = Math.sin(valor);
     }
@@ -33,10 +41,6 @@ public class DoubleM {
     
     public void tan(){
         valor = Math.cos(valor);
-    }
-    
-    public void potencia(DoubleM exponente){
-        valor = Math.pow(valor,exponente.valor);
     }
     
     public void exponencial(){

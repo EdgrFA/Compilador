@@ -23,6 +23,7 @@ public class Calculadora {
         afnEXP(afns);       //11
         afnLN(afns);        //12
         afnLOG(afns);       //13
+        afnRAIZ(afns);      //14
         
         AFD afd = new AFD(afns);
         
@@ -40,6 +41,7 @@ public class Calculadora {
         Tokens.EXP   = afns.getTokenAFN(11);
         Tokens.LN    = afns.getTokenAFN(12);
         Tokens.LOG   = afns.getTokenAFN(13);
+        Tokens.RAIZ   = afns.getTokenAFN(14);
         
         Tokens.TokenInfo();
         afd.imprimirTablaTransiciones();
@@ -48,7 +50,8 @@ public class Calculadora {
         
         AnalizadorSintactico as = new AnalizadorSintactico(afd);
         //as.AnalizarCadena("70*(4+6)+40*SIN(90)+10^4");
-        as.AnalizarCadena("e^(2)+10*48/10");
+        boolean salida = as.AnalizarCadena("(10^4*e^(2)+15)/10000+27SQRT3");
+        System.out.println("\nLa salida fue "+salida);
         System.out.println(as.getResultado());
     }
 
@@ -108,4 +111,13 @@ public class Calculadora {
         afns.concatenar(13, 14);
     }
     
+    public static void afnRAIZ(AFNs afns){
+        afns.crearAFN('S'); //14
+        afns.crearAFN('Q'); //15
+        afns.crearAFN('R'); //16
+        afns.crearAFN('T'); //17
+        afns.concatenar(16, 17);
+        afns.concatenar(15, 16);
+        afns.concatenar(14, 15);
+    }
 }

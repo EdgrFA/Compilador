@@ -56,7 +56,7 @@ public class AnalizadorSintactico {
     
     public boolean T(DoubleM v){
         System.out.println("T");
-        if(F(v))
+        if(R(v))
             if(Tp(v))
                 return true;
         return false;
@@ -68,7 +68,7 @@ public class AnalizadorSintactico {
         DoubleM v1 = new DoubleM(1.0);
         tok = Lexic.obtenerToken();
         if(tok == Tokens.PROD || tok == Tokens.DIV){
-            if(F(v1)){
+            if(R(v1)){
                 if(tok == Tokens.PROD)
                     v.producto(v1);
                 else
@@ -82,9 +82,39 @@ public class AnalizadorSintactico {
         return true;
     }
     
+    public boolean R(DoubleM v){
+        System.out.println("R");
+        if(F(v))
+            if(Rp(v))
+                return true;
+        return false;
+    }
+    
+    public boolean Rp(DoubleM v){
+        System.out.println("Rp");
+        int tok;
+        DoubleM v1 = new DoubleM(1.0);
+        tok = Lexic.obtenerToken();
+        if(tok == Tokens.POT || tok == Tokens.RAIZ){
+            if(F(v1)){
+                if(tok == Tokens.POT)
+                    v.potencia(v1);
+                else
+                    v.raiz(v1);
+                if(Rp(v))
+                    return true;
+            }
+            return false;
+        }
+        Lexic.regresarToken();
+        return true;
+    }
+    
     public boolean F(DoubleM v){
         int tok;
         tok = Lexic.obtenerToken();
+        System.out.println("Token: "+tok);
+        System.out.print("F -> ");
         if (tok == Tokens.PAR_I) {
             if(E(v)){
                 tok = Lexic.obtenerToken();

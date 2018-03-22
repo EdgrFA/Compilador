@@ -12,6 +12,7 @@ public class Tokens {
     public static int COS;
     public static int TAN;
     public static int POT;
+    public static int RAIZ;
     public static int EXP;
     public static int LN;
     public static int LOG;
@@ -32,6 +33,7 @@ public class Tokens {
         System.out.println("Token EXP = " + Tokens.EXP);
         System.out.println("Token LN = " + Tokens.LN);
         System.out.println("Token LOG = " + Tokens.LOG);
+        System.out.println("Token RAIZ = " + Tokens.RAIZ);
         System.out.println("");
     }
 }
