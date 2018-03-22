@@ -33,7 +33,7 @@ public class AnalizadorSintactico {
     
     public boolean Ep(DoubleM v){
         int tok;
-        DoubleM v1 = new DoubleM(0.0f);
+        DoubleM v1 = new DoubleM(1.0);
         tok = Lexic.obtenerToken();
         if(tok == Tokens.SUMA || tok == Tokens.RESTA){
             if(T(v1)){
@@ -59,7 +59,7 @@ public class AnalizadorSintactico {
     
     public boolean Tp(DoubleM v){
         int tok=0;
-        DoubleM v1 = new DoubleM(0.0f);
+        DoubleM v1 = new DoubleM(1.0);
         tok = Lexic.obtenerToken();
         if(tok == Tokens.PROD || tok == Tokens.DIV){
             if(F(v1)){
@@ -79,6 +79,7 @@ public class AnalizadorSintactico {
     public boolean F(DoubleM v){
         int tok;
         tok = Lexic.obtenerToken();
+        System.out.println("Token: "+tok);
         if (tok == Tokens.PAR_I) {
             if(E(v)){
                 tok = Lexic.obtenerToken();

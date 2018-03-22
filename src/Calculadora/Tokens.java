@@ -15,6 +15,7 @@ public class Tokens {
     public static int EXP;
     public static int LN;
     public static int LOG;
+    public static final int FIN = 1000;
 
     public static void TokenInfo() {
         System.out.println("Token NUM = " + Tokens.NUM);
