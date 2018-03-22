@@ -17,7 +17,7 @@ public class AnalizadorSintactico {
         tipoExpresion = 0;
     }
     
-    public boolean AnalizarCadena(String cadena, String v, int tipoExpresion){
+    public boolean AnalizarCadena(String cadena, StringM v, int tipoExpresion){
         Lexic = new AnalizadorLexico(cadena, afd);
         this.tipoExpresion = tipoExpresion;
         return E(v);
@@ -186,10 +186,10 @@ public class AnalizadorSintactico {
         System.out.println("Mi Token: "+tok);
         if(tok == Tokens.SUMA || tok == Tokens.RESTA){
             if(T(v1)){
-                if(tipoExpresion==1)
-                    v=(tok == Tokens.SUMA)?"+"+v+" "+v1:"-"+v+" "+v1;
+                if(tok == Tokens.SUMA)
+                    v.suma(v1,tipoExpresion);
                 else
-                    v=(tok == Tokens.SUMA)?v+" "+v1+"+":v+" "+v1+"-";
+                    v.resta(v1,tipoExpresion);
                 if(Ep(v)){
                     return true;
                 }
@@ -215,13 +215,13 @@ public class AnalizadorSintactico {
         tok = Lexic.obtenerToken();
         if(tok == Tokens.PROD || tok == Tokens.DIV){
             if(R(v1)){
-                if(tipoExpresion==1)
-                    v=(tok == Tokens.PROD)?"*"+v+" "+v1:"/"+v+" "+v1;
+                if(tok == Tokens.PROD)
+                    v.producto(v1,tipoExpresion);
                 else
-                    v=(tok == Tokens.SUMA)?v+" "+v1+"*":v+" "+v1+"/";
-                
-                if(Tp(v))
+                    v.division(v1,tipoExpresion);
+                if(Tp(v)){
                     return true;
+                }
             }
             return false;
         }
@@ -244,12 +244,13 @@ public class AnalizadorSintactico {
         tok = Lexic.obtenerToken();
         if(tok == Tokens.POT || tok == Tokens.RAIZ){
             if(F(v1)){
-                if(tipoExpresion==1)
-                    v=(tok == Tokens.SUMA)?"^"+v+" "+v1:"sqrt"+v+" "+v1;
+                if(tok == Tokens.POT)
+                    v.potencia(v1,tipoExpresion);
                 else
-                    v=(tok == Tokens.SUMA)?v+" "+v1+"^":v+" "+v1+"sqrt";
-                if(Rp(v))
+                    v.raiz(v1,tipoExpresion);
+                if(Rp(v)){
                     return true;
+                }
             }
             return false;
         }
@@ -281,19 +282,19 @@ public class AnalizadorSintactico {
                 if(E(v)){
                     tok = Lexic.obtenerToken();
                     if(AuxTok == Tokens.SIN){
-                        v = "SIN "+v+" ";
+                        v.sin();
                     }else if(AuxTok == Tokens.COS){
-                        v = "COS "+v+" ";
+                        v.cos();
                     }else if(AuxTok == Tokens.TAN){
-                        v = "TAN "+v+" ";
+                        v.tan();
                     }else if(AuxTok == Tokens.POT){
-                        //v.potencia(v);
+                        v.potencia(v,tipoExpresion);
                     }else if(AuxTok == Tokens.EXP){
-                        v = "e "+v+" ";
+                        v.exponencial();
                     }else if(AuxTok == Tokens.LN){
-                        v = "LN "+v+" ";
+                        v.ln();
                     }else if(AuxTok == Tokens.LOG){
-                        v = "LOG "+v+" ";
+                        v.log();
                     }
                     if(tok == Tokens.PAR_D)
                         return true;
@@ -306,6 +307,10 @@ public class AnalizadorSintactico {
     }
     
     public double getResultado() {
+        return resultado.getValor();
+    }
+    
+    public double getExpresion() {
         return resultado.getValor();
     }
 }

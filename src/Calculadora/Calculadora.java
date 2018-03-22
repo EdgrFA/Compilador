@@ -8,10 +8,12 @@ public class Calculadora {
     private final AFD afd;
     private final AnalizadorSintactico as;
     private DoubleM resultado;
+    private StringM expresion;
     
     public Calculadora() {
         AFNs afns = new AFNs();
         resultado = new DoubleM(0.0);
+        expresion = new StringM("");
         
         afnNum(afns);       //0
         afns.crearAFN('+'); //1
@@ -67,21 +69,25 @@ public class Calculadora {
         return as.AnalizarCadena(expresion,resultado);
     }
     
-    public boolean evaluarSintactico(String expresion,String v, int opc){
-        return as.AnalizarCadena(expresion,v,opc);
+    public boolean evaluarSintactico(String cadena, int opc){
+        return as.AnalizarCadena(cadena, expresion, opc);
     }
 
     public DoubleM getResultado() {
         return resultado;
     }
     
+    public StringM getExpresion() {
+        return expresion;
+    }
+    
     public static void main(String[] args) {
         Calculadora cal = new Calculadora();
         String cadenaResultado="";
         int opc=1;
-        boolean paso = cal.evaluarSintactico("(10^4*e^(2)+15)/10000+3",cadenaResultado,opc);
+        boolean paso = cal.evaluarSintactico("(10^4*e^(2)+15)/10000+3",0);
         if(paso)
-            System.out.println("El resultado fue: "+cadenaResultado);
+            System.out.println("El resultado fue: "+cal.getExpresion());
         else
             System.out.println("ERROR sintáctico");
     }

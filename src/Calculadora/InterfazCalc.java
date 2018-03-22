@@ -22,7 +22,7 @@ public class InterfazCalc extends javax.swing.JFrame {
         btnSintactico = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnPrefijo = new javax.swing.JButton();
-        btnPostfijo = new javax.swing.JButton();
+        btnPosfijo = new javax.swing.JButton();
         lblResultado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -51,10 +51,10 @@ public class InterfazCalc extends javax.swing.JFrame {
             }
         });
 
-        btnPostfijo.setText("Postfijo");
-        btnPostfijo.addActionListener(new java.awt.event.ActionListener() {
+        btnPosfijo.setText("Posfijo");
+        btnPosfijo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPostfijoActionPerformed(evt);
+                btnPosfijoActionPerformed(evt);
             }
         });
 
@@ -79,7 +79,7 @@ public class InterfazCalc extends javax.swing.JFrame {
                     .addComponent(btnLexico, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnPostfijo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPosfijo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPrefijo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
         );
@@ -92,7 +92,7 @@ public class InterfazCalc extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btnPrefijo)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnPostfijo))
+                            .addComponent(btnPosfijo))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btnLexico)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -115,6 +115,7 @@ public class InterfazCalc extends javax.swing.JFrame {
         String expresion = txtExpresion.getText();
         expresion = expresion.toUpperCase();
         expresion = expresion.replace("E", "e");
+        expresion = expresion.replace(" ", "");
         return expresion;
     }
     
@@ -129,16 +130,30 @@ public class InterfazCalc extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSintacticoActionPerformed
 
-    private void btnPostfijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostfijoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPostfijoActionPerformed
+    private void btnPosfijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPosfijoActionPerformed
+        String expresion = getExpresion();
+        boolean paso = cal.evaluarSintactico(expresion,2);
+        if(paso){
+            System.out.println("El resultado fue: "+cal.getResultado().getValor());
+            lblResultado.setText(cal.getExpresion().toString());
+        }else{
+            JOptionPane.showMessageDialog(null,"Error Sintáctico");
+        }
+    }//GEN-LAST:event_btnPosfijoActionPerformed
 
     private void btnLexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLexicoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLexicoActionPerformed
 
     private void btnPrefijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrefijoActionPerformed
-        
+        String expresion = getExpresion();
+        boolean paso = cal.evaluarSintactico(expresion,1);
+        if(paso){
+            System.out.println("El resultado fue: "+cal.getResultado().getValor());
+            lblResultado.setText(cal.getExpresion().toString());
+        }else{
+            JOptionPane.showMessageDialog(null,"Error Sintáctico");
+        }
     }//GEN-LAST:event_btnPrefijoActionPerformed
 
     /**
@@ -178,7 +193,7 @@ public class InterfazCalc extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLexico;
-    private javax.swing.JButton btnPostfijo;
+    private javax.swing.JButton btnPosfijo;
     private javax.swing.JButton btnPrefijo;
     private javax.swing.JButton btnSintactico;
     private javax.swing.JLabel jLabel1;

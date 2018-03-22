@@ -40,7 +40,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnPostfijo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnPosfijo" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnPrefijo" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -56,7 +56,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="btnPrefijo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnPostfijo" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnPosfijo" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="btnLexico" min="-2" max="-2" attributes="0"/>
@@ -115,12 +115,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrefijoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnPostfijo">
+    <Component class="javax.swing.JButton" name="btnPosfijo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Postfijo"/>
+        <Property name="text" type="java.lang.String" value="Posfijo"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPostfijoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPosfijoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblResultado">
