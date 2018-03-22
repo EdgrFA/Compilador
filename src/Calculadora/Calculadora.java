@@ -7,10 +7,13 @@ import Automatas.AFNs;
 
 public class Calculadora {
     private final AFD afd;
-    private AnalizadorSintactico as;
-        
+    private final AnalizadorSintactico as;
+    private DoubleM resultado;
+    
     public Calculadora() {
         AFNs afns = new AFNs();
+        resultado = new DoubleM(0.0);
+        
         afnNum(afns);       //0
         afns.crearAFN('+'); //1
         afns.crearAFN('-'); //2
@@ -51,23 +54,31 @@ public class Calculadora {
         
         as = new AnalizadorSintactico(afd);
         //as.AnalizarCadena("70*(4+6)+40*SIN(90)+10^4");
-        boolean salida = as.AnalizarCadena("(10^4*e^(2)+15)/10000+27SQRT3");
-        System.out.println("\nLa salida fue "+salida);
-        System.out.println(as.getResultado());
+        //boolean salida = as.AnalizarCadena("(10^4*e^(2)+15)/10000+27SQRT3");
+        //System.out.println("\nLa salida fue "+salida);
+        //System.out.println(as.getResultado());
     }
     
     public boolean evaluarLex(String expresion){
-        AnalizadorLexico al = new AnalizadorLexico("5.5+(4-2)", afd);
+        //AnalizadorLexico al = new AnalizadorLexico("5.5+(4-2)", afd);
         return false;
     }
     
-    public boolean evaluarSintactico(){
-        
-        return false;
+    public boolean evaluarSintactico(String expresion){
+        return as.AnalizarCadena(expresion,resultado);
+    }
+
+    public DoubleM getResultado() {
+        return resultado;
     }
     
     public static void main(String[] args) {
         Calculadora cal = new Calculadora();
+        boolean paso = cal.evaluarSintactico("(10^4*e^(2)+15)/10000+3");
+        if(paso)
+            System.out.println("El resultado fue: "+cal.getResultado().getValor());
+        else
+            System.out.println("ERROR sintáctico");
     }
 
     //NUM -> 0

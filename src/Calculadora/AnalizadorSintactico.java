@@ -160,5 +160,5 @@ public class AnalizadorSintactico {
 
     public double getResultado() {
         return resultado.getValor();
-    }       
+    }
 }

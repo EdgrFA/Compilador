@@ -1,16 +1,16 @@
 package Calculadora;
 
+import javax.swing.JOptionPane;
 /**
  *
  * @author Andres
  */
 public class InterfazCalc extends javax.swing.JFrame {
-
-    /**
-     * Creates new form InterfazCalc
-     */
+    private Calculadora cal;
+    
     public InterfazCalc() {
         initComponents();
+        cal = new Calculadora();
     }
 
     /**
@@ -22,7 +22,7 @@ public class InterfazCalc extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        txtExpresion = new javax.swing.JTextField();
         btnLexico = new javax.swing.JButton();
         btnSintactico = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -73,7 +73,7 @@ public class InterfazCalc extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel1))
@@ -103,7 +103,7 @@ public class InterfazCalc extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btnSintactico)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -117,7 +117,16 @@ public class InterfazCalc extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSintacticoActionPerformed
-        // TODO add your handling code here:
+        String expresion = txtExpresion.getText();
+        expresion = expresion.toUpperCase();
+        
+        boolean paso = cal.evaluarSintactico(expresion);
+        if(paso){
+            System.out.println("El resultado fue: "+cal.getResultado().getValor());
+            lblResultado.setText(cal.getResultado().toString());
+        }else{
+            JOptionPane.showMessageDialog(null,"Error Sintáctico");
+        }
     }//GEN-LAST:event_btnSintacticoActionPerformed
 
     private void btnPostfijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostfijoActionPerformed
@@ -173,7 +182,7 @@ public class InterfazCalc extends javax.swing.JFrame {
     private javax.swing.JButton btnPrefijo;
     private javax.swing.JButton btnSintactico;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblResultado;
+    private javax.swing.JTextField txtExpresion;
     // End of variables declaration//GEN-END:variables
 }
