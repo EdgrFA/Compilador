@@ -12,7 +12,7 @@ public class TokensER {
     public static int CORCH_D;
     public static int SIMB;
     public static int SEPARADOR;
-    public static final int FIN = 1000;
+    public static final int FIN = 0;
 
     public static void TokenInfo() {
         System.out.println("Token UNION = " + TokensER.UNION);

@@ -17,15 +17,12 @@ public class AnalizadorSintacticoER {
         this.afd = afd;
     }
     
-    private boolean AnalizarCadena(String cadena, AFD newAfd){
+    public boolean AnalizarCadena(String cadena, AFNs afns){
         Lexic = new AnalizadorLexico(cadena, afd);
-        AFNs afns = new AFNs();
-        indexAfns = 0;
+        indexAfns = -1;
         boolean isOk = E(afns);
-        newAfd = null;
-        if(isOk)
-            newAfd = new AFD(afns);
-        return isOk;
+        int tok = Lexic.obtenerToken();
+        return isOk && (tok == TokensER.FIN);
     }
     
     private boolean E(AFNs afns){
@@ -120,6 +117,7 @@ public class AnalizadorSintacticoER {
         }else if(tok == TokensER.SIMB){
             char c = obtenerCaracter(Lexic.getLexema());
             afns.crearAFN(c);
+            indexAfns++;
             return true;
             
         }else if(tok == TokensER.CORCH_I){
@@ -132,8 +130,12 @@ public class AnalizadorSintacticoER {
                     tok = Lexic.obtenerToken();
                     if(tok == TokensER.SIMB){
                         c2 = obtenerCaracter(Lexic.getLexema());
-                        afns.crearAFN(c1, c2);
-                        return true;
+                        tok = Lexic.obtenerToken();
+                        if(tok == TokensER.CORCH_D){
+                            afns.crearAFN(c1, c2);
+                            indexAfns++;
+                            return true;   
+                        }
                     }
                 }
             }

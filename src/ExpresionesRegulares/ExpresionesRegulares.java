@@ -1,14 +1,21 @@
 package ExpresionesRegulares;
 
+import Analizadores.AnalizadorLexico;
 import Automatas.AFD;
 import Automatas.AFNs;
 import Calculadora.Tokens;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class ExpresionesRegulares {
     private final AFD afd;
-    //private final AnalizadorSintacticoER as;
-    
-    
+    private final AnalizadorSintacticoER asER;
+    private ArrayList<AFNs> afnsL;
+    private BufferedReader br;
     
     public ExpresionesRegulares() {
         AFNs afns = new AFNs();
@@ -41,10 +48,14 @@ public class ExpresionesRegulares {
         
         TokensER.TokenInfo();
         afd.imprimirTablaTransiciones();
+        asER = new AnalizadorSintacticoER(afd);
+        
+        afnsL = new ArrayList<>();
+        iniciarMenu();
     }
 
     //SIMB -> 9
-    public static void afnSIMB(AFNs afns){
+    private static void afnSIMB(AFNs afns){
         afns.crearAFN((char)32, (char)37); //9
         afns.crearAFN((char)39); //10
         afns.crearAFN((char)44, (char)46); //11
@@ -86,6 +97,130 @@ public class ExpresionesRegulares {
         afns.concatenar(10, 11);
         //Unir todos los simbolos imprimibles
         afns.union(9, 10);    
+    }
+    
+    private void iniciarMenu(){
+        br = new BufferedReader(new InputStreamReader(System.in));
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("\n\nMENU CREACION DE AUTOMATAS");
+            System.out.println("Elija una opcion:");
+            System.out.println("1.- Crear AFD.");
+            System.out.println("2.- Validar AFD.");
+            System.out.println("3.- Imprimir Tabla de Transiciones de un AFD.");
+            System.out.println("4.- Salir.");
+            int opt;
+            while (true) {
+                try{
+                    opt = Integer.parseInt(br.readLine());
+                }catch(IOException ioe){
+                    System.out.println("\nIntroduce un numero valido.");
+                    continue;
+                }catch(NumberFormatException ioe){
+                    System.out.println("\nIntroduce un numero valido.");
+                    continue;
+                }
+                if(opt >= 1 && opt <= 4)
+                    break;
+                else
+                    System.out.println("\nIntroduce un numero valido");
+            }
+            switch(opt){
+                case 1:
+                    crearAFD();
+                    break;
+                case 2:
+                    validarAFD();
+                    break;
+                case 3:
+                    imprimirTabla();
+                    break;
+                case 4:
+                    exit = true;
+                    break;
+            }
+        }
+    }
+    
+    private void crearAFD(){
+        while(true){
+            System.out.println("\nInserte la expresion regular del automata.");
+            String expR;
+            try{
+                expR = br.readLine();
+            }catch(IOException ioe){
+                System.out.println("\nIntroduce una cadena valida.");
+                continue;
+            }
+            AFNs newAfd = new AFNs();
+            if(asER.AnalizarCadena(expR, newAfd)){
+                afnsL.add(newAfd);
+                break;
+            }else
+                System.out.println("Error al crear el automata.");
+        }
+    }
+    
+    private void validarAFD(){
+        if(afnsL.isEmpty()){
+            System.out.println("\nNo existen ningun AFD");
+            return;
+        }
+        System.out.println("Introduce el indice del AFD");
+        int index;
+        while (true) {
+            try{
+                index = Integer.parseInt(br.readLine());
+                if(index+1 != afnsL.size()){
+                    System.out.println("Indice no existente.");
+                    continue;
+                }
+                System.out.println("\nIntroduce la cadena a validar" + index);
+                String cad = br.readLine();
+                boolean isCorrect = afnsL.get(index).getAutomata(0).AnalizarCardena(cad);
+                if (isCorrect)
+                    System.out.println("Cadena Valida.");
+                else
+                    System.out.println("Cadena invalida.");
+                break;
+            }catch(IOException ioe){
+                System.out.println("\nIntroduce un numero valido.");
+                continue;
+            }catch(NumberFormatException nfe){
+                System.out.println("\nIntroduce un numero valido.");
+                continue;
+            }catch(IndexOutOfBoundsException iob){
+                System.out.println("\nIndice incorrecto.");
+                continue;
+            }
+        }
+    }
+    
+    private void imprimirTabla(){
+        if(afnsL.isEmpty()){
+            System.out.println("\nNo existen ningun Automata");
+            return;
+        }
+        System.out.println("Introduce el indice del Automnata");
+        int index;
+        while (true) {
+            try{
+                index = Integer.parseInt(br.readLine());
+                System.out.println("\nTabla de transiciones del AFD: " + index);
+                AFD afdN = new AFD(afnsL.get(index));
+                afdN.imprimirTablaTransiciones();
+                break;
+            }catch(IOException ioe){
+                System.out.println("\nIntroduce un numero valido.");
+                continue;
+            }catch(NumberFormatException nfe){
+                System.out.println("\nIntroduce un numero valido.");
+                continue;
+            }catch(IndexOutOfBoundsException iob){
+                System.out.println("\nIndice incorrecto.");
+                continue;
+            }
+        }
     }
 
     public static void main(String[] args) {
