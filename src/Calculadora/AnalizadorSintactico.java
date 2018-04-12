@@ -137,15 +137,26 @@ public class AnalizadorSintactico {
                 if(tok == Tokens.PAR_D)
                     return true;
             }
-        }else if(tok == Tokens.NUM){
-            String lexema = Lexic.getLexema();
-            v.setValor(Double.parseDouble(lexema));
-            pre.setValor(lexema);
-            pos.setValor(lexema);
-            System.out.println("Lexema: "+lexema);
+        }else if(tok == Tokens.NUM || tok == Tokens.DI){
+            if(tok == Tokens.NUM){
+                String lexema = Lexic.getLexema();
+                v.setValor(Double.parseDouble(lexema));
+                pre.setValor(lexema);
+                pos.setValor(lexema);
+            }else{
+                if(Lexic.obtenerToken() == Tokens.RESTA){
+                    if(Lexic.obtenerToken() == Tokens.NUM){
+                        String lexema = Lexic.getLexema();
+                        v.setValor(-Double.parseDouble(lexema));
+                        pre.setValor("-"+lexema);
+                        pos.setValor("-"+lexema);
+                        return true;
+                    }
+                }
+                return false;
+            }
             return true;
-        }else if(tok == Tokens.SIN || tok == Tokens.COS || tok == Tokens.TAN ||
-                tok == Tokens.DI || tok == Tokens.POT ||  tok == Tokens.EXP 
+        }else if(tok == Tokens.SIN || tok == Tokens.COS || tok == Tokens.TAN || tok == Tokens.POT ||  tok == Tokens.EXP 
                 || tok == Tokens.LN || tok == Tokens.LOG){
             //PONER OPERACIONES para "v"
             int AuxTok = tok;

@@ -88,34 +88,34 @@ public class InterfazCalc extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Prefijo");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
 
         lblResultado.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         lblResultado.setForeground(new java.awt.Color(255, 255, 255));
-        lblResultado.setText(" _____________________");
-        jPanel2.add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 200, -1));
+        lblResultado.setText(" ___________________________");
+        jPanel2.add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 260, -1));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Resultado ");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, -1, -1));
 
         lblPrefijo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         lblPrefijo.setForeground(new java.awt.Color(255, 255, 255));
-        lblPrefijo.setText(" _____________________");
-        jPanel2.add(lblPrefijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 200, -1));
+        lblPrefijo.setText(" ___________________________");
+        jPanel2.add(lblPrefijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 260, -1));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Posfijo");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, -1));
 
         lblPosfijo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         lblPosfijo.setForeground(new java.awt.Color(255, 255, 255));
-        lblPosfijo.setText(" _____________________");
-        jPanel2.add(lblPosfijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 200, -1));
+        lblPosfijo.setText(" ___________________________");
+        jPanel2.add(lblPosfijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 260, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 260, 210));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 310, 210));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

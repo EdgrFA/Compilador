@@ -90,7 +90,7 @@ public class Calculadora {
         
         Calculadora cal = new Calculadora();
         //boolean paso = cal.evaluarSintactico("(10^4*e^(2)+15)/10000+3");
-        boolean paso = cal.evaluarSintactico("SIN(40+10)*80+COS(360)");
+        boolean paso = cal.evaluarSintactico("\\-10+15");
         if(paso){
             System.out.println("El resultado fue: "+cal.getResultado());
             System.out.println("El prefijo fue: "+cal.getPrefijo());

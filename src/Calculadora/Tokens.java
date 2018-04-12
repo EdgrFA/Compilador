@@ -36,6 +36,7 @@ public class Tokens {
         System.out.println("Token LN = " + Tokens.LN);
         System.out.println("Token LOG = " + Tokens.LOG);
         System.out.println("Token RAIZ = " + Tokens.RAIZ);
+        System.out.println("Token DI = " + Tokens.DI);
         System.out.println("");
     }
 }
