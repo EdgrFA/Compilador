@@ -50,6 +50,7 @@ public class AnalizadorLexico {
                     JOptionPane.showMessageDialog(null,"Error Lexico\nNo existe transicion con el caracter \""+cadena.charAt(indiceActual)+"\"");
                     edoActual = edoInicial;
                     indiceIniLex++;
+                    return -1;
                 }
             }
         }
@@ -80,6 +81,6 @@ public class AnalizadorLexico {
     public void regresarToken(){
         indiceActual = indiceTokenAnterior;
         indiceIniLex = indiceTokenAnterior;
-        System.out.println("Se regresaron los indices al lexema anterior.");
+        //System.out.println("Se regresaron los indices al lexema anterior.");
     }
 }
