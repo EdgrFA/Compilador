@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>src/Automatas/AFD.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>81</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Calculadora/Calculadora.java</file>
-            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Calculadora/DoubleM.java</file>
-            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Calculadora/StringM.java</file>
-            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/Calculadora/InterfazCalc.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/Calculadora/AnalizadorSintactico.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/ExpresionesRegulares/ExpresionesRegulares.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/ExpresionesRegulares/TokensER.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/Analizadores/AnalizadorLexico.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/ExpresionesRegulares/AnalizadorSintacticoER.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/Calculadora/Calculadora.java</file>
         </group>
     </open-files>
 </project-private>
