@@ -3,17 +3,19 @@ package Calculadora;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-
+//import org.xml.sax.Attributes;
 /**
  *
  * @author Andres
  */
 public class InterfazCalc extends javax.swing.JFrame {
     private Calculadora cal;
+    private boolean primerClick;
     
     public InterfazCalc() {
         initComponents();
         cal = new Calculadora();
+        primerClick = true;
     }
 
     @SuppressWarnings("unchecked")
@@ -40,8 +42,13 @@ public class InterfazCalc extends javax.swing.JFrame {
         txtExpresion.setBackground(new java.awt.Color(35, 48, 62));
         txtExpresion.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         txtExpresion.setForeground(new java.awt.Color(255, 255, 255));
-        txtExpresion.setText("Ingresa un valor");
+        txtExpresion.setText("Ingresa una expresión");
         txtExpresion.setBorder(null);
+        txtExpresion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtExpresionMouseClicked(evt);
+            }
+        });
         txtExpresion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtExpresionActionPerformed(evt);
@@ -49,7 +56,7 @@ public class InterfazCalc extends javax.swing.JFrame {
         });
         jPanel1.add(txtExpresion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 240, 20));
 
-        btnLexico.setBackground(new java.awt.Color(29, 40, 52));
+        btnLexico.setBackground(new java.awt.Color(61, 139, 128));
         btnLexico.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         btnLexico.setForeground(new java.awt.Color(255, 255, 255));
         btnLexico.setText("Lexico");
@@ -62,7 +69,7 @@ public class InterfazCalc extends javax.swing.JFrame {
         jPanel1.add(btnLexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 90, -1));
         btnLexico.getAccessibleContext().setAccessibleName("btnLexico");
 
-        btnSintactico.setBackground(new java.awt.Color(29, 40, 52));
+        btnSintactico.setBackground(new java.awt.Color(61, 139, 128));
         btnSintactico.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         btnSintactico.setForeground(new java.awt.Color(255, 255, 255));
         btnSintactico.setText("Sintactico");
@@ -84,7 +91,7 @@ public class InterfazCalc extends javax.swing.JFrame {
                 btnPrefijoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPrefijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 79, -1));
+        jPanel1.add(btnPrefijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 79, -1));
 
         btnPosfijo.setBackground(new java.awt.Color(29, 40, 52));
         btnPosfijo.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -96,7 +103,7 @@ public class InterfazCalc extends javax.swing.JFrame {
                 btnPosfijoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPosfijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 79, -1));
+        jPanel1.add(btnPosfijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 79, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 244, 20));
@@ -169,6 +176,13 @@ public class InterfazCalc extends javax.swing.JFrame {
     private void txtExpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExpresionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtExpresionActionPerformed
+
+    private void txtExpresionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExpresionMouseClicked
+        if(primerClick){
+            txtExpresion.setText("");
+            primerClick = false;
+        }
+    }//GEN-LAST:event_txtExpresionMouseClicked
 
     /**
      * @param args the command line arguments
