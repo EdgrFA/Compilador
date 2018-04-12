@@ -145,12 +145,22 @@ public class AnalizadorSintactico {
                 pos.setValor(lexema);
             }else{
                 if(Lexic.obtenerToken() == Tokens.RESTA){
-                    if(Lexic.obtenerToken() == Tokens.NUM){
+                    tok = Lexic.obtenerToken();
+                    if( tok == Tokens.NUM){
                         String lexema = Lexic.getLexema();
                         v.setValor(-Double.parseDouble(lexema));
                         pre.setValor("-"+lexema);
                         pos.setValor("-"+lexema);
                         return true;
+                    }else if(tok == Tokens.PAR_I){
+                        if(E(v,pre,pos)){
+                            v.setValor(-v.getValor());
+                            pre.setValor("-"+pre.getValor());
+                            pos.setValor("-"+pos.getValor());
+                            tok = Lexic.obtenerToken();
+                            if(tok == Tokens.PAR_D)
+                                return true;
+                        }
                     }
                 }
                 return false;
