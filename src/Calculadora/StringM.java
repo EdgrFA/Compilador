@@ -49,30 +49,53 @@ public class StringM {
             valor = valor+" "+indice+" sqrt ";
     }
     
-    public void sin(){
+    public void sinPre(){
         valor = "SIN "+valor;
     }
     
-    public void cos(){
+    public void cosPre(){
         valor = "COS "+valor;
     }
     
-    public void tan(){
+    public void tanPre(){
         valor = "TAN "+valor;
     }
     
-    public void exponencial(){
+    public void exponencialPre(){
         valor = "e "+valor;
     }
     
-    public void ln(){
+    public void lnPre(){
         valor = "ln "+valor;
     }
     
-    public void log(){
+    public void logPre(){
         valor = "log " + valor;
     }
     
+    public void sinPos(){
+        valor = valor +" SIN";
+    }
+    
+    public void cosPos(){
+        valor = valor +" COS";
+    }
+    
+    public void tanPos(){
+        valor = valor + " TAN";
+    }
+    
+    public void exponencialPos(){
+        valor = valor +" e";
+    }
+    
+    public void lnPos(){
+        valor = valor+" ln";
+    }
+    
+    public void logPos(){
+        valor = valor +" log";
+    }
     
     public String getValor() {
         return valor;

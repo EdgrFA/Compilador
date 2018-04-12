@@ -26,8 +26,6 @@ public class InterfazCalc extends javax.swing.JFrame {
         txtExpresion = new javax.swing.JTextField();
         btnLexico = new javax.swing.JButton();
         btnSintactico = new javax.swing.JButton();
-        btnPrefijo = new javax.swing.JButton();
-        btnPosfijo = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -84,30 +82,6 @@ public class InterfazCalc extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnSintactico, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 90, -1));
-
-        btnPrefijo.setBackground(new java.awt.Color(29, 40, 52));
-        btnPrefijo.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        btnPrefijo.setForeground(new java.awt.Color(255, 255, 255));
-        btnPrefijo.setText("Prefijo");
-        btnPrefijo.setBorderPainted(false);
-        btnPrefijo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrefijoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnPrefijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 79, -1));
-
-        btnPosfijo.setBackground(new java.awt.Color(29, 40, 52));
-        btnPosfijo.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        btnPosfijo.setForeground(new java.awt.Color(255, 255, 255));
-        btnPosfijo.setText("Posfijo");
-        btnPosfijo.setBorderPainted(false);
-        btnPosfijo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPosfijoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnPosfijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 79, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 244, 20));
@@ -171,31 +145,9 @@ public class InterfazCalc extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSintacticoActionPerformed
 
-    private void btnPosfijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPosfijoActionPerformed
-        String expresion = getExpresion();
-        boolean paso = cal.evaluarSintactico(expresion,2);
-        if(paso){
-            System.out.println("El resultado fue: "+cal.getResultado().getValor());
-            lblResultado.setText(cal.getExpresion().toString());
-        }else{
-            JOptionPane.showMessageDialog(null,"Error Sintáctico");
-        }
-    }//GEN-LAST:event_btnPosfijoActionPerformed
-
     private void btnLexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLexicoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLexicoActionPerformed
-
-    private void btnPrefijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrefijoActionPerformed
-        String expresion = getExpresion();
-        boolean paso = cal.evaluarSintactico(expresion,1);
-        if(paso){
-            System.out.println("El resultado fue: "+cal.getResultado().getValor());
-            lblResultado.setText(cal.getExpresion().toString());
-        }else{
-            JOptionPane.showMessageDialog(null,"Error Sintáctico");
-        }
-    }//GEN-LAST:event_btnPrefijoActionPerformed
 
     private void txtExpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExpresionActionPerformed
         // TODO add your handling code here:
@@ -245,8 +197,6 @@ public class InterfazCalc extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLexico;
-    private javax.swing.JButton btnPosfijo;
-    private javax.swing.JButton btnPrefijo;
     private javax.swing.JButton btnSintactico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
