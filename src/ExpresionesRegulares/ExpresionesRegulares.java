@@ -2,9 +2,10 @@ package ExpresionesRegulares;
 
 import Automatas.AFD;
 import Automatas.AFNs;
+import Calculadora.Tokens;
 
 public class ExpresionesRegulares {
-    //private final AFD afd;
+    private final AFD afd;
     //private final AnalizadorSintacticoER as;
     
     
@@ -21,7 +22,10 @@ public class ExpresionesRegulares {
         afns.crearAFN(')'); //6
         afns.crearAFN('['); //7
         afns.crearAFN(']'); //8
-        afnSIMB(afns);
+        afnSIMB(afns); //9
+        afns.crearAFN('~'); //10
+        
+        afd = new AFD(afns);
         
         TokensER.UNION = afns.getTokenAFN(0);
         TokensER.CONC = afns.getTokenAFN(1);
@@ -33,6 +37,10 @@ public class ExpresionesRegulares {
         TokensER.CORCH_I = afns.getTokenAFN(7);
         TokensER.CORCH_D = afns.getTokenAFN(8);
         TokensER.SIMB = afns.getTokenAFN(9);
+        TokensER.SEPARADOR = afns.getTokenAFN(10);
+        
+        TokensER.TokenInfo();
+        afd.imprimirTablaTransiciones();
     }
 
     //SIMB -> 9
@@ -44,7 +52,7 @@ public class ExpresionesRegulares {
         afns.crearAFN((char)64, (char)90); //13
         afns.crearAFN((char)92); //14
         afns.crearAFN((char)94, (char)123); //15
-        afns.crearAFN((char)125, (char)126); //16
+        afns.crearAFN((char)125); //16
         afns.union(15, 16); 
         afns.union(14, 15);
         afns.union(13, 14);
@@ -63,7 +71,9 @@ public class ExpresionesRegulares {
         afns.crearAFN('['); //17
         afns.crearAFN(']'); //18
         afns.crearAFN('/'); //19
+        afns.crearAFN('~'); //20
         //Union de todos los simbolos especiales
+        afns.union(19, 20); 
         afns.union(18, 19); 
         afns.union(17, 18);
         afns.union(16, 17);
@@ -79,5 +89,6 @@ public class ExpresionesRegulares {
     }
 
     public static void main(String[] args) {
+        ExpresionesRegulares er = new ExpresionesRegulares();
     }
 }

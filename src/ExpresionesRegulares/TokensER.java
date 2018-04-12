@@ -11,6 +11,7 @@ public class TokensER {
     public static int CORCH_I;
     public static int CORCH_D;
     public static int SIMB;
+    public static int SEPARADOR;
     public static final int FIN = 1000;
 
     public static void TokenInfo() {
@@ -23,6 +24,7 @@ public class TokensER {
         System.out.println("Token PAR_D = " + TokensER.PAR_D);
         System.out.println("Token CORCH_I = " + TokensER.CORCH_I);
         System.out.println("Token CORCH_D = " + TokensER.CORCH_D);
+        System.out.println("Token SEPARADOR = " + TokensER.SEPARADOR);
         System.out.println("Token SIMB = " + TokensER.SIMB);
         System.out.println("");
     }
