@@ -22,6 +22,11 @@ public class AFNs {
      * @param carMax 
      */
     public void crearAFN(char carMin, char carMax){
+        if(carMin > carMax){
+            char carAux = carMin;
+            carMin = carMax;
+            carMax = carAux;
+        }
         AFN automata = new AFN(carMin, carMax);
         automatas.add(automata);
     }

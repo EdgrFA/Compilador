@@ -1,112 +1,132 @@
 package Calculadora;
 
 import javax.swing.JOptionPane;
-/**
- *
- * @author Andres
- */
+
 public class InterfazCalc extends javax.swing.JFrame {
     private Calculadora cal;
+    private boolean primerClick;
     
     public InterfazCalc() {
         initComponents();
         cal = new Calculadora();
+        primerClick = true;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         txtExpresion = new javax.swing.JTextField();
         btnLexico = new javax.swing.JButton();
         btnSintactico = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnPrefijo = new javax.swing.JButton();
-        btnPosfijo = new javax.swing.JButton();
         lblResultado = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblPrefijo = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblPosfijo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(36, 47, 65));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtExpresion.setBackground(new java.awt.Color(35, 48, 62));
+        txtExpresion.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        txtExpresion.setForeground(new java.awt.Color(255, 255, 255));
+        txtExpresion.setText("Ingresa una expresión");
+        txtExpresion.setBorder(null);
+        txtExpresion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtExpresionMouseClicked(evt);
+            }
+        });
+        txtExpresion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtExpresionActionPerformed(evt);
+            }
+        });
+        txtExpresion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtExpresionKeyPressed(evt);
+            }
+        });
+        jPanel1.add(txtExpresion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 240, 20));
+
+        btnLexico.setBackground(new java.awt.Color(61, 139, 128));
+        btnLexico.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnLexico.setForeground(new java.awt.Color(255, 255, 255));
         btnLexico.setText("Lexico");
+        btnLexico.setBorderPainted(false);
         btnLexico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLexicoActionPerformed(evt);
             }
         });
+        jPanel1.add(btnLexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 90, -1));
+        btnLexico.getAccessibleContext().setAccessibleName("btnLexico");
 
+        btnSintactico.setBackground(new java.awt.Color(61, 139, 128));
+        btnSintactico.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnSintactico.setForeground(new java.awt.Color(255, 255, 255));
         btnSintactico.setText("Sintactico");
+        btnSintactico.setBorderPainted(false);
         btnSintactico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSintacticoActionPerformed(evt);
             }
         });
+        jPanel1.add(btnSintactico, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 90, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Resultado ");
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 244, 20));
 
-        btnPrefijo.setText("Prefijo");
-        btnPrefijo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrefijoActionPerformed(evt);
-            }
-        });
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Expresión");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, 30));
 
-        btnPosfijo.setText("Posfijo");
-        btnPosfijo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPosfijoActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 210));
 
-        lblResultado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblResultado.setText(" ");
+        jPanel2.setBackground(new java.awt.Color(81, 186, 171));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel1))
-                    .addComponent(lblResultado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSintactico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLexico, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnPosfijo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPrefijo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnPrefijo)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnPosfijo))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnLexico)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnSintactico)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblResultado)))
-                .addGap(22, 22, 22))
-        );
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Prefijo");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
 
-        btnLexico.getAccessibleContext().setAccessibleName("btnLexico");
+        lblResultado.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        lblResultado.setForeground(new java.awt.Color(255, 255, 255));
+        lblResultado.setText(" ___________________________");
+        jPanel2.add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 260, -1));
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Resultado ");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
+
+        lblPrefijo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        lblPrefijo.setForeground(new java.awt.Color(255, 255, 255));
+        lblPrefijo.setText(" ___________________________");
+        jPanel2.add(lblPrefijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 260, -1));
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Posfijo");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, -1));
+
+        lblPosfijo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        lblPosfijo.setForeground(new java.awt.Color(255, 255, 255));
+        lblPosfijo.setText(" ___________________________");
+        jPanel2.add(lblPosfijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 260, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 310, 210));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -121,40 +141,48 @@ public class InterfazCalc extends javax.swing.JFrame {
     
     private void btnSintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSintacticoActionPerformed
         String expresion = getExpresion();
-        boolean paso = cal.evaluarSintactico(expresion);
-        if(paso){
-            System.out.println("El resultado fue: "+cal.getResultado().getValor());
-            lblResultado.setText(cal.getResultado().toString());
+        boolean pasoLexico = cal.evaluarLexico(expresion);
+        if(pasoLexico){
+            boolean pasoSintactico = cal.evaluarSintactico(expresion);
+            if(pasoSintactico){
+                lblResultado.setText(cal.getResultado().toString());
+                lblPrefijo.setText(cal.getPrefijo().toString());
+                lblPosfijo.setText(cal.getPosfijo().toString());
+            }else{
+                JOptionPane.showMessageDialog(null,"Error Sintáctico");
+            }
         }else{
-            JOptionPane.showMessageDialog(null,"Error Sintáctico");
+            JOptionPane.showMessageDialog(null,"Error Léxico");
         }
     }//GEN-LAST:event_btnSintacticoActionPerformed
 
-    private void btnPosfijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPosfijoActionPerformed
-        String expresion = getExpresion();
-        boolean paso = cal.evaluarSintactico(expresion,2);
-        if(paso){
-            System.out.println("El resultado fue: "+cal.getResultado().getValor());
-            lblResultado.setText(cal.getExpresion().toString());
-        }else{
-            JOptionPane.showMessageDialog(null,"Error Sintáctico");
-        }
-    }//GEN-LAST:event_btnPosfijoActionPerformed
-
     private void btnLexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLexicoActionPerformed
-        // TODO add your handling code here:
+        String expresion = getExpresion();
+        boolean pasoLexico = cal.evaluarLexico(expresion);
+        if(pasoLexico){
+            JOptionPane.showMessageDialog(null,"Análisis Léxico Correcto");
+        }else{
+            JOptionPane.showMessageDialog(null,"Error Léxico");
+        }
     }//GEN-LAST:event_btnLexicoActionPerformed
 
-    private void btnPrefijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrefijoActionPerformed
-        String expresion = getExpresion();
-        boolean paso = cal.evaluarSintactico(expresion,1);
-        if(paso){
-            System.out.println("El resultado fue: "+cal.getResultado().getValor());
-            lblResultado.setText(cal.getExpresion().toString());
-        }else{
-            JOptionPane.showMessageDialog(null,"Error Sintáctico");
+    private void txtExpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExpresionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtExpresionActionPerformed
+
+    private void txtExpresionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExpresionMouseClicked
+        if(primerClick){
+            txtExpresion.setText("");
+            primerClick = false;
         }
-    }//GEN-LAST:event_btnPrefijoActionPerformed
+    }//GEN-LAST:event_txtExpresionMouseClicked
+
+    private void txtExpresionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExpresionKeyPressed
+        if(primerClick){
+            txtExpresion.setText("");
+            primerClick = false;
+        }
+    }//GEN-LAST:event_txtExpresionKeyPressed
 
     /**
      * @param args the command line arguments
@@ -193,10 +221,16 @@ public class InterfazCalc extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLexico;
-    private javax.swing.JButton btnPosfijo;
-    private javax.swing.JButton btnPrefijo;
     private javax.swing.JButton btnSintactico;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblPosfijo;
+    private javax.swing.JLabel lblPrefijo;
     private javax.swing.JLabel lblResultado;
     private javax.swing.JTextField txtExpresion;
     // End of variables declaration//GEN-END:variables
