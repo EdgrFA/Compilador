@@ -21,6 +21,7 @@ public class InterfazCalc extends javax.swing.JFrame {
         btnLexico = new javax.swing.JButton();
         btnSintactico = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblResultado = new javax.swing.JLabel();
@@ -50,7 +51,12 @@ public class InterfazCalc extends javax.swing.JFrame {
                 txtExpresionActionPerformed(evt);
             }
         });
-        jPanel1.add(txtExpresion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 240, 20));
+        txtExpresion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtExpresionKeyPressed(evt);
+            }
+        });
+        jPanel1.add(txtExpresion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 240, 20));
 
         btnLexico.setBackground(new java.awt.Color(61, 139, 128));
         btnLexico.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -62,7 +68,7 @@ public class InterfazCalc extends javax.swing.JFrame {
                 btnLexicoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 90, -1));
+        jPanel1.add(btnLexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 90, -1));
         btnLexico.getAccessibleContext().setAccessibleName("btnLexico");
 
         btnSintactico.setBackground(new java.awt.Color(61, 139, 128));
@@ -75,10 +81,15 @@ public class InterfazCalc extends javax.swing.JFrame {
                 btnSintacticoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSintactico, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 90, -1));
+        jPanel1.add(btnSintactico, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 90, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 244, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 244, 20));
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Expresión");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 210));
 
@@ -88,7 +99,7 @@ public class InterfazCalc extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Prefijo");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
 
         lblResultado.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         lblResultado.setForeground(new java.awt.Color(255, 255, 255));
@@ -98,7 +109,7 @@ public class InterfazCalc extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Resultado ");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
 
         lblPrefijo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         lblPrefijo.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,7 +119,7 @@ public class InterfazCalc extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Posfijo");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, -1));
 
         lblPosfijo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         lblPosfijo.setForeground(new java.awt.Color(255, 255, 255));
@@ -155,6 +166,13 @@ public class InterfazCalc extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtExpresionMouseClicked
 
+    private void txtExpresionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExpresionKeyPressed
+        if(primerClick){
+            txtExpresion.setText("");
+            primerClick = false;
+        }
+    }//GEN-LAST:event_txtExpresionKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -196,6 +214,7 @@ public class InterfazCalc extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
