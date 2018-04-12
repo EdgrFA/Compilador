@@ -47,7 +47,7 @@ public class AnalizadorLexico {
                 }else{
                     //Dos casos, ninguna transición con caracter o el caracter no esta dentro del alfabeto
                     System.out.println("\nNo existe transicion con el caracter \""+cadena.charAt(indiceActual)+"\"");
-                    JOptionPane.showMessageDialog(null,"Error Lexico\nNo existe transicion con el caracter \""+cadena.charAt(indiceActual)+"\"");
+                    //JOptionPane.showMessageDialog(null,"Error Lexico\nNo existe transicion con el caracter \""+cadena.charAt(indiceActual)+"\"");
                     edoActual = edoInicial;
                     indiceIniLex++;
                     return -1;

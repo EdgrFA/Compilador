@@ -3,6 +3,8 @@ package Calculadora;
 
 import Automatas.AFD;
 import Automatas.AFNs;
+import Analizadores.AnalizadorLexico;
+import javax.swing.JOptionPane;
 
 public class Calculadora {
     private final AFD afd;
@@ -10,14 +12,12 @@ public class Calculadora {
     private DoubleM resultado;
     private StringM prefijo;
     private StringM posfijo;
-    private StringM expresion;
     
     public Calculadora() {
         AFNs afns = new AFNs();
         resultado = new DoubleM(0.0);
         prefijo = new StringM("");
         posfijo = new StringM("");
-        expresion = new StringM("");
         
         afnNum(afns);       //0
         afns.crearAFN('+'); //1
@@ -61,9 +61,15 @@ public class Calculadora {
         as = new AnalizadorSintactico(afd);
     }
     
-    public boolean evaluarLex(String expresion){
-        //AnalizadorLexico al = new AnalizadorLexico("5.5+(4-2)", afd);
-        return false;
+    public boolean evaluarLexico(String expresion){
+        AnalizadorLexico analizadorLexico = new AnalizadorLexico(expresion, afd);
+        int token;
+        while((token = analizadorLexico.obtenerToken()) != 0){
+            if(token == -1){
+                return false;
+            }
+        }
+        return true;
     }
     
     public boolean evaluarSintactico(String expresion){
@@ -82,21 +88,13 @@ public class Calculadora {
         return posfijo;
     }
     
-    public StringM getExpresion() {
-        return expresion;
-    }
-    
     public static void main(String[] args) {
-        
         Calculadora cal = new Calculadora();
-        //boolean paso = cal.evaluarSintactico("(10^4*e^(2)+15)/10000+3");
-        boolean paso = cal.evaluarSintactico("\\-10+15");
+        boolean paso = cal.evaluarLexico("\\-15+10");
         if(paso){
-            System.out.println("El resultado fue: "+cal.getResultado());
-            System.out.println("El prefijo fue: "+cal.getPrefijo());
-            System.out.println("El posfijo fue: "+cal.getPosfijo());
+            System.out.println("El Analisis Lexico fue correcto ");
         }else
-            System.out.println("ERROR sintáctico");
+            System.out.println("ERROR Léxico");
     }
     
     /***************************************************************************

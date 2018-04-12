@@ -191,9 +191,7 @@ public class AnalizadorSintactico {
                         pre.logPre();
                         pos.logPos();
                     }
-                    if(tok == Tokens.PAR_D)
-                        return true;
-                    return false;
+                    return tok == Tokens.PAR_D;
                 }
             }
             

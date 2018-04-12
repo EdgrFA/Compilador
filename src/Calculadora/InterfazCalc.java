@@ -11,7 +11,7 @@ public class InterfazCalc extends javax.swing.JFrame {
         cal = new Calculadora();
         primerClick = true;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -141,18 +141,29 @@ public class InterfazCalc extends javax.swing.JFrame {
     
     private void btnSintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSintacticoActionPerformed
         String expresion = getExpresion();
-        boolean paso = cal.evaluarSintactico(expresion);
-        if(paso){
-            lblResultado.setText(cal.getResultado().toString());
-            lblPrefijo.setText(cal.getPrefijo().toString());
-            lblPosfijo.setText(cal.getPosfijo().toString());
+        boolean pasoLexico = cal.evaluarLexico(expresion);
+        if(pasoLexico){
+            boolean pasoSintactico = cal.evaluarSintactico(expresion);
+            if(pasoSintactico){
+                lblResultado.setText(cal.getResultado().toString());
+                lblPrefijo.setText(cal.getPrefijo().toString());
+                lblPosfijo.setText(cal.getPosfijo().toString());
+            }else{
+                JOptionPane.showMessageDialog(null,"Error Sintáctico");
+            }
         }else{
-            JOptionPane.showMessageDialog(null,"Error Sintáctico");
+            JOptionPane.showMessageDialog(null,"Error Léxico");
         }
     }//GEN-LAST:event_btnSintacticoActionPerformed
 
     private void btnLexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLexicoActionPerformed
-        // TODO add your handling code here:
+        String expresion = getExpresion();
+        boolean pasoLexico = cal.evaluarLexico(expresion);
+        if(pasoLexico){
+            JOptionPane.showMessageDialog(null,"Análisis Léxico Correcto");
+        }else{
+            JOptionPane.showMessageDialog(null,"Error Léxico");
+        }
     }//GEN-LAST:event_btnLexicoActionPerformed
 
     private void txtExpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExpresionActionPerformed
