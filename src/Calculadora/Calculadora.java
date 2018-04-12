@@ -8,11 +8,15 @@ public class Calculadora {
     private final AFD afd;
     private final AnalizadorSintactico as;
     private DoubleM resultado;
+    private StringM prefijo;
+    private StringM posfijo;
     private StringM expresion;
     
     public Calculadora() {
         AFNs afns = new AFNs();
         resultado = new DoubleM(0.0);
+        prefijo = new StringM("");
+        posfijo = new StringM("");
         expresion = new StringM("");
         
         afnNum(afns);       //0
@@ -30,6 +34,7 @@ public class Calculadora {
         afnLN(afns);        //12
         afnLOG(afns);       //13
         afnRAIZ(afns);      //14
+        afns.crearAFN('\\'); //15
         
         afd = new AFD(afns);
         
@@ -49,15 +54,11 @@ public class Calculadora {
         Tokens.LN    = afns.getTokenAFN(12);
         Tokens.LOG   = afns.getTokenAFN(13);
         Tokens.RAIZ   = afns.getTokenAFN(14);
+        Tokens.DI   = afns.getTokenAFN(15);
         
         Tokens.TokenInfo();
         afd.imprimirTablaTransiciones();
-        
         as = new AnalizadorSintactico(afd);
-        //as.AnalizarCadena("70*(4+6)+40*SIN(90)+10^4");
-        //boolean salida = as.AnalizarCadena("(10^4*e^(2)+15)/10000+27SQRT3");
-        //System.out.println("\nLa salida fue "+salida);
-        //System.out.println(as.getResultado());
     }
     
     public boolean evaluarLex(String expresion){
@@ -66,15 +67,19 @@ public class Calculadora {
     }
     
     public boolean evaluarSintactico(String expresion){
-        return as.AnalizarCadena(expresion,resultado);
+        return as.AnalizarCadena(expresion,resultado, prefijo, posfijo);
     }
     
-    public boolean evaluarSintactico(String cadena, int opc){
-        return as.AnalizarCadena(cadena, expresion, opc);
-    }
-
     public DoubleM getResultado() {
         return resultado;
+    }
+    
+    public StringM getPrefijo() {
+        return prefijo;
+    }
+    
+    public StringM getPosfijo() {
+        return posfijo;
     }
     
     public StringM getExpresion() {
@@ -82,18 +87,22 @@ public class Calculadora {
     }
     
     public static void main(String[] args) {
+        
         Calculadora cal = new Calculadora();
-        String cadenaResultado="";
-        int opc=1;
-        boolean paso = cal.evaluarSintactico("(10^4*e^(2)+15)/10000+3",0);
-        if(paso)
-            System.out.println("El resultado fue: "+cal.getExpresion());
-        else
+        //boolean paso = cal.evaluarSintactico("(10^4*e^(2)+15)/10000+3");
+        boolean paso = cal.evaluarSintactico("\\-10+15");
+        if(paso){
+            System.out.println("El resultado fue: "+cal.getResultado());
+            System.out.println("El prefijo fue: "+cal.getPrefijo());
+            System.out.println("El posfijo fue: "+cal.getPosfijo());
+        }else
             System.out.println("ERROR sintáctico");
     }
-
-    //NUM -> 0
-    public static void afnNum(AFNs afns){
+    
+    /***************************************************************************
+    /***************    OPERACIONES CALCULADORA   ****************************/
+    
+    private static void afnNum(AFNs afns){
         afns.crearAFN('0', '9'); //0
         afns.cerraduraSuma(0);
         afns.crearAFN('.'); //1
@@ -104,7 +113,7 @@ public class Calculadora {
         afns.concatenar(0, 1);
     }
 
-    public static void afnSEN(AFNs afns){
+    private static void afnSEN(AFNs afns){
         afns.crearAFN('S'); //7
         afns.crearAFN('I'); //8
         afns.crearAFN('N'); //9
@@ -112,7 +121,7 @@ public class Calculadora {
         afns.concatenar(7, 8);
     }
     
-    public static void afnCOS(AFNs afns){
+    private static void afnCOS(AFNs afns){
         afns.crearAFN('C'); //8
         afns.crearAFN('O'); //9
         afns.crearAFN('S'); //10
@@ -120,7 +129,7 @@ public class Calculadora {
         afns.concatenar(8, 9);
     }
     
-    public static void afnTAN(AFNs afns){
+    private static void afnTAN(AFNs afns){
         afns.crearAFN('T'); //9
         afns.crearAFN('A'); //10
         afns.crearAFN('N'); //11
@@ -128,19 +137,19 @@ public class Calculadora {
         afns.concatenar(9, 10);
     }
     
-    public static void afnEXP(AFNs afns){
+    private static void afnEXP(AFNs afns){
         afns.crearAFN('e'); //11
         afns.crearAFN('^'); //12
         afns.concatenar(11, 12);
     }
     
-    public static void afnLN(AFNs afns){
+    private static void afnLN(AFNs afns){
         afns.crearAFN('L'); //12
         afns.crearAFN('N'); //13
         afns.concatenar(12, 13);
     }
     
-    public static void afnLOG(AFNs afns){
+    private static void afnLOG(AFNs afns){
         afns.crearAFN('L'); //13
         afns.crearAFN('O'); //14
         afns.crearAFN('G'); //15
@@ -148,7 +157,7 @@ public class Calculadora {
         afns.concatenar(13, 14);
     }
     
-    public static void afnRAIZ(AFNs afns){
+    private static void afnRAIZ(AFNs afns){
         afns.crearAFN('S'); //14
         afns.crearAFN('Q'); //15
         afns.crearAFN('R'); //16
