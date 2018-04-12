@@ -7,23 +7,16 @@ import Automatas.AFD;
 public class AnalizadorSintactico {
     private AnalizadorLexico Lexic;
     private final AFD afd;
-    private int tipoExpresion;
 
     public AnalizadorSintactico(AFD afd) {
         this.afd = afd;
-        tipoExpresion = 0;
     }
     
-    public boolean AnalizarCadena(String cadena, DoubleM resultado, StringM prefijo, StringM posfijo){
+    public boolean AnalizarCadena(String cadena, DoubleM resultado, 
+            StringM prefijo, StringM posfijo){
         Lexic = new AnalizadorLexico(cadena, afd);
         return E(resultado,prefijo,posfijo);
     }
-    
-    /*
-    public boolean AnalizarCadena(String cadena, DoubleM v){
-        Lexic = new AnalizadorLexico(cadena, afd);
-        return E(v,,);
-    }*/
     
     // *************************************************************************
     public boolean E(DoubleM v, StringM pre, StringM pos){
@@ -152,7 +145,8 @@ public class AnalizadorSintactico {
             System.out.println("Lexema: "+lexema);
             return true;
         }else if(tok == Tokens.SIN || tok == Tokens.COS || tok == Tokens.TAN ||
-                tok == Tokens.POT ||  tok == Tokens.EXP || tok == Tokens.LN || tok == Tokens.LOG){
+                tok == Tokens.DI || tok == Tokens.POT ||  tok == Tokens.EXP 
+                || tok == Tokens.LN || tok == Tokens.LOG){
             //PONER OPERACIONES para "v"
             int AuxTok = tok;
             tok = Lexic.obtenerToken();

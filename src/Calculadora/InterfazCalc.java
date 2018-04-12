@@ -1,13 +1,7 @@
 package Calculadora;
 
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
-//import org.xml.sax.Attributes;
-/**
- *
- * @author Andres
- */
+
 public class InterfazCalc extends javax.swing.JFrame {
     private Calculadora cal;
     private boolean primerClick;
@@ -138,8 +132,9 @@ public class InterfazCalc extends javax.swing.JFrame {
         String expresion = getExpresion();
         boolean paso = cal.evaluarSintactico(expresion);
         if(paso){
-            System.out.println("El resultado fue: "+cal.getResultado().getValor());
             lblResultado.setText(cal.getResultado().toString());
+            lblPrefijo.setText(cal.getPrefijo().toString());
+            lblPosfijo.setText(cal.getPosfijo().toString());
         }else{
             JOptionPane.showMessageDialog(null,"Error Sintáctico");
         }

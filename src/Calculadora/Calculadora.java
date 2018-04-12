@@ -34,6 +34,7 @@ public class Calculadora {
         afnLN(afns);        //12
         afnLOG(afns);       //13
         afnRAIZ(afns);      //14
+        afns.crearAFN('\\'); //15
         
         afd = new AFD(afns);
         
@@ -53,15 +54,11 @@ public class Calculadora {
         Tokens.LN    = afns.getTokenAFN(12);
         Tokens.LOG   = afns.getTokenAFN(13);
         Tokens.RAIZ   = afns.getTokenAFN(14);
+        Tokens.DI   = afns.getTokenAFN(15);
         
         Tokens.TokenInfo();
         afd.imprimirTablaTransiciones();
-        
         as = new AnalizadorSintactico(afd);
-        //as.AnalizarCadena("70*(4+6)+40*SIN(90)+10^4");
-        //boolean salida = as.AnalizarCadena("(10^4*e^(2)+15)/10000+27SQRT3");
-        //System.out.println("\nLa salida fue "+salida);
-        //System.out.println(as.getResultado());
     }
     
     public boolean evaluarLex(String expresion){
@@ -90,6 +87,7 @@ public class Calculadora {
     }
     
     public static void main(String[] args) {
+        
         Calculadora cal = new Calculadora();
         //boolean paso = cal.evaluarSintactico("(10^4*e^(2)+15)/10000+3");
         boolean paso = cal.evaluarSintactico("SIN(40+10)*80+COS(360)");
