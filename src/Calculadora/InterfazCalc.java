@@ -39,7 +39,7 @@ public class InterfazCalc extends javax.swing.JFrame {
         txtExpresion.setBackground(new java.awt.Color(35, 48, 62));
         txtExpresion.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         txtExpresion.setForeground(new java.awt.Color(255, 255, 255));
-        txtExpresion.setText("Ingresa una expresión");
+        txtExpresion.setText("Ingresa aquí una expresión");
         txtExpresion.setBorder(null);
         txtExpresion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -56,7 +56,7 @@ public class InterfazCalc extends javax.swing.JFrame {
                 txtExpresionKeyPressed(evt);
             }
         });
-        jPanel1.add(txtExpresion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 240, 20));
+        jPanel1.add(txtExpresion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 240, 20));
 
         btnLexico.setBackground(new java.awt.Color(61, 139, 128));
         btnLexico.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -68,7 +68,7 @@ public class InterfazCalc extends javax.swing.JFrame {
                 btnLexicoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 90, -1));
+        jPanel1.add(btnLexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 110, 30));
         btnLexico.getAccessibleContext().setAccessibleName("btnLexico");
 
         btnSintactico.setBackground(new java.awt.Color(61, 139, 128));
@@ -81,15 +81,15 @@ public class InterfazCalc extends javax.swing.JFrame {
                 btnSintacticoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSintactico, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 90, -1));
+        jPanel1.add(btnSintactico, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 110, 30));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 244, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 244, 20));
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Expresión");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 210));
 
@@ -109,7 +109,7 @@ public class InterfazCalc extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Resultado ");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
 
         lblPrefijo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         lblPrefijo.setForeground(new java.awt.Color(255, 255, 255));
