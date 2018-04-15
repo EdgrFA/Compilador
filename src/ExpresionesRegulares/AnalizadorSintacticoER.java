@@ -4,7 +4,6 @@ import Analizadores.AnalizadorLexico;
 import Automatas.AFD;
 import Automatas.AFNs;
 import Calculadora.DoubleM;
-import Calculadora.Tokens;
 
 public class AnalizadorSintacticoER {
     private AnalizadorLexico Lexic;

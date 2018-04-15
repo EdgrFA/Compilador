@@ -1,15 +1,11 @@
 package ExpresionesRegulares;
 
-import Analizadores.AnalizadorLexico;
 import Automatas.AFD;
 import Automatas.AFNs;
-import Calculadora.Tokens;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class ExpresionesRegulares {
     private final AFD afd;
@@ -177,7 +173,7 @@ public class ExpresionesRegulares {
                 }
                 System.out.println("\nIntroduce la cadena a validar" + index);
                 String cad = br.readLine();
-                boolean isCorrect = afnsL.get(index).getAutomata(0).AnalizarCardena(cad);
+                boolean isCorrect = afnsL.get(index).getAutomata(0).analizarCardena(cad);
                 if (isCorrect)
                     System.out.println("Cadena Valida.");
                 else

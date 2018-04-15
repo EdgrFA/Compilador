@@ -60,21 +60,7 @@ public class AFNs {
     }
     
     public boolean validar(int id, String s){
-        return automatas.get(id).AnalizarCardena(s);
-    }
-    
-    /*
-    Valores de la clase
-    */
-    public ArrayList<AFN> getAutomatas() {
-        return automatas;
-    }
-    
-    public HashSet<Estado> getEdosAceptacion(){
-        for(AFN afn: automatas){
-            edosAceptacion.addAll(afn.getEdosAceptacion());
-        }
-        return edosAceptacion;
+        return automatas.get(id).analizarCardena(s);
     }
     
     public void actualizarTokens(){
@@ -86,7 +72,6 @@ public class AFNs {
             tokens.put(e, contadorToken);
             contadorToken+=10;
         }
-        
     }
 
     public int containsEdoAcept(HashSet<Estado> cjtoEdos){
@@ -96,6 +81,17 @@ public class AFNs {
                 return tokens.get(edo);
         }
         return -1;
+    }
+    
+    public ArrayList<AFN> getAutomatas() {
+        return automatas;
+    }
+    
+    public HashSet<Estado> getEdosAceptacion(){
+        for(AFN afn: automatas){
+            edosAceptacion.addAll(afn.getEdosAceptacion());
+        }
+        return edosAceptacion;
     }
     
     public int getNoAutomatas() {
@@ -108,10 +104,6 @@ public class AFNs {
     
     public AFN getAutomata(int index){
         return automatas.get(index);
-    }
-    
-    public void setAutomata(int index, char c){
-        AFN afnaux= new AFN(c);
     }
     
     public int getTokenAFN(int index){

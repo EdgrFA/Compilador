@@ -16,13 +16,14 @@ public class Transicion {
         this.estadoDestino = estadoDestino;
     }
     
-    public boolean SeEncuentra(char c){
+    public boolean contains(char c){
         for(char carAux = carMin; carAux!=(carMax+1); carAux+=1){
             if(c==carAux)
                 return true;
         }
         return false;
     }
+    
 
     public char getCarMin() {
         return carMin;
