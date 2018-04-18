@@ -64,6 +64,7 @@ public class AFNs {
     }
     
     public void actualizarTokens(){
+        edosAceptacion.clear();
         for(AFN afn: automatas){
             edosAceptacion.addAll(afn.getEdosAceptacion());
         }
@@ -83,6 +84,14 @@ public class AFNs {
         return -1;
     }
     
+    public int getTokenAFN(int index){
+        for(Estado e : automatas.get(index).getEdosAceptacion()){
+            if(tokens.get(e)!= null)
+                return tokens.get(e);
+        }
+        return -1;
+    }
+    
     public ArrayList<AFN> getAutomatas() {
         return automatas;
     }
@@ -97,22 +106,12 @@ public class AFNs {
     public int getNoAutomatas() {
         return automatas.size();
     }
-
-    public void setAutomatas(ArrayList<AFN> Automatas) {
-        this.automatas = Automatas;
-    }
     
     public AFN getAutomata(int index){
         return automatas.get(index);
     }
     
-    public int getTokenAFN(int index){
-        for(Estado e : automatas.get(index).getEdosAceptacion()){
-            if(tokens.get(e)!= null)
-                return tokens.get(e);
-        }
-        return -1;
-    }
+    
     
     public static void main(String[] args) {
         AFNs afns = new AFNs();

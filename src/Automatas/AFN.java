@@ -3,7 +3,6 @@ package Automatas;
 import java.util.HashSet;
 
 public class AFN extends Automata {
-    //private int idAFN;
     private HashSet<Character> alfabeto;
     private String expresionR;
     private Estado estadoInicial;

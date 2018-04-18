@@ -4,7 +4,6 @@ package Calculadora;
 import Automatas.AFD;
 import Automatas.AFNs;
 import Analizadores.AnalizadorLexico;
-import javax.swing.JOptionPane;
 
 public class Calculadora {
     private final AFD afd;
@@ -98,7 +97,8 @@ public class Calculadora {
     }
     
     /***************************************************************************
-    /***************    OPERACIONES CALCULADORA   ****************************/
+    /***************    OPERACIONES CALCULADORA   *****************************/
+    /**************************************************************************/
     
     private static void afnNum(AFNs afns){
         afns.crearAFN('0', '9'); //0
