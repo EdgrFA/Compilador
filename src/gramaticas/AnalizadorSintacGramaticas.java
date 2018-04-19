@@ -15,9 +15,12 @@ public class AnalizadorSintacGramaticas {
     
     public boolean AnalizarCadena(String cadena){
         lexic = new AnalizadorLexico(cadena, afd);
+        return G();
+        /*
         boolean isOk = G();
         int tok = lexic.obtenerToken();
         return isOk && (tok == TokensGramatica.FIN);
+        */
     }
     
     boolean G(){
@@ -27,6 +30,7 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean listaReglas(){
+        System.out.println("-*listaReglas");
         if(regla()){
             int tok = lexic.obtenerToken();
             if(tok == TokensGramatica.PC)
@@ -37,6 +41,7 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean listaReglasP(){
+        System.out.println("-**listaReglasP'");
         int x = lexic.getEdo();
         System.out.println("Valor de X con "+x);
         if(regla()){
@@ -52,6 +57,7 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean regla(){
+        System.out.println("-*Regla");
         if(ladoIzquierdo()){
             int tok = lexic.obtenerToken();
             if(tok== TokensGramatica.FLECHA)
@@ -62,6 +68,7 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean ladoIzquierdo(){
+        System.out.println("-*LadoIzquierdo");
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.SIMB)
             return true;
@@ -69,6 +76,7 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean listaLadosDerechos(){
+        System.out.println("-*ListaLadosDerechos");
         if(ladoDerecho())
             if(listaLadosDerechosP())
                 return true;
@@ -76,21 +84,20 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean listaLadosDerechosP(){
+        System.out.println("-**listaLadosDerechosP'");
         int tok = lexic.obtenerToken();
-        int x = lexic.getEdo();
-        System.out.println("Valor de Y con "+x);
         if(tok == TokensGramatica.OR){
             if(ladoDerecho())
                 if(listaLadosDerechosP())
                     return true;
             return false;
         }
-        System.out.println("Asigne Y con "+x);
-        lexic.setEdo(x);
+        lexic.regresarToken();
         return true;
     }
     
     boolean ladoDerecho(){
+        System.out.println("-*LadoDerecho");
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.SIMB)
             if(ladoDerechoP())
@@ -99,16 +106,14 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean ladoDerechoP(){
+        System.out.println("-**LadoDerechoP'");
         int tok = lexic.obtenerToken();
-        int x = lexic.getEdo();
-        System.out.println("Valor de Z con "+x);
         if(tok == TokensGramatica.SIMB){
             if(ladoDerechoP())
                 return true;
             return false;
         }
-        System.out.println("Asigne Z con "+x);
-        lexic.setEdo(x);
+        lexic.regresarToken();
         return true;
     }
 }

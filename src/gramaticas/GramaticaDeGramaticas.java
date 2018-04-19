@@ -13,16 +13,15 @@ public class GramaticaDeGramaticas {
 
         afns.crearAFN(';'); //0
         afns.crearAFN('|'); //1
-        afnFlecha(afns);//2
-        afnSIMB(afns); //3
-        System.out.println('\\'); //15
+        afnFlecha(afns);    //2
+        afnSIMB(afns);      //3        
         afd = new AFD(afns);
         
         //Asignación de los Tokens
-        TokensGramatica.PC   = afns.getTokenAFN(0);
-        TokensGramatica.OR  = afns.getTokenAFN(1);
+        TokensGramatica.PC     = afns.getTokenAFN(0);
+        TokensGramatica.OR     = afns.getTokenAFN(1);
         TokensGramatica.FLECHA = afns.getTokenAFN(2);
-        TokensGramatica.SIMB  = afns.getTokenAFN(3);
+        TokensGramatica.SIMB   = afns.getTokenAFN(3);
         
         TokensGramatica.TokenInfo();
         
@@ -53,7 +52,7 @@ public class GramaticaDeGramaticas {
         System.out.println((char)125); //16
         
         GramaticaDeGramaticas gdg = new GramaticaDeGramaticas();
-        String cadena = "E->TE';E'->+TE'|-TE'|e;"; //"E->TE';E'->+TE'|-TE'|e;T->FT';T'->*FT'|/FT'|e;F->(E)|num;" ;
+        String cadena = "G -> ListaReglas ;ListaReglas -> Regla Pc ListaReglas' ;ListaReglas' -> Regla Pc ListaReglas' |e  ;Regla -> LadoIzquierdo FLECHA ListaLadosDerechos ;LadoIzquierdo -> SIMBOLO ;ListaLadosDerechos  -> LadoDerecho ListaLadosDerechos' ;ListaLadosDerechos' -> OR LadoDerecho ListaLadosDerechos' |e ;LadoDerecho -> SIMBOLO LadoDerecho' ;LadoDerecho' -> SIMBOLO LadoDerecho' |e "; //"E -> T E' ;E' -> + T E' |- T E' ;"; //"E->TE';E'->+TE'|-TE'|e;T->FT';T'->*FT'|/FT'|e;F->(E)|num;" ;
         boolean paso = gdg.evaluarLexico(cadena);
         if(paso){
             System.out.println("El Analisis Lexico fue correcto ");
@@ -74,20 +73,30 @@ public class GramaticaDeGramaticas {
     /***************    OPERACIONES CALCULADORA   ****************************/
     
     private static void afnSIMB(AFNs afns){
-        afns.crearAFN((char)32,(char)58); //3
-        afns.crearAFN((char)60,(char)123); //4
+        afns.crearAFN((char)33,(char)58); //3
+        afns.crearAFN((char)63,(char)123); //4
         afns.crearAFN((char)125); //5
-        System.out.println("RIFE XD");
+        
         afns.union(4, 5);
         afns.union(3, 4); // -> 3
-        System.out.println("RIFE XD");    
+        afns.cerraduraSuma(3); // (a-zA-z1-9)+
+        
+        afns.crearAFN('\''); //4  '
+        afns.cerraduraAsterisco(4); // (')*
+        
+        afns.concatenar(3, 4); // -> (a-zA-z1-9)+&(')*
+        afns.crearAFN((char)32); //4 Espacio
+        afns.cerraduraSuma(4); // ( )+
+        afns.concatenar(3, 4); // -> 3 (a-zA-z1-9)+&(')*&( )+
     }
 
     private static void afnFlecha(AFNs afns){
-        afns.crearAFN('-'); //3
-        afns.crearAFN('>'); //4
+        afns.crearAFN('-'); //2
+        afns.crearAFN('>'); //3
+        afns.crearAFN(' '); //4
         System.out.println('-'); //3
         System.out.println('>'); //4
-        afns.concatenar(2, 3);
+        afns.concatenar(3, 4); //3
+        afns.concatenar(2, 3); //2
     }
 }
