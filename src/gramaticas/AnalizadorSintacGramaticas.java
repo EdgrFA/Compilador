@@ -8,15 +8,13 @@ import Automatas.AFNs;
 public class AnalizadorSintacGramaticas {
     private AnalizadorLexico lexic;
     private AFD afd;
-    private int indexAfns;
     
     public AnalizadorSintacGramaticas(AFD afd) {
         this.afd = afd;
     }
     
-    public boolean AnalizarCadena(String cadena, AFNs afns){
+    public boolean AnalizarCadena(String cadena){
         lexic = new AnalizadorLexico(cadena, afd);
-        indexAfns = -1;
         boolean isOk = G();
         int tok = lexic.obtenerToken();
         return isOk && (tok == TokensGramatica.FIN);
@@ -40,6 +38,7 @@ public class AnalizadorSintacGramaticas {
     
     boolean listaReglasP(){
         int x = lexic.getEdo();
+        System.out.println("Valor de X con "+x);
         if(regla()){
             int token = lexic.obtenerToken();
             if(token == TokensGramatica.PC)
@@ -47,6 +46,7 @@ public class AnalizadorSintacGramaticas {
                     return true;
             return false;
         }
+        System.out.println("Asigne X con "+x);
         lexic.setEdo(x);
         return true;
     }
@@ -77,13 +77,16 @@ public class AnalizadorSintacGramaticas {
     
     boolean listaLadosDerechosP(){
         int tok = lexic.obtenerToken();
+        int x = lexic.getEdo();
+        System.out.println("Valor de Y con "+x);
         if(tok == TokensGramatica.OR){
             if(ladoDerecho())
                 if(listaLadosDerechosP())
                     return true;
             return false;
         }
-        lexic.regresarToken();
+        System.out.println("Asigne Y con "+x);
+        lexic.setEdo(x);
         return true;
     }
     
@@ -97,12 +100,15 @@ public class AnalizadorSintacGramaticas {
     
     boolean ladoDerechoP(){
         int tok = lexic.obtenerToken();
+        int x = lexic.getEdo();
+        System.out.println("Valor de Z con "+x);
         if(tok == TokensGramatica.SIMB){
             if(ladoDerechoP())
                 return true;
             return false;
         }
-        lexic.regresarToken();
+        System.out.println("Asigne Z con "+x);
+        lexic.setEdo(x);
         return true;
     }
 }
