@@ -3,13 +3,10 @@ package ExpresionesRegulares;
 import Analizadores.AnalizadorLexico;
 import Automatas.AFD;
 import Automatas.AFNs;
-import Calculadora.DoubleM;
 
 public class AnalizadorSintacticoER {
     private AnalizadorLexico Lexic;
     private final AFD afd;
-    private DoubleM resultado;
-    private String expresion;
     private int indexAfns;
     
     public AnalizadorSintacticoER(AFD afd) {

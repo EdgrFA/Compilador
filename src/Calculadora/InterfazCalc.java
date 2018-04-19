@@ -3,7 +3,7 @@ package Calculadora;
 import javax.swing.JOptionPane;
 
 public class InterfazCalc extends javax.swing.JFrame {
-    private Calculadora cal;
+    private final Calculadora cal;
     private boolean primerClick;
     
     public InterfazCalc() {
