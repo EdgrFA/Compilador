@@ -15,11 +15,6 @@ public class AnalizadorSintacGramaticas {
     public boolean AnalizarCadena(String cadena, Gramatica reglas){
         lexic = new AnalizadorLexico(cadena, afd);
         return G(reglas);
-        /*
-        boolean isOk = G();
-        int tok = lexic.obtenerToken();
-        return isOk && (tok == TokensGramatica.FIN);
-        */
     }
     
     boolean G(Gramatica reglas){
@@ -54,11 +49,9 @@ public class AnalizadorSintacGramaticas {
         lexic.setEdo(x);
         return true;
     }
-    
-    //*
+
     boolean regla(Gramatica reglas){
         //System.out.println("-*Regla");
-        ///Gramatica nuevaRegla = new Gramatica();
         Nodo regla = reglas.agregarRegla();
         if(ladoIzquierdo(regla)){
             int tok = lexic.obtenerToken();
@@ -70,8 +63,7 @@ public class AnalizadorSintacGramaticas {
             reglas.removerRegla(regla);
         return false;
     }
-    
-    //*
+
     boolean ladoIzquierdo(Nodo regla){
         //System.out.println("-*LadoIzquierdo");
         int tok = lexic.obtenerToken();
@@ -81,29 +73,21 @@ public class AnalizadorSintacGramaticas {
         }
         return false;
     }
-    
-    //*
+
     boolean listaLadosDerechos(Nodo regla){
         //System.out.println("-*ListaLadosDerechos");
         ArrayList<String> listaSimbs = regla.agregarListaSimbs();
-        
-        //Gramatica nuevaRegla = new Gramatica();
-        //regla.setPtrSig(nuevaRegla);
-        
         if(ladoDerecho(listaSimbs))
             if(listaLadosDerechosP(regla))
                 return true;
         return false;
     }
     
-    //*
     boolean listaLadosDerechosP(Nodo regla){
         //System.out.println("-**listaLadosDerechosP'");
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.OR){
             ArrayList<String> listaSimbs = regla.agregarListaSimbs();
-            //regla.setPtrAbajo(nuevaRegla);
-            
             if(ladoDerecho(listaSimbs))
                 if(listaLadosDerechosP(regla))
                     return true;
@@ -113,7 +97,6 @@ public class AnalizadorSintacGramaticas {
         return true;
     }
     
-    //*
     boolean ladoDerecho(ArrayList<String> listaSimbs){
         //System.out.println("-*LadoDerecho");
         int tok = lexic.obtenerToken();
@@ -125,7 +108,6 @@ public class AnalizadorSintacGramaticas {
         return false;
     }
     
-    //*
     boolean ladoDerechoP(ArrayList<String> listaSimbs){
         //System.out.println("-**LadoDerechoP'");
         int tok = lexic.obtenerToken();
