@@ -7,15 +7,14 @@ public class Estado {
     //LLeva el contador de los ID's
     private static int idEstado = 0;
     
-    //Variables propias de cada clase
     public int idEdo;
     private ArrayList<Transicion> transiciones;
-    private boolean esAceptacion;
+    private boolean aceptacion;
 
     public Estado() {
         this.idEdo = idEstado++;
         this.transiciones = new ArrayList<>();
-        this.esAceptacion = false;
+        this.aceptacion = false;
     }
     
     public void crearTrancision(char c, Estado estadoDestino){
@@ -33,12 +32,12 @@ public class Estado {
         return R;
     }
 
-    public boolean isEsAceptacion() {
-        return esAceptacion;
+    public boolean isAceptacion() {
+        return aceptacion;
     }
 
-    public void setEsAceptacion(boolean esAceptacion) {
-        this.esAceptacion = esAceptacion;
+    public void setEsAceptacion(boolean aceptacion) {
+        this.aceptacion = aceptacion;
     }
 
     public ArrayList<Transicion> getTrancisiones() {
@@ -51,9 +50,7 @@ public class Estado {
         for (Transicion t : transiciones) {
             str += "C: "+t.getCarMax()+"\n ";
         }
-        str += "Final: " + isEsAceptacion();
+        str += "Final: " + isAceptacion();
         return str;
     }
-    
-    
 }

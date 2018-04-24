@@ -45,7 +45,7 @@ public class ConjuntoEstados {
     
     public int getToken(){ //***Modificable a entero utilizando tokens y a agregar un dato aceptacion
         for (Estado estado : coleccion)
-            if(estado.isEsAceptacion())
+            if(estado.isAceptacion())
                 return token;
         return token;
     }

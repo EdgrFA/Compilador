@@ -3,12 +3,12 @@ package Analizadores;
 
 import Automatas.AFD;
 import Automatas.ConjuntoEstados;
-import javax.swing.JOptionPane;
 
 public class AnalizadorLexico {
     private String cadena;
     private ConjuntoEstados edoInicial;
     private ConjuntoEstados edoActual;
+    private int EdoActual;
     private boolean edoAceptPrevio;
     private int indiceTokenAnterior;
     private int indiceIniLex; //Indice del inicio del Lexema
@@ -47,7 +47,7 @@ public class AnalizadorLexico {
                 }else{
                     //Dos casos, ninguna transición con caracter o el caracter no esta dentro del alfabeto
                     System.out.println("\nNo existe transicion con el caracter \""+cadena.charAt(indiceActual)+"\"");
-                    JOptionPane.showMessageDialog(null,"Error Lexico\nNo existe transicion con el caracter \""+cadena.charAt(indiceActual)+"\"");
+                    //JOptionPane.showMessageDialog(null,"Error Lexico\nNo existe transicion con el caracter \""+cadena.charAt(indiceActual)+"\"");
                     edoActual = edoInicial;
                     indiceIniLex++;
                     return -1;
@@ -76,6 +76,15 @@ public class AnalizadorLexico {
 
     public String getLexema() {
         return lexema;
+    }
+    
+    public int getEdo(){
+        return indiceActual;
+    }
+    
+    public void setEdo(int indiceEdoPrevio){
+        indiceActual = indiceEdoPrevio;
+        indiceIniLex = indiceEdoPrevio;
     }
     
     public void regresarToken(){

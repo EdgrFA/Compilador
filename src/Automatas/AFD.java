@@ -7,10 +7,9 @@ public class AFD extends Automata{
     private ConjuntoEstados conjuntoInicial;
     private ArrayList<ConjuntoEstados> conjuntosEdos;
     private HashSet<Character> alfabeto;
-  //La tabla de transiciones solo se consultaria
-    public AFD(){}
+    //La tabla de transiciones solo se consultaria
     
-    public void crearAFD(AFNs afns){
+    public AFD(AFNs afns){
         //Union de todos los afns con el estado inicial de cada afn.
         alfabeto = new HashSet<>();
         Estado estadoP = new Estado();
@@ -60,7 +59,7 @@ public class AFD extends Automata{
         }
     }
     
-    public AFD(AFNs afns){
+    public void crearAFD(AFNs afns){
         //Union de todos los afns con el estado inicial de cada afn.
         alfabeto = new HashSet<>();
         Estado estadoP = new Estado();
