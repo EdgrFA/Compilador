@@ -5,8 +5,8 @@ public class TokensGramatica {
     public static int OR;
     public static int FLECHA;
     public static int SIMB;
-    public static final int FIN = 1000;
-    public static final int ERROR = -100;
+    public static final int FIN = 0;
+    public static final int ERROR = -1;
 
     public static void TokenInfo() {
         System.out.println("Token PC =  " + TokensGramatica.PC);

@@ -41,7 +41,10 @@ public class GramaticaDeGramaticas {
     }
     
     public boolean analisisSintactico(String expresion){
-        return as.AnalizarCadena(expresion);
+        Gramatica gramatica = new Gramatica();
+        boolean ok = as.AnalizarCadena(expresion, gramatica);
+        gramatica.imprimirGramatica();
+        return ok;
     }
     
     /***************************************************************************
