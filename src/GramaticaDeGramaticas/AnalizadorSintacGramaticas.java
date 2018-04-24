@@ -1,9 +1,9 @@
-
-package gramaticas;
+package GramaticaDeGramaticas;
 
 import Analizadores.AnalizadorLexico;
 import Automatas.AFD;
 import Automatas.AFNs;
+import GramaticaDeGramaticas.TokensGramatica;
 
 public class AnalizadorSintacGramaticas {
     private AnalizadorLexico lexic;
@@ -30,7 +30,7 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean listaReglas(){
-        System.out.println("-*listaReglas");
+        //System.out.println("-*listaReglas");
         if(regla()){
             int tok = lexic.obtenerToken();
             if(tok == TokensGramatica.PC)
@@ -41,9 +41,9 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean listaReglasP(){
-        System.out.println("-**listaReglasP'");
+        //System.out.println("-**listaReglasP'");
         int x = lexic.getEdo();
-        System.out.println("Valor de X con "+x);
+        //System.out.println("Valor de X con "+x);
         if(regla()){
             int token = lexic.obtenerToken();
             if(token == TokensGramatica.PC)
@@ -51,13 +51,13 @@ public class AnalizadorSintacGramaticas {
                     return true;
             return false;
         }
-        System.out.println("Asigne X con "+x);
+        //System.out.println("Asigne X con "+x);
         lexic.setEdo(x);
         return true;
     }
     
     boolean regla(){
-        System.out.println("-*Regla");
+        //System.out.println("-*Regla");
         if(ladoIzquierdo()){
             int tok = lexic.obtenerToken();
             if(tok== TokensGramatica.FLECHA)
@@ -68,7 +68,7 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean ladoIzquierdo(){
-        System.out.println("-*LadoIzquierdo");
+        //System.out.println("-*LadoIzquierdo");
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.SIMB)
             return true;
@@ -76,7 +76,7 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean listaLadosDerechos(){
-        System.out.println("-*ListaLadosDerechos");
+        //System.out.println("-*ListaLadosDerechos");
         if(ladoDerecho())
             if(listaLadosDerechosP())
                 return true;
@@ -84,7 +84,7 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean listaLadosDerechosP(){
-        System.out.println("-**listaLadosDerechosP'");
+        //System.out.println("-**listaLadosDerechosP'");
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.OR){
             if(ladoDerecho())
@@ -97,7 +97,7 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean ladoDerecho(){
-        System.out.println("-*LadoDerecho");
+        //System.out.println("-*LadoDerecho");
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.SIMB)
             if(ladoDerechoP())
@@ -106,7 +106,7 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean ladoDerechoP(){
-        System.out.println("-**LadoDerechoP'");
+        //System.out.println("-**LadoDerechoP'");
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.SIMB){
             if(ladoDerechoP())

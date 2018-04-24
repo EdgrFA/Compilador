@@ -125,6 +125,7 @@ public class AFD extends Automata{
             }
             System.out.println(ce.getToken());
         }
+        System.out.println("");
     }
     
     public HashSet<Character> getAlfabeto(){

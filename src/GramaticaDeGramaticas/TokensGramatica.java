@@ -1,4 +1,4 @@
-package gramaticas;
+package GramaticaDeGramaticas;
 
 public class TokensGramatica {
     public static int PC;
