@@ -25,15 +25,15 @@ public class Gramatica {
     
     public void imprimirGramatica(){
         for (Nodo regla : reglas) {
-            System.out.print(regla.getSimbolo() + " -> ");
+            System.out.print(regla.getStrSimbolo() + " -> ");
             boolean inicial = true;
-            for (ArrayList<String> listasSimbs : regla.getListasSimbs()) {
+            for (ArrayList<Simbolo> listasSimbs : regla.getListasSimbs()) {
                 if (inicial)
                     inicial = false;
                 else
                     System.out.print("| ");
-                for (String simbolo : listasSimbs)
-                    System.out.print(simbolo + " ");
+                for (Simbolo simbolo : listasSimbs)
+                    System.out.print(simbolo.getSimbolo() + " ");
             }
             System.out.println(";");
         }

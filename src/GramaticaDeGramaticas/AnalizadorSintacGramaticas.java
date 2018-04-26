@@ -34,6 +34,10 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean listaReglasP(Gramatica reglas){
+<<<<<<< HEAD
+=======
+       // System.out.println("-**listaReglasP'");
+>>>>>>> 3a1c408c6d9c80c359724914cb0c8b70ccb4c216
         int x = lexic.getEdo();
         if(regla(reglas)){
             int token = lexic.obtenerToken();
@@ -47,6 +51,10 @@ public class AnalizadorSintacGramaticas {
     }
 
     boolean regla(Gramatica reglas){
+<<<<<<< HEAD
+=======
+       // System.out.println("-*Regla");
+>>>>>>> 3a1c408c6d9c80c359724914cb0c8b70ccb4c216
         Nodo regla = reglas.agregarRegla();
         if(ladoIzquierdo(regla)){
             int tok = lexic.obtenerToken();
@@ -60,6 +68,10 @@ public class AnalizadorSintacGramaticas {
     }
 
     boolean ladoIzquierdo(Nodo regla){
+<<<<<<< HEAD
+=======
+      //  System.out.println("-*LadoIzquierdo");
+>>>>>>> 3a1c408c6d9c80c359724914cb0c8b70ccb4c216
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.SIMB){
             regla.setSimbolo(lexic.getLexema());
@@ -69,17 +81,23 @@ public class AnalizadorSintacGramaticas {
     }
 
     boolean listaLadosDerechos(Nodo regla){
+<<<<<<< HEAD
         ArrayList<String> listaSimbs = regla.agregarListaSimbs();
+=======
+       // System.out.println("-*ListaLadosDerechos");
+        ArrayList<Simbolo> listaSimbs = regla.agregarListaSimbs();
+>>>>>>> 3a1c408c6d9c80c359724914cb0c8b70ccb4c216
         if(ladoDerecho(listaSimbs))
             if(listaLadosDerechosP(regla))
                 return true;
         return false;
     }
     
+    //Aqui se agrego el caracter especial epsilon
     boolean listaLadosDerechosP(Nodo regla){
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.OR){
-            ArrayList<String> listaSimbs = regla.agregarListaSimbs();
+            ArrayList<Simbolo> listaSimbs = regla.agregarListaSimbs();
             if(ladoDerecho(listaSimbs))
                 if(listaLadosDerechosP(regla))
                     return true;
@@ -89,20 +107,33 @@ public class AnalizadorSintacGramaticas {
         return true;
     }
     
+<<<<<<< HEAD
     boolean ladoDerecho(ArrayList<String> listaSimbs){
+=======
+        boolean ladoDerecho(ArrayList<Simbolo> listaSimbs){
+        //System.out.println("-*LadoDerecho");
+>>>>>>> 3a1c408c6d9c80c359724914cb0c8b70ccb4c216
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.SIMB){
-            listaSimbs.add(lexic.getLexema());
+            listaSimbs.add(new Simbolo(lexic.getLexema()));
             if(ladoDerechoP(listaSimbs))
                 return true;
+        }else if(tok == TokensGramatica.EPSILON){
+            listaSimbs.add(new Simbolo(lexic.getLexema()));
+            return true;
         }
         return false;
     }
     
+<<<<<<< HEAD
     boolean ladoDerechoP(ArrayList<String> listaSimbs){
+=======
+    boolean ladoDerechoP(ArrayList<Simbolo> listaSimbs){
+        //System.out.println("-**LadoDerechoP'");
+>>>>>>> 3a1c408c6d9c80c359724914cb0c8b70ccb4c216
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.SIMB){
-            listaSimbs.add(lexic.getLexema());
+            listaSimbs.add(new Simbolo(lexic.getLexema()));
             if(ladoDerechoP(listaSimbs))
                 return true;
             return false;

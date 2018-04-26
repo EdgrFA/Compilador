@@ -3,28 +3,33 @@ package GramaticaDeGramaticas;
 import java.util.ArrayList;
 
 public class Nodo {
-    private String simbolo;
-    private ArrayList<ArrayList<String>> listasSimbs;
+    private Simbolo simbolo;
+    private ArrayList<ArrayList<Simbolo>> listasSimbs;
 
     public Nodo() {
-        listasSimbs = new ArrayList<ArrayList<String>>();
+        listasSimbs = new ArrayList<ArrayList<Simbolo>>();
+        simbolo = new Simbolo("");
     }
     
-    public ArrayList<String> agregarListaSimbs(){
-        ArrayList<String> listaSimbs = new ArrayList<String>();
+    public ArrayList<Simbolo> agregarListaSimbs(){
+        ArrayList<Simbolo> listaSimbs = new ArrayList<>();
         listasSimbs.add(listaSimbs);
         return listaSimbs;
     }
 
-    public String getSimbolo() {
+    public Simbolo getSimbolo() {
         return simbolo;
     }
-
-    public void setSimbolo(String Simbolo) {
-        this.simbolo = Simbolo;
+    
+    public String getStrSimbolo(){
+        return simbolo.getSimbolo();
     }
 
-    public ArrayList<ArrayList<String>> getListasSimbs() {
+    public void setSimbolo(String simbolo) {
+        this.simbolo.setSimbolo(simbolo);
+    }
+
+    public ArrayList<ArrayList<Simbolo>> getListasSimbs() {
         return listasSimbs;
     }
 }
