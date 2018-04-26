@@ -1,8 +1,5 @@
 package GramaticaDeGramaticas;
 
-import Analizadores.AnalizadorLexico;
-import Automatas.AFD;
-
 public class PruebasGDG {
     
     public static void main(String[] args) {
@@ -15,6 +12,7 @@ public class PruebasGDG {
                 + "ListaLadosDerechos -> LadoDerecho ListaLadosDerechos'           ;"
                 + "ListaLadosDerechos' -> OR LadoDerecho ListaLadosDerechos'           |\\e;"
                 + "LadoDerecho -> SIMBOLO LadoDerecho'             ;"
+<<<<<<< HEAD
                 + "LadoDerecho'      -> SIMBOLO LadoDerecho' |\\e;"; */
         
         String cadena = "Sb -> I Sb';" +
@@ -32,15 +30,18 @@ public class PruebasGDG {
 //"E -> T E' ;E' -> + T E' |- T E' ;"; //"E->TE';E'->+TE'|-TE'|e;T->FT';T'->*FT'|/FT'|e;F->(E)|num;" ;
         boolean paso = gDG.analisisLexico(cadena);
         if(paso){
+=======
+                + "LadoDerecho'      -> SIMBOLO LadoDerecho' |e;"; //"E -> T E' ;E' -> + T E' |- T E' ;"; //"E->TE';E'->+TE'|-TE'|e;T->FT';T'->*FT'|/FT'|e;F->(E)|num;" ;
+        boolean pasoLexico = gDG.analisisLexico(cadena);
+        if(pasoLexico){
+>>>>>>> be4714b0a83cfcc213b287849bf95b406c279b4e
             System.out.println("\nEl Analisis Lexico fue correcto\n");
             boolean pasoSintactico = gDG.analisisSintactico(cadena);
             if(pasoSintactico)
-                System.out.println("Paso Sintactico");
+                System.out.println("Análisis Sintáctico Correcto");
             else
                 System.out.println("ERROR SINTACTICO");
         }else
             System.out.println("ERROR Léxico");
-        
     }
-    
 }
