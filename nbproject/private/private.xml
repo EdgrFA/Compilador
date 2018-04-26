@@ -5,18 +5,18 @@
             <url>src/GramaticaDeGramaticas/GramaticaDeGramaticas.java</url>
             <bookmark id="1">
                 <name/>
-                <line>70</line>
+                <line>75</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/GramaticaDeGramaticas.java</file>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/PruebasGDG.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/AnalizadorLL1.java</file>
             <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/Gramatica.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/Automatas/AFN.java</file>
             <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/Nodo.java</file>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/AnalizadorSintacGramaticas.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/Simbolo.java</file>
         </group>
     </open-files>
 </project-private>

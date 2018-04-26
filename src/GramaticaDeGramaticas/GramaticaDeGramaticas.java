@@ -14,7 +14,9 @@ public class GramaticaDeGramaticas {
         afns.crearAFN(';'); //0
         afns.crearAFN('|'); //1
         afnFlecha(afns);    //2
-        afnSIMB(afns);      //3        
+        afnSIMB(afns);      //3       
+        afnEPSILON(afns);   //4
+        
         afd = new AFD(afns);
         
         //Asignación de los Tokens
@@ -22,6 +24,7 @@ public class GramaticaDeGramaticas {
         TokensGramatica.OR     = afns.getTokenAFN(1);
         TokensGramatica.FLECHA = afns.getTokenAFN(2);
         TokensGramatica.SIMB   = afns.getTokenAFN(3);
+        TokensGramatica.EPSILON   = afns.getTokenAFN(4);
         
         TokensGramatica.TokenInfo();
         
@@ -44,6 +47,8 @@ public class GramaticaDeGramaticas {
         Gramatica gramatica = new Gramatica();
         boolean ok = as.AnalizarCadena(expresion, gramatica);
         gramatica.imprimirGramatica();
+        AnalizadorLL1 LL_1 = new AnalizadorLL1(gramatica);
+        LL_1.getSimbolosInfo();
         return ok;
     }
     
@@ -68,5 +73,13 @@ public class GramaticaDeGramaticas {
         afns.crearAFN('-'); //2
         afns.crearAFN('>'); //3
         afns.concatenar(2, 3); //2
+    }
+
+    private static void afnEPSILON(AFNs afns){
+        afns.crearAFN('\\'); //4
+        afns.crearAFN('e'); //5
+        afns.crearAFN('E'); //6
+        afns.union(5, 6);
+        afns.concatenar(4, 5); //2
     }
 }
