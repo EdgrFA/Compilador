@@ -22,7 +22,7 @@ public class PruebasGDG {
             "Bt -> Bf Bt';" +
             "Bt' -> v Bf Bt' | \\e;" +
             "Bf -> Bs Bf';" +
-            "Bf' -> ^ Bs Bt' | \\e;" +
+            "Bf' -> ^ Bs Bf' | \\e;" +
             "Bs -> Bp | r Bp;" +
             "Bp -> Lv | i | ( Sb );" +
             "Lv -> true | false;";
@@ -30,18 +30,16 @@ public class PruebasGDG {
 //"E -> T E' ;E' -> + T E' |- T E' ;"; //"E->TE';E'->+TE'|-TE'|e;T->FT';T'->*FT'|/FT'|e;F->(E)|num;" ;
         boolean paso = gDG.analisisLexico(cadena);
         if(paso){
-=======
-                + "LadoDerecho'      -> SIMBOLO LadoDerecho' |e;"; //"E -> T E' ;E' -> + T E' |- T E' ;"; //"E->TE';E'->+TE'|-TE'|e;T->FT';T'->*FT'|/FT'|e;F->(E)|num;" ;
-        boolean pasoLexico = gDG.analisisLexico(cadena);
-        if(pasoLexico){
->>>>>>> be4714b0a83cfcc213b287849bf95b406c279b4e
-            System.out.println("\nEl Analisis Lexico fue correcto\n");
-            boolean pasoSintactico = gDG.analisisSintactico(cadena);
-            if(pasoSintactico)
-                System.out.println("Análisis Sintáctico Correcto");
-            else
-                System.out.println("ERROR SINTACTICO");
-        }else
-            System.out.println("ERROR Léxico");
+            boolean pasoLexico = gDG.analisisLexico(cadena);
+            if(pasoLexico){
+                System.out.println("\nEl Analisis Lexico fue correcto\n");
+                boolean pasoSintactico = gDG.analisisSintactico(cadena);
+                if(pasoSintactico)
+                    System.out.println("Análisis Sintáctico Correcto");
+                else
+                    System.out.println("ERROR SINTACTICO");
+            }else
+                System.out.println("ERROR Léxico");
+        }
     }
 }
