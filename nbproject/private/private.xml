@@ -12,11 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/GramaticaDeGramaticas.java</file>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/PruebasGDG.java</file>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/Gramatica.java</file>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/Nodo.java</file>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/AnalizadorSintacGramaticas.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/LL1/SimboloTerminal.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/GramaticaDeGramaticas/Gramatica.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/LL1/testLL1.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/GramaticaDeGramaticas/PruebasGDG.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/GramaticaDeGramaticas/Nodo.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/GramaticaDeGramaticas/AnalizadorSintacGramaticas.java</file>
+            <file>file:/C:/Users/Andres/OneDrive%20-%20Instituto%20Politecnico%20Nacional/ESCOM/6.-SEMESTRE/Compiladores/Compilador/src/LL1/Simbolo.java</file>
         </group>
     </open-files>
 </project-private>
