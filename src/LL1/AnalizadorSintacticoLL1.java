@@ -54,8 +54,9 @@ public class AnalizadorSintacticoLL1 {
             //*** Validación si existe el ladoIzquierdo
             int indice = gramatica.comprobarSimbolo(ladoIzquierdo);
             if(indice<0){
-                System.out.println("  SOY EL RAIZ XD ");
-                ladoIzquierdo.setTerminal(false);
+                SimboloInicial simboloIni = new SimboloInicial(ladoIzquierdo.getExpresion());
+                simboloIni.setTerminal(false);
+                ladoIzquierdo = (SimboloNoTerminal) simboloIni ;
                 gramatica.agregarSimbolo(ladoIzquierdo);
             }else{
                 ladoIzquierdo = gramatica.getSimbolo(indice);

@@ -4,17 +4,21 @@ import java.util.ArrayList;
 
 public class Regla {
     private int numeroRegla;
-    private ArrayList<SimboloNoTerminal> listaLadosDerechos;
     private SimboloNoTerminal ladoIzquierdo;
+    private First firstSimbolos;
+    private ArrayList<SimboloNoTerminal> listaLadosDerechos;
+    private ArrayList<SimboloNoTerminal> ladosBeta;
     
     public Regla(SimboloNoTerminal ladoIzquierdo, int numeroRegla){
         listaLadosDerechos = new ArrayList<>();
+        ladosBeta = new ArrayList<>();
         this.ladoIzquierdo = ladoIzquierdo;
         this.numeroRegla = numeroRegla;
     }
     
     public Regla(){
         listaLadosDerechos = new ArrayList<>();
+        ladosBeta = new ArrayList<>();
     }
     
     public void agregarSimbolo(SimboloNoTerminal simbolo){
@@ -27,6 +31,7 @@ public class Regla {
         return cadenaAux;
     }
     
+    // *************** GET *****************************
     public SimboloNoTerminal getSimbolo(int indice){
         return listaLadosDerechos.get(indice);
     }
@@ -35,14 +40,19 @@ public class Regla {
         return numeroRegla;
     }
     
-    public Simbolo getLadoIzquierdo(){
+    public SimboloNoTerminal getLadoIzquierdo(){
         return ladoIzquierdo;
     }
     
     public ArrayList<SimboloNoTerminal> getListaLadosDerechos(){
         return listaLadosDerechos;
     }
-
+    
+    public First getFirstSimbolos(){
+        return firstSimbolos;
+    }
+    
+    //**************** SET ******************************
     public void setNumeroRegla(int numeroRegla) {
         this.numeroRegla = numeroRegla;
     }
@@ -53,6 +63,10 @@ public class Regla {
 
     public void setListaLadosDerechos(ArrayList<SimboloNoTerminal> listaLadosDerechos) {
         this.listaLadosDerechos = listaLadosDerechos;
+    }
+    
+    public void setFirstSimbolos(First firstSimbolos){
+        this.firstSimbolos = firstSimbolos;
     }
     
     @Override

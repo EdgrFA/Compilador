@@ -54,15 +54,22 @@ public class GramaDeGramaLL1 {
         gramatica.imprimirSimbolos();
         System.out.println("\n*********** FIRST ****************");
         AnalizadorLL1 ll = new AnalizadorLL1(gramatica);
-        ArrayList<SimboloNoTerminal> simbolosR;
+        //ll.calcularFirstReglas();
+        ll.calcularFirstSNT();
+        ll.imprimirFirst();
+        System.out.println("\n*********** FOLLOW ****************");
+        ll.calcularFollow();
+        
+        /*
         for (int i = 0; i < gramatica.getNumeroSimbolos() ; i++) {
             if(!gramatica.getSimbolo(i).isTerminal()){
-                System.out.print("first( "+ gramatica.getSimbolo(i) +" ) = ");
+                System.out.print("follow( "+ gramatica.getSimbolo(i) +" ) = ");
                 //simbolosR = ll.first( gramatica.getListaReglas().get(i).getListaLadosDerechos() );
-                simbolosR = ll.first( gramatica.getSimbolo(i) );
-                System.out.println( simbolosR);
+                simbolosFollow = ll.follow( gramatica.getSimbolo(i) );
+                System.out.println( simbolosFollow );
             }
         }
+        */
         System.out.println();
         return ok;
     }
