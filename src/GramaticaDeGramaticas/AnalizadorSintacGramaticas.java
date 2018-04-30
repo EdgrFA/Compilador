@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class AnalizadorSintacGramaticas {
     private AnalizadorLexico lexic;
-    private final AFD afd;
+    private AFD afd;
     
     public AnalizadorSintacGramaticas(AFD afd) {
         this.afd = afd;
@@ -24,6 +24,7 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean listaReglas(Gramatica reglas){
+        //System.out.println("-*listaReglas");
         if(regla(reglas)){
             int tok = lexic.obtenerToken();
             if(tok == TokensGramatica.PC)
@@ -34,11 +35,9 @@ public class AnalizadorSintacGramaticas {
     }
     
     boolean listaReglasP(Gramatica reglas){
-<<<<<<< HEAD
-=======
        // System.out.println("-**listaReglasP'");
->>>>>>> 3a1c408c6d9c80c359724914cb0c8b70ccb4c216
         int x = lexic.getEdo();
+        //System.out.println("Valor de X con "+x);
         if(regla(reglas)){
             int token = lexic.obtenerToken();
             if(token == TokensGramatica.PC)
@@ -46,15 +45,13 @@ public class AnalizadorSintacGramaticas {
                     return true;
             return false;
         }
+        //System.out.println("Asigne X con "+x);
         lexic.setEdo(x);
         return true;
     }
 
     boolean regla(Gramatica reglas){
-<<<<<<< HEAD
-=======
        // System.out.println("-*Regla");
->>>>>>> 3a1c408c6d9c80c359724914cb0c8b70ccb4c216
         Nodo regla = reglas.agregarRegla();
         if(ladoIzquierdo(regla)){
             int tok = lexic.obtenerToken();
@@ -68,10 +65,7 @@ public class AnalizadorSintacGramaticas {
     }
 
     boolean ladoIzquierdo(Nodo regla){
-<<<<<<< HEAD
-=======
       //  System.out.println("-*LadoIzquierdo");
->>>>>>> 3a1c408c6d9c80c359724914cb0c8b70ccb4c216
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.SIMB){
             regla.setSimbolo(lexic.getLexema());
@@ -81,12 +75,8 @@ public class AnalizadorSintacGramaticas {
     }
 
     boolean listaLadosDerechos(Nodo regla){
-<<<<<<< HEAD
-        ArrayList<String> listaSimbs = regla.agregarListaSimbs();
-=======
        // System.out.println("-*ListaLadosDerechos");
         ArrayList<Simbolo> listaSimbs = regla.agregarListaSimbs();
->>>>>>> 3a1c408c6d9c80c359724914cb0c8b70ccb4c216
         if(ladoDerecho(listaSimbs))
             if(listaLadosDerechosP(regla))
                 return true;
@@ -95,6 +85,7 @@ public class AnalizadorSintacGramaticas {
     
     //Aqui se agrego el caracter especial epsilon
     boolean listaLadosDerechosP(Nodo regla){
+        //System.out.println("-**listaLadosDerechosP'");
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.OR){
             ArrayList<Simbolo> listaSimbs = regla.agregarListaSimbs();
@@ -107,12 +98,8 @@ public class AnalizadorSintacGramaticas {
         return true;
     }
     
-<<<<<<< HEAD
-    boolean ladoDerecho(ArrayList<String> listaSimbs){
-=======
         boolean ladoDerecho(ArrayList<Simbolo> listaSimbs){
         //System.out.println("-*LadoDerecho");
->>>>>>> 3a1c408c6d9c80c359724914cb0c8b70ccb4c216
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.SIMB){
             listaSimbs.add(new Simbolo(lexic.getLexema()));
@@ -125,12 +112,8 @@ public class AnalizadorSintacGramaticas {
         return false;
     }
     
-<<<<<<< HEAD
-    boolean ladoDerechoP(ArrayList<String> listaSimbs){
-=======
     boolean ladoDerechoP(ArrayList<Simbolo> listaSimbs){
         //System.out.println("-**LadoDerechoP'");
->>>>>>> 3a1c408c6d9c80c359724914cb0c8b70ccb4c216
         int tok = lexic.obtenerToken();
         if(tok == TokensGramatica.SIMB){
             listaSimbs.add(new Simbolo(lexic.getLexema()));

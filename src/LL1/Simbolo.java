@@ -1,20 +1,38 @@
 package LL1;
 
-import java.util.ArrayList;
-
 public class Simbolo {
-    public static final char EPSILON = 'e';
-    public static final Simbolo SIMBOLO_INICIAL = new Simbolo("$", null);
-    
     private boolean terminal;
     private String expresion;
-    private Simbolo simboloPadre;
-    private ArrayList<Simbolo> reglas;
-    private ArrayList<Simbolo> simbolosDerch;
     
-    public Simbolo(String expresion, Simbolo simboloPadre){
+    public Simbolo(String expresion){
         this.expresion = expresion;
-        this.simboloPadre = simboloPadre;
+        this.terminal = true;
     }
     
+    public String getExpresion(){
+        return expresion;
+    }
+    
+    public boolean isTerminal(){
+        return terminal;
+    }
+    
+    public void setExpresion(String expresion){
+        this.expresion = expresion;
+    }
+    
+    public void setTerminal(boolean terminal){
+        this.terminal = terminal;
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        Simbolo Aux = (Simbolo) obj;
+        return expresion.equals(Aux.getExpresion());
+    }
+    
+    @Override
+    public String toString(){
+        return expresion;
+    }
 }

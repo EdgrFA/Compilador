@@ -12,7 +12,6 @@ public class PruebasGDG {
                 + "ListaLadosDerechos -> LadoDerecho ListaLadosDerechos'           ;"
                 + "ListaLadosDerechos' -> OR LadoDerecho ListaLadosDerechos'           |\\e;"
                 + "LadoDerecho -> SIMBOLO LadoDerecho'             ;"
-<<<<<<< HEAD
                 + "LadoDerecho'      -> SIMBOLO LadoDerecho' |\\e;"; */
         
         String cadena = "Sb -> I Sb';" +
