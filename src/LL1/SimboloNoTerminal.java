@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class SimboloNoTerminal extends Simbolo{
     private ArrayList<Regla> reglasLadosDerecho;
-    public HashMap<SimboloNoTerminal,Regla> relacion;
+    private HashMap<SimboloNoTerminal,Regla> relacion;
     
     public SimboloNoTerminal(String expresion){
         super(expresion);
@@ -23,5 +23,9 @@ public class SimboloNoTerminal extends Simbolo{
     
     public ArrayList<Regla> getReglasLadosDerechos() {
         return reglasLadosDerecho;
+    }
+    
+    public HashMap<SimboloNoTerminal,Regla> getRelacion(){
+        return relacion;
     }
 }

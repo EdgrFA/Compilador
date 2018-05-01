@@ -12,24 +12,19 @@ public class GramaDeGramaLL1 {
     
     public GramaDeGramaLL1() {
         AFNs afns = new AFNs();
-
         afns.crearAFN(';'); //0
         afns.crearAFN('|'); //1
         afnFlecha(afns);    //2
         afnSIMB(afns);      //3       
         afnEPSILON(afns);   //4
-        
         afd = new AFD(afns);
-        
         //Asignación de los Tokens
         TokensGramatica.PC     = afns.getTokenAFN(0);
         TokensGramatica.OR     = afns.getTokenAFN(1);
         TokensGramatica.FLECHA = afns.getTokenAFN(2);
         TokensGramatica.SIMB   = afns.getTokenAFN(3);
         TokensGramatica.EPSILON   = afns.getTokenAFN(4);
-        
         TokensGramatica.TokenInfo();
-        
         afd.imprimirTablaTransiciones();
         as = new AnalizadorSintacticoLL1(afd);
     }
@@ -61,7 +56,15 @@ public class GramaDeGramaLL1 {
         ll.calcularFirstSNT();
         System.out.println("\n***** FIRST Y FOLLOW POR REGLAS ********");
         ll.calcularFirstReglas();
+        System.out.println("\n***** TABLA  ********");
+        ll.generarTabla();
         
+        /*
+        for (int i = 0; i < gramatica.getNumeroSimbolos() ; i++) {
+            System.out.println("Simbolo "+gramatica.getSimbolo(i));
+            System.out.println(gramatica.getSimbolo(i).relacion);
+        }
+        */
         System.out.println();
     }
     

@@ -16,14 +16,12 @@ public class First {
         simboloInicialDer = regla.getListaLadosDerechos().get(0);
         simbolos = First.first(simboloInicialDer);
         regla.setFirstSimbolos(this);
-        if(!simboloInicialDer.isTerminal())
+        /*
+        if(!simboloInicialDer.isTerminal()){
+            System.out.println("Creando regla");
             crearRelacionesSimbNoTer(regla);
-    }
-    
-    private void crearRelacionesSimbNoTer(Regla regla){
-        for(SimboloNoTerminal nuevaRelacion : simbolos ){
-            regla.getLadoIzquierdo().agregarRelacion(nuevaRelacion, regla );
         }
+        */
     }
     
     public static ArrayList<SimboloNoTerminal> first( SimboloNoTerminal simbolo ){

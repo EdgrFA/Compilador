@@ -5,13 +5,17 @@ import java.util.HashSet;
 import java.util.HashMap;
 
 public class AlgoritmoLL1 {
-    HashSet<SimboloNoTerminal> simbolos;
-    HashMap<SimboloNoTerminal, Follow> simboloFollowPrevio;
-    Gramatica gramatica;
+    private HashSet<SimboloNoTerminal> simbolos;
+    private ArrayList<SimboloNoTerminal> simbolosTerminales;
+    private ArrayList<SimboloNoTerminal> simbolosNoTerminales;
+    private HashMap<SimboloNoTerminal, Follow> simboloFollowPrevio;
+    private Gramatica gramatica;
     
     public AlgoritmoLL1(Gramatica gramatica){
         this.gramatica = gramatica;
         simboloFollowPrevio = new HashMap<>();
+        simbolosTerminales = new ArrayList<>();
+        simbolosNoTerminales = new ArrayList<>();
     }
         
     public void calcularFirstReglas( ){
@@ -22,14 +26,29 @@ public class AlgoritmoLL1 {
             if(AlgoritmoLL1.containsEpsilon(first.getSimbolos())){
                 Follow followAux = simboloFollowPrevio.get( regla.getLadoIzquierdo() );
                 if( followAux != null){
-                    ArrayList<SimboloNoTerminal> simbolosFollow = new ArrayList<SimboloNoTerminal>(followAux.getSimbolos());
+                    ArrayList<SimboloNoTerminal> simbolosFollow = new ArrayList<>(followAux.getSimbolos());
                     first.getSimbolos().addAll(simbolosFollow);
                 }
+            }
+            if( ! simbolosNoTerminales.contains( regla.getLadoIzquierdo() ))
+                simbolosNoTerminales.add( regla.getLadoIzquierdo() );
+            if( ! simbolosTerminales.contains( regla.getListaLadosDerechos().get(0) )){
+                if( regla.getListaLadosDerechos().get(0).isTerminal() )
+                    simbolosTerminales.add( regla.getListaLadosDerechos().get(0) );
             }
             System.out.print("\tRegla "+i+" : ");
             System.out.print( regla +"\t");
             System.out.print("first( "+ simboloInicial +" ) = ");
             System.out.println( first.getSimbolos() );
+            crearRelacionesSimbolosNT(first.getSimbolos(), regla);
+        }
+        AlgoritmoLL1.containsEpsilon(simbolosTerminales);
+        simbolosTerminales.add(Gramatica.RAIZ);
+    }
+    
+    private void crearRelacionesSimbolosNT(ArrayList<SimboloNoTerminal> simbolos ,Regla regla){
+        for(SimboloNoTerminal nuevaRelacion : simbolos ){
+            regla.getLadoIzquierdo().agregarRelacion(nuevaRelacion, regla );
         }
     }
     
@@ -37,13 +56,44 @@ public class AlgoritmoLL1 {
         ArrayList<SimboloNoTerminal> simbolosR = null;
         for (int i = 0; i < gramatica.getNumeroSimbolos() ; i++) {
             if(!gramatica.getSimbolo(i).isTerminal()){
-                First first = new  First( gramatica.getSimbolo(i) );
                 simbolosR = First.first( gramatica.getSimbolo(i) );
                 System.out.print("first( "+ gramatica.getSimbolo(i) +" ) = ");
                 System.out.println( simbolosR);
             }
         }
         return simbolosR;
+    }
+    
+    public void generarTabla(){      
+        //Encabezado 
+        String encabezadoSeparacion = "%1s";
+        ArrayList<String> terminales = new ArrayList<>();
+        terminales.add("");
+        for(SimboloNoTerminal simboloColumna : simbolosTerminales ){
+            encabezadoSeparacion+="%20s ";
+            terminales.add(simboloColumna.toString());
+        }
+        System.out.println(String.format(encabezadoSeparacion,terminales.toArray()));
+        
+        
+        //Elementos por filas
+        for(SimboloNoTerminal simboloFila : simbolosNoTerminales ){
+            String filasSeparacion = "%1s ";
+            ArrayList<String> filaElementos = new ArrayList<>();
+            filaElementos.add(simboloFila.toString());
+            for(SimboloNoTerminal simboloColumna : simbolosTerminales ){
+                filasSeparacion += "%20s ";
+                Regla relacion = simboloFila.getRelacion().get(simboloColumna);
+                if(relacion==null)
+                    filaElementos.add("---");
+                else{
+                    filaElementos.add(relacion.getListaLadosDerechos()+","+relacion.getNumeroRegla());
+                }
+                
+            }
+            System.out.println(String.format(filasSeparacion, filaElementos.toArray()));
+        }
+        
     }
     
     public void calcularFollow(){
