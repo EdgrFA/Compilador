@@ -2,6 +2,7 @@ package LL1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class PruebasConObjetos {
     private ArrayList<Simbolo> simbolos;
@@ -70,7 +71,7 @@ public class PruebasConObjetos {
         HashMap<SimboloNoTerminal,First> simbolosFirstPrev = new HashMap<>();
         pco.cambioDentroArray(newS2);
         pco.herencia(newS2);
-        
+        HashSet<Simbolo> hash = new HashSet<>();
         ArrayList<Simbolo> simbolos = new ArrayList<>();
         Simbolo s1 = new Simbolo("s1");
         Simbolo s2 = new Simbolo("s2");
@@ -78,7 +79,8 @@ public class PruebasConObjetos {
         simbolos.add(s1);
         simbolos.add(s2);
         simbolos.add(s3);
-        simbolos.get(0);
-        simbolos.contains(s2);
+        System.out.println(simbolos.size());
+        simbolos.get(2);
+        //simbolos = hash.toArray();
     }
 }

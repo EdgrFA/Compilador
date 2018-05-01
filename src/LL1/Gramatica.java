@@ -7,8 +7,8 @@ import java.util.ArrayList;
  * @author Andres
  */
 public class Gramatica {
-    public static final Simbolo RAIZ = new Simbolo("$");
     public static final Simbolo EPSILON = new Simbolo("\\e");
+    public static final SimboloNoTerminal RAIZ = new SimboloNoTerminal("$");
     public static final Regla POP = new Regla();
     
     public static int contadorReglas;
@@ -37,6 +37,14 @@ public class Gramatica {
         return -1;
     }
     
+    public void imprimirSimbolos(){
+        for(SimboloNoTerminal simbolo: simbolos){
+            System.out.println(simbolo.getExpresion()+"\tTerminal="+simbolo.isTerminal());
+
+        }
+    }
+    
+    // ********************* GET ****************************************
     public SimboloNoTerminal getSimbolo(int index){
         return simbolos.get(index);
     }
@@ -52,19 +60,6 @@ public class Gramatica {
     public void imprimirReglas(){
         for(Regla regla: listaReglas){
             System.out.println(regla+ "\t\t"+ regla.getNumeroRegla());
-        }
-    }
-    
-    public void imprimirSimbolos(){
-        for(SimboloNoTerminal simbolo: simbolos){
-            System.out.println(simbolo.getExpresion()+"\tTerminal="+simbolo.isTerminal());
-            /*
-            if(simbolo.isTerminal()== false){
-                for(Regla regla : simbolo.getReglasLadosDerechos()){
-                    System.out.println(regla);
-                }
-            }
-            */
         }
     }
 }

@@ -1,27 +1,42 @@
 package LL1;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Follow {
-    private ArrayList<SimboloNoTerminal> simbolos;
+    private HashSet<SimboloNoTerminal> simbolos;
     private ArrayList<Regla> reglas;
     
     public Follow(SimboloNoTerminal simbolo, ArrayList<Regla> reglas){
-        simbolos = new ArrayList<>();
+        simbolos = new HashSet<>();
         this.reglas = reglas;
         
         simbolos = follow(simbolo);
     }
     
-    public ArrayList<SimboloNoTerminal> follow(SimboloNoTerminal simbolo){
-        ArrayList<SimboloNoTerminal> simbolosResultado = new ArrayList<>();
+    public HashSet<SimboloNoTerminal> follow(SimboloNoTerminal simbolo){
+        HashSet<SimboloNoTerminal> simbolosResultado = new HashSet<>();
+        if(simbolo instanceof SimboloInicial)
+            simbolosResultado.add(Gramatica.RAIZ);
         for(Regla regla : reglas){
-            if(regla.getListaLadosDerechos().contains(simbolo)){
-                System.out.println(regla);
-                System.out.println("Contengo a "+simbolo);
+            int indiceSimbExist = regla.comprobarSimbolo(simbolo);
+            if(indiceSimbExist != -1){
+                int tamanoMaxRegla = regla.getListaLadosDerechos().size();
+                if(++indiceSimbExist == tamanoMaxRegla){
+                    if(!regla.getLadoIzquierdo().equals(simbolo))
+                        simbolosResultado.addAll(follow( regla.getLadoIzquierdo() ));
+                }else{
+                    simbolosResultado.addAll(First.first( regla.getSimbolo(indiceSimbExist) ));
+                    if(AlgoritmoLL1.containsEpsilon(simbolosResultado)){
+                        simbolosResultado.addAll(follow( regla.getLadoIzquierdo() ));
+                    }
+                }
             }
         }
-        
         return simbolosResultado;
+    }
+    
+    public HashSet<SimboloNoTerminal> getSimbolos(){
+        return simbolos;
     }
 }

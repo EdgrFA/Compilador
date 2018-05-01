@@ -45,33 +45,24 @@ public class GramaDeGramaLL1 {
         return true;
     }
     
-    public boolean analisisSintactico(String expresion){
-        Gramatica gramatica = new Gramatica();
-        boolean ok = as.AnalizarCadena(expresion, gramatica);
+    public boolean analisisSintactico(String expresion, Gramatica gramatica){
+        return as.AnalizarCadena(expresion, gramatica);
+    }
+    
+    public void algoritmoLL1(Gramatica gramatica){
         System.out.println("************* REGLAS ***************");
         gramatica.imprimirReglas();
         System.out.println("************* SIMBOLOS *************");
         gramatica.imprimirSimbolos();
-        System.out.println("\n*********** FIRST ****************");
-        AnalizadorLL1 ll = new AnalizadorLL1(gramatica);
-        //ll.calcularFirstReglas();
-        ll.calcularFirstSNT();
-        ll.imprimirFirst();
         System.out.println("\n*********** FOLLOW ****************");
+        AlgoritmoLL1 ll = new AlgoritmoLL1(gramatica);
         ll.calcularFollow();
+        System.out.println("\n*********** FIRST ****************");
+        ll.calcularFirstSNT();
+        System.out.println("\n***** FIRST Y FOLLOW POR REGLAS ********");
+        ll.calcularFirstReglas();
         
-        /*
-        for (int i = 0; i < gramatica.getNumeroSimbolos() ; i++) {
-            if(!gramatica.getSimbolo(i).isTerminal()){
-                System.out.print("follow( "+ gramatica.getSimbolo(i) +" ) = ");
-                //simbolosR = ll.first( gramatica.getListaReglas().get(i).getListaLadosDerechos() );
-                simbolosFollow = ll.follow( gramatica.getSimbolo(i) );
-                System.out.println( simbolosFollow );
-            }
-        }
-        */
         System.out.println();
-        return ok;
     }
     
     /***************************************************************************

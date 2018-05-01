@@ -31,6 +31,14 @@ public class Regla {
         return cadenaAux;
     }
     
+    public int comprobarSimbolo(Simbolo simboloComporbar){
+        for(int i = 0; i < listaLadosDerechos.size();i++){
+            if(listaLadosDerechos.get(i).equals(simboloComporbar))
+                return i;
+        }
+        return -1;
+    }
+    
     // *************** GET *****************************
     public SimboloNoTerminal getSimbolo(int indice){
         return listaLadosDerechos.get(indice);
