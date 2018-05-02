@@ -7,9 +7,10 @@ import java.util.ArrayList;
  * @author Andres
  */
 public class Gramatica {
-    public static final Simbolo EPSILON = new Simbolo("\\e");
-    public static final SimboloNoTerminal RAIZ = new SimboloNoTerminal("$");
     public static final Regla POP = new Regla();
+    public static final Regla ACEPT = new Regla();
+    public static final Simbolo EPSILON = new Simbolo("\\e");
+    public static final SimboloEspecial RAIZ = new SimboloEspecial("$",ACEPT);
     
     public static int contadorReglas;
     private ArrayList<Regla> listaReglas;

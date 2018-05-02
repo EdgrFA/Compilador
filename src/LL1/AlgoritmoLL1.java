@@ -12,7 +12,7 @@ public class AlgoritmoLL1 {
     
     public AlgoritmoLL1(Gramatica gramatica){
         this.gramatica = gramatica;
-        gramatica.agregarSimbolo(Gramatica.RAIZ);
+        //gramatica.agregarSimbolo(Gramatica.RAIZ);
         simboloFollowPrevio = new HashMap<>();
         simbolosTerminales = new ArrayList<>();
         simbolosNoTerminales = new ArrayList<>();
@@ -38,7 +38,7 @@ public class AlgoritmoLL1 {
         }
         actualizarSimbolosTerminales();
         AlgoritmoLL1.containsEpsilon(simbolosTerminales);
-        //simbolosTerminales.add(Gramatica.RAIZ);
+        simbolosTerminales.add(Gramatica.RAIZ);
     }
     
     private void crearRelacionesSimbolosNT(ArrayList<SimboloNoTerminal> simbolos ,Regla regla){
@@ -106,11 +106,15 @@ public class AlgoritmoLL1 {
                     if( relacion.equals( Gramatica.POP ) ){
                         filaElementos.add("POP");
                         simbolosCadena.remove();
-                    }else{
+                    }else if( relacion.equals( Gramatica.ACEPT ) ){
+                        filaElementos.add("Acept");
+                        System.out.println(String.format(filasSeparacion, filaElementos.toArray()));
+                        break;
+                    }
+                    else{
                         filaElementos.add(relacion.getListaLadosDerechos()+","+relacion.getNumeroRegla());
                         if( ! relacion.getListaLadosDerechos().get(0).equals(Gramatica.EPSILON ) )
-                            pila.addAll(Pila.invertirArraySNT(relacion.getListaLadosDerechos()) );
-                            
+                            pila.addAll(Pila.invertirArraySNT(relacion.getListaLadosDerechos()) );                           
                     }
                 }else{
                     filaElementos.add("ERROR");
@@ -137,6 +141,8 @@ public class AlgoritmoLL1 {
             if(simboloGramatica.equals(simbolo)){
                 return simboloGramatica;
             }
+            else if(Gramatica.RAIZ.equals(simbolo))
+                return Gramatica.RAIZ;
         }
         return simbolo;
     }
