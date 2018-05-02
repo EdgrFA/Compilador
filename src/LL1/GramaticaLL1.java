@@ -6,11 +6,12 @@ import Automatas.AFNs;
 import GramaticaDeGramaticas.TokensGramatica;
 import java.util.ArrayList;
 
-public class GramaDeGramaLL1 {
+public class GramaticaLL1 {
     private final AFD afd;
     private final AnalizadorSintacticoLL1 as;
+    private AlgoritmoLL1 ll;
     
-    public GramaDeGramaLL1() {
+    public GramaticaLL1(Gramatica gramatica) {
         AFNs afns = new AFNs();
         afns.crearAFN(';'); //0
         afns.crearAFN('|'); //1
@@ -27,6 +28,7 @@ public class GramaDeGramaLL1 {
         TokensGramatica.TokenInfo();
         afd.imprimirTablaTransiciones();
         as = new AnalizadorSintacticoLL1(afd);
+        ll = new AlgoritmoLL1(gramatica);
     }
     
     public boolean analisisLexico(String expresion){
@@ -44,21 +46,27 @@ public class GramaDeGramaLL1 {
         return as.AnalizarCadena(expresion, gramatica);
     }
     
+    public boolean analizarCadenaLL1(String expresion){
+        if(ll != null)
+            return ll.validarCadena(expresion);
+        else 
+            return false;
+    }
+    
     public void algoritmoLL1(Gramatica gramatica){
         System.out.println("************* REGLAS ***************");
         gramatica.imprimirReglas();
         System.out.println("************* SIMBOLOS *************");
         gramatica.imprimirSimbolos();
         System.out.println("\n*********** FOLLOW ****************");
-        AlgoritmoLL1 ll = new AlgoritmoLL1(gramatica);
+        ll = new AlgoritmoLL1(gramatica);
         ll.calcularFollow();
         System.out.println("\n*********** FIRST ****************");
         ll.calcularFirstSNT();
         System.out.println("\n***** FIRST Y FOLLOW POR REGLAS ********");
         ll.calcularFirstReglas();
         System.out.println("\n***** TABLA  ********");
-        ll.generarTabla();
-        
+        ll.generarTablaLL1();
         /*
         for (int i = 0; i < gramatica.getNumeroSimbolos() ; i++) {
             System.out.println("Simbolo "+gramatica.getSimbolo(i));

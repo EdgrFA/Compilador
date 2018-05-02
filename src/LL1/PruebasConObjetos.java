@@ -1,8 +1,12 @@
 package LL1;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Stack;
 
 public class PruebasConObjetos {
     private ArrayList<Simbolo> simbolos;
@@ -28,8 +32,6 @@ public class PruebasConObjetos {
                 Simbolo simboloAux = simbolos.get(i);
                 SimboloNoTerminal simboloAux2 = new SimboloNoTerminal(simboloAux.getExpresion());
                 simboloAux = simboloAux2;
-                
-                
             }
         }
     }
@@ -68,19 +70,35 @@ public class PruebasConObjetos {
     public static void main(String[] args) {
         PruebasConObjetos pco =  new PruebasConObjetos();
         SimboloNoTerminal newS2 = new SimboloNoTerminal("s2");
-        HashMap<SimboloNoTerminal,First> simbolosFirstPrev = new HashMap<>();
-        pco.cambioDentroArray(newS2);
-        pco.herencia(newS2);
-        HashSet<Simbolo> hash = new HashSet<>();
-        ArrayList<Simbolo> simbolos = new ArrayList<>();
+        LinkedList cola = new LinkedList();
+        Stack pila = new Stack();
+        
         Simbolo s1 = new Simbolo("s1");
         Simbolo s2 = new Simbolo("s2");
         Simbolo s3 = new Simbolo("s3");
-        simbolos.add(s1);
-        simbolos.add(s2);
-        simbolos.add(s3);
-        System.out.println(simbolos.size());
-        simbolos.get(2);
-        //simbolos = hash.toArray();
+        cola.add(s1);
+        cola.add(s2);
+        cola.add(s3);
+        System.out.println(cola);
+        cola.remove();
+        System.out.println(cola);
+        Cola c = new Cola();
+        c.add(s1);
+        c.add(s2);
+        c.add(s3);
+        pila.add(s1);
+        pila.add(s2);
+        pila.add(s3);
+        System.out.println("c= " + c);
+        System.out.println("pila = "+ pila);
+        pila.pop();
+        pila.push("HOla");
+        pila.addAll(c);
+        ArrayList<SimboloNoTerminal> listisima = new ArrayList<>(c);
+        
+        System.out.println("¨*****************++");
+        System.out.println(listisima);
+        Pila pila2 = Pila.invertirArraySNT(listisima);
+        System.out.println( pila2 );
     }
 }

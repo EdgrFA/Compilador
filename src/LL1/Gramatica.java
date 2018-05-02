@@ -53,6 +53,10 @@ public class Gramatica {
         return simbolos.size();
     }
     
+    public ArrayList<SimboloNoTerminal> getSimbolos(){
+        return simbolos;
+    }
+    
     public ArrayList<Regla> getListaReglas(){
         return listaReglas;
     }

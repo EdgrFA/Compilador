@@ -2,7 +2,8 @@ package LL1;
 
 public class TestAlgoritmoLL1 {
     public static void main(String[] args) {
-        GramaDeGramaLL1 gramaticaDeGramaticaLL1 = new GramaDeGramaLL1();        
+        Gramatica gramatica = new Gramatica();
+        GramaticaLL1 gramaticaDeGramaticaLL1 = new GramaticaLL1(gramatica);
         String cadena = 
             
             "E -> T E';" +
@@ -25,13 +26,24 @@ public class TestAlgoritmoLL1 {
             "Lv -> true | false;";
         */
         boolean pasoLexico = gramaticaDeGramaticaLL1.analisisLexico(cadena);
-        Gramatica gramatica = new Gramatica();
         if(pasoLexico){
             System.out.println("\nEl Analisis Léxico fue correcto\n");
             boolean pasoSintactico = gramaticaDeGramaticaLL1.analisisSintactico(cadena, gramatica);
             if(pasoSintactico){
                 System.out.println("Análisis Sintáctico Correcto");
                 gramaticaDeGramaticaLL1.algoritmoLL1(gramatica);
+                String expresion = "( num + num ) * num - num $";
+                boolean cadenaValida = gramaticaDeGramaticaLL1.analizarCadenaLL1(expresion);
+                if(cadenaValida)
+                    System.out.println("Cadena Aceptada");
+                else
+                    System.out.println("ERROR cadena NO aceptada");
+                /*
+                for(;;){
+                    boolean salir = false;
+                    if(salir)
+                        break;
+                }*/
             }else
                 System.out.println("ERROR SINTACTICO");
         }else
