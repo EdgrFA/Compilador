@@ -3,6 +3,7 @@ package LL1;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.HashMap;
+import utilidades.TablaColumnaUnitaria;
 
 public class AlgoritmoLL1 {
     private ArrayList<SimboloNoTerminal> simbolosTerminales;
@@ -90,40 +91,36 @@ public class AlgoritmoLL1 {
         pila.add(Gramatica.RAIZ);
         pila.add(simbolosNoTerminales.get(0));
         Cola simbolosCadena = convertirElementos(cadena);
-        System.out.println("Cadena a analizar :"+ simbolosCadena.toString()+"\n");
-        System.out.println(String.format("%20s %15s %20s %20s %10s", "Cola", "|", "Cadena", "|", "Accion"));
-        System.out.println(String.format("%s", "----------------------------------------------------------------------------------------------------------------"));
-        for(int i = 0;i<32; i++){
-                ArrayList<String> filaElementos = new ArrayList<>();
-                String filasSeparacion = "%1s %32s %2s %20s %10s";
-                filaElementos.add( pila.toString() );
-                filaElementos.add("|");
-                filaElementos.add( simbolosCadena.toString() );
-                filaElementos.add("|");
-                SimboloNoTerminal simboloFinalPila = (SimboloNoTerminal) pila.pop();
-                Regla relacion = simboloFinalPila.getRelacion().get( simbolosCadena.getFirst() );
-                if(relacion != null){
-                    if( relacion.equals( Gramatica.POP ) ){
-                        filaElementos.add("POP");
-                        simbolosCadena.remove();
-                    }else if( relacion.equals( Gramatica.ACEPT ) ){
-                        filaElementos.add("Acept");
-                        System.out.println(String.format(filasSeparacion, filaElementos.toArray()));
-                        break;
-                    }
-                    else{
-                        filaElementos.add(relacion.getListaLadosDerechos()+","+relacion.getNumeroRegla());
-                        if( ! relacion.getListaLadosDerechos().get(0).equals(Gramatica.EPSILON ) )
-                            pila.addAll(Pila.invertirArraySNT(relacion.getListaLadosDerechos()) );                           
-                    }
-                }else{
-                    filaElementos.add("ERROR");
-                    System.out.println(String.format(filasSeparacion, filaElementos.toArray()));
-                    return false;
+        TablaColumnaUnitaria tabla = new TablaColumnaUnitaria(40);
+        String[] elementoEncabezado = {"Cola","Cadena", "Accion"};
+        tabla.imprimirEncabezado(elementoEncabezado);
+        for(;;){
+            ArrayList<String> filaElementos = new ArrayList<>();
+            filaElementos.add( pila.toString() );
+            filaElementos.add( simbolosCadena.toString() );
+            SimboloNoTerminal simboloFinalPila = (SimboloNoTerminal) pila.pop();
+            Regla relacion = simboloFinalPila.getRelacion().get( simbolosCadena.getFirst() );
+            if(relacion != null){
+                if( relacion.equals( Gramatica.POP ) ){
+                    filaElementos.add("POP");
+                    simbolosCadena.remove();
+                }else if( relacion.equals( Gramatica.ACEPT ) ){
+                    filaElementos.add("Acept");
+                    tabla.imprimirFila(filaElementos);
+                    return true;
                 }
-                System.out.println(String.format(filasSeparacion, filaElementos.toArray()));
+                else{
+                    filaElementos.add(relacion.getListaLadosDerechos()+","+relacion.getNumeroRegla());
+                    if( ! relacion.getListaLadosDerechos().get(0).equals(Gramatica.EPSILON ) )
+                        pila.addAll(Pila.invertirArraySNT(relacion.getListaLadosDerechos()) );                           
+                    tabla.imprimirFila(filaElementos);
+                }
+            }else{
+                filaElementos.add("ERROR");
+                tabla.imprimirFila(filaElementos);
+                return false;
+            }
         }
-        return true;
     }
     
     public Cola convertirElementos(String cadena){
@@ -167,7 +164,7 @@ public class AlgoritmoLL1 {
         return false;
     }
     
-    public void generarTablaLL1(){      
+    public void generarTablaLL1(){
         //Encabezado 
         String encabezadoSeparacion = "%1s";
         ArrayList<String> columnasElementos = new ArrayList<>();
