@@ -33,7 +33,7 @@ public class GramaticaDeGramaticas {
         while((token = analizadorLexico.obtenerToken()) != 0){
             if(token == -1)
                 return false;
-            System.out.println("Token = " + token + ", Lexema : " + analizadorLexico.getLexema());
+            //System.out.println("Token = " + token + ", Lexema : " + analizadorLexico.getLexema());
         }
         return true;
     }

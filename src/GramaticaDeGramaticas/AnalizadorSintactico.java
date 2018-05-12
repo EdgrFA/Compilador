@@ -2,11 +2,10 @@ package GramaticaDeGramaticas;
 
 import Analizadores.AnalizadorLexico;
 import Automatas.AFD;
-import GramaticaDeGramaticas.TokensGramatica;
 
 public class AnalizadorSintactico {
     private AnalizadorLexico lexic;
-    private AFD afd;
+    private final AFD afd;
     
     public AnalizadorSintactico(AFD afd) {
         this.afd = afd;

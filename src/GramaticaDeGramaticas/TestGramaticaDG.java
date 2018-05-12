@@ -23,22 +23,34 @@ public class TestGramaticaDG {
         "Lv -> true | false;"
     };
     
-    public static void main(String[] args) {
-        Gramatica gramatica = new Gramatica();
-        GramaticaDeGramaticas gramaticaDeGramaticaLL1 = new GramaticaDeGramaticas(gramatica);
-        String cadena = TestGramaticaDG.GRAMATICAS_PRUEBAS[0];
-            
-        boolean pasoLexico = gramaticaDeGramaticaLL1.analisisLexico(cadena);
+    public GramaticaDeGramaticas gramaticaDG;
+    public Gramatica gramatica;
+    
+    public TestGramaticaDG(){
+        gramatica = new Gramatica();
+        gramaticaDG = new GramaticaDeGramaticas(gramatica);
+    }
+    
+    public void pruebaLexYSint(String cadena, String expresion){    
+        boolean pasoLexico = gramaticaDG.analisisLexico(cadena);
         if(pasoLexico){
             System.out.println("\nEl Analisis Léxico fue correcto\n");
-            boolean pasoSintactico = gramaticaDeGramaticaLL1.analisisSintactico(cadena, gramatica);
+            boolean pasoSintactico = gramaticaDG.analisisSintactico(cadena, gramatica);
             if(pasoSintactico){
                 System.out.println("Análisis Sintáctico Correcto");
-                gramatica.imprimirSimbolos();
-                gramatica.imprimirReglas();
+                validarCadena(expresion);
             }else
                 System.out.println("ERROR SINTACTICO");
         }else
             System.out.println("ERROR Léxico");
+    }
+    
+    public void validarCadena(String expresion){}
+    
+    public static void main(String[] args) {
+        String cadena = TestGramaticaDG.GRAMATICAS_PRUEBAS[0];
+        
+        TestGramaticaDG test = new TestGramaticaDG();
+        test.pruebaLexYSint(cadena, "");
     }
 }
