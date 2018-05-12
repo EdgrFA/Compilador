@@ -1,9 +1,9 @@
-package LL1;
+package GramaticaDeGramaticas;
 
-public final class TestAlgoritmoLL1 {
+public class TestGramaticaDG {
     public static void main(String[] args) {
         Gramatica gramatica = new Gramatica();
-        GramaticaLL1 gramaticaDeGramaticaLL1 = new GramaticaLL1(gramatica);
+        GramaticaDeGramaticas gramaticaDeGramaticaLL1 = new GramaticaDeGramaticas(gramatica);
         String cadena = 
             /*
             "E -> T E';" +
@@ -31,14 +31,6 @@ public final class TestAlgoritmoLL1 {
             boolean pasoSintactico = gramaticaDeGramaticaLL1.analisisSintactico(cadena, gramatica);
             if(pasoSintactico){
                 System.out.println("Análisis Sintáctico Correcto");
-                gramaticaDeGramaticaLL1.algoritmoLL1(gramatica);
-                //String expresion = "( num + num ) * num - num $";
-                String expresion = "true ^ false $";
-                boolean cadenaValida = gramaticaDeGramaticaLL1.analizarCadenaLL1(expresion);
-                if(cadenaValida)
-                    System.out.println("Cadena Aceptada");
-                else
-                    System.out.println("ERROR cadena NO aceptada");
             }else
                 System.out.println("ERROR SINTACTICO");
         }else

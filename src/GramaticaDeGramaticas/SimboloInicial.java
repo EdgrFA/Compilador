@@ -1,4 +1,4 @@
-package LL1;
+package GramaticaDeGramaticas;
 
 public class SimboloInicial extends SimboloNoTerminal{
     Simbolo padre = Gramatica.RAIZ;
