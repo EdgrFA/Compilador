@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.HashMap;
 import utilidades.TablaColumnaUnitaria;
+import GramaticaDeGramaticas.Gramatica;
+import GramaticaDeGramaticas.Regla;
+import GramaticaDeGramaticas.SimboloNoTerminal;
+import GramaticaDeGramaticas.Simbolo;
 
 public class AlgoritmoLL1 {
     private ArrayList<SimboloNoTerminal> simbolosTerminales;

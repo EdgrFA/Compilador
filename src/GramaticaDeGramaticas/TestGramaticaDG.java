@@ -1,29 +1,32 @@
 package GramaticaDeGramaticas;
 
 public class TestGramaticaDG {
+    public static String GRAMATICAS_PRUEBAS[] = {
+        //Gramatica 1
+        "E -> T E';" +
+        "E' -> + T E'| - T E'| \\e;"+
+        "T -> F T' ;"+
+        "T' -> * F T'| / F T'| \\e;"+
+        "F -> ( E ) | num;",
+        
+        //Gramatica 2
+        "Sb -> I Sb';" +
+        "Sb' -> /// I Sb' | \\e;" +
+        "I -> Bt I';" +
+        "I' -> c Bt I' | \\e;" +
+        "Bt -> Bf Bt';" +
+        "Bt' -> v Bf Bt' | \\e;" +
+        "Bf -> Bs Bf';" +
+        "Bf' -> ^ Bs Bf' | \\e;" +
+        "Bs -> Bp | r Bp;" +
+        "Bp -> Lv | i | ( Sb );" +
+        "Lv -> true | false;"
+    };
+    
     public static void main(String[] args) {
         Gramatica gramatica = new Gramatica();
         GramaticaDeGramaticas gramaticaDeGramaticaLL1 = new GramaticaDeGramaticas(gramatica);
-        String cadena = 
-            /*
-            "E -> T E';" +
-            "E' -> + T E'| - T E'| \\e;"+
-            "T -> F T' ;"+
-            "T' -> * F T'| / F T'| \\e;"+
-            "F -> ( E ) | num;";
-            */
-              
-            "Sb -> I Sb';" +
-            "Sb' -> /// I Sb' | \\e;" +
-            "I -> Bt I';" +
-            "I' -> c Bt I' | \\e;" +
-            "Bt -> Bf Bt';" +
-            "Bt' -> v Bf Bt' | \\e;" +
-            "Bf -> Bs Bf';" +
-            "Bf' -> ^ Bs Bf' | \\e;" +
-            "Bs -> Bp | r Bp;" +
-            "Bp -> Lv | i | ( Sb );" +
-            "Lv -> true | false;";
+        String cadena = TestGramaticaDG.GRAMATICAS_PRUEBAS[0];
             
         boolean pasoLexico = gramaticaDeGramaticaLL1.analisisLexico(cadena);
         if(pasoLexico){

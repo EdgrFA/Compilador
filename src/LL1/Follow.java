@@ -2,6 +2,10 @@ package LL1;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import GramaticaDeGramaticas.Gramatica;
+import GramaticaDeGramaticas.SimboloNoTerminal;
+import GramaticaDeGramaticas.SimboloInicial;
+import GramaticaDeGramaticas.Regla;
 
 public class Follow {
     private HashSet<SimboloNoTerminal> simbolos;

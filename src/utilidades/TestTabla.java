@@ -1,6 +1,5 @@
 package utilidades;
 
-import LL1.Simbolo;
 import java.util.ArrayList;
 
 public class TestTabla {

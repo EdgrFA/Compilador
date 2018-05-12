@@ -1,5 +1,7 @@
 package LL1;
 
+import GramaticaDeGramaticas.Gramatica;
+
 public final class TestAlgoritmoLL1 {
     public static void main(String[] args) {
         Gramatica gramatica = new Gramatica();

@@ -1,6 +1,8 @@
 package LL1;
 
 import java.util.ArrayList;
+import GramaticaDeGramaticas.SimboloNoTerminal;
+import GramaticaDeGramaticas.Regla;
 
 public class First {
     private ArrayList<SimboloNoTerminal> simbolos;
