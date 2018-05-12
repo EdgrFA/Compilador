@@ -11,7 +11,7 @@ public abstract class Tabla {
         this.columnas = columnas;
     }
     
-    abstract public void imprimirFila( ArrayList<String> elementoFila);
-    abstract public void imprimirEncabezado( ArrayList<String> elementoEncabezado);
+    abstract public void imprimirFila(Object[] elementoFila);
+    abstract public void imprimirEncabezado( Object[] elementoEncabezado);
     abstract public void imprimirTabla(String[] encabezado, String[][]elementos);
 }

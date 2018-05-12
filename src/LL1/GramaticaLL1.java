@@ -4,7 +4,6 @@ import Analizadores.AnalizadorLexico;
 import Automatas.AFD;
 import Automatas.AFNs;
 import GramaticaDeGramaticas.TokensGramatica;
-import java.util.ArrayList;
 
 public class GramaticaLL1 {
     private final AFD afd;
@@ -67,12 +66,6 @@ public class GramaticaLL1 {
         ll.calcularFirstReglas();
         System.out.println("\n***** TABLA  ********");
         ll.generarTablaLL1();
-        /*
-        for (int i = 0; i < gramatica.getNumeroSimbolos() ; i++) {
-            System.out.println("Simbolo "+gramatica.getSimbolo(i));
-            System.out.println(gramatica.getSimbolo(i).relacion);
-        }
-        */
         System.out.println();
     }
     

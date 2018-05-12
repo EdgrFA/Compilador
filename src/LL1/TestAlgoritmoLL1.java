@@ -12,7 +12,7 @@ public class TestAlgoritmoLL1 {
             "T' -> * F T'| / F T'| \\e;"+
             "F -> ( E ) | num;";
             */
-                
+              
             "Sb -> I Sb';" +
             "Sb' -> /// I Sb' | \\e;" +
             "I -> Bt I';" +
@@ -24,7 +24,7 @@ public class TestAlgoritmoLL1 {
             "Bs -> Bp | r Bp;" +
             "Bp -> Lv | i | ( Sb );" +
             "Lv -> true | false;";
-        
+            
         boolean pasoLexico = gramaticaDeGramaticaLL1.analisisLexico(cadena);
         if(pasoLexico){
             System.out.println("\nEl Analisis Léxico fue correcto\n");
