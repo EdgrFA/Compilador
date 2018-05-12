@@ -31,6 +31,8 @@ public class TestGramaticaDG {
             boolean pasoSintactico = gramaticaDeGramaticaLL1.analisisSintactico(cadena, gramatica);
             if(pasoSintactico){
                 System.out.println("Análisis Sintáctico Correcto");
+                gramatica.imprimirSimbolos();
+                gramatica.imprimirReglas();
             }else
                 System.out.println("ERROR SINTACTICO");
         }else

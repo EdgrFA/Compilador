@@ -15,7 +15,7 @@ public class First {
         simbolos = new ArrayList<>();
         simboloInicialDer = regla.getListaLadosDerechos().get(0);
         simbolos = First.first(simboloInicialDer);
-        regla.setFirstSimbolos(this);
+        //regla.setFirstSimbolos(this);
         /*
         if(!simboloInicialDer.isTerminal()){
             System.out.println("Creando regla");

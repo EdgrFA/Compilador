@@ -5,20 +5,16 @@ import java.util.ArrayList;
 public class Regla {
     private int numeroRegla;
     private SimboloNoTerminal ladoIzquierdo;
-    private First firstSimbolos;
     private ArrayList<SimboloNoTerminal> listaLadosDerechos;
-    private ArrayList<SimboloNoTerminal> ladosBeta;
     
     public Regla(SimboloNoTerminal ladoIzquierdo, int numeroRegla){
         listaLadosDerechos = new ArrayList<>();
-        ladosBeta = new ArrayList<>();
         this.ladoIzquierdo = ladoIzquierdo;
         this.numeroRegla = numeroRegla;
     }
     
     public Regla(){
         listaLadosDerechos = new ArrayList<>();
-        ladosBeta = new ArrayList<>();
     }
     
     public void agregarSimbolo(SimboloNoTerminal simbolo){
@@ -56,9 +52,7 @@ public class Regla {
         return listaLadosDerechos;
     }
     
-    public First getFirstSimbolos(){
-        return firstSimbolos;
-    }
+    
     
     //**************** SET ******************************
     public void setNumeroRegla(int numeroRegla) {
@@ -73,9 +67,6 @@ public class Regla {
         this.listaLadosDerechos = listaLadosDerechos;
     }
     
-    public void setFirstSimbolos(First firstSimbolos){
-        this.firstSimbolos = firstSimbolos;
-    }
     
     @Override
     public String toString(){

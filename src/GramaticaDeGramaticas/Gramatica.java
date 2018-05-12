@@ -45,6 +45,12 @@ public class Gramatica {
         }
     }
     
+    public void imprimirReglas(){
+        for(Regla regla: listaReglas){
+            System.out.println(regla+ "\t\t"+ regla.getNumeroRegla());
+        }
+    }
+    
     // ********************* GET ****************************************
     public SimboloNoTerminal getSimbolo(int index){
         return simbolos.get(index);
@@ -60,11 +66,5 @@ public class Gramatica {
     
     public ArrayList<Regla> getListaReglas(){
         return listaReglas;
-    }
-    
-    public void imprimirReglas(){
-        for(Regla regla: listaReglas){
-            System.out.println(regla+ "\t\t"+ regla.getNumeroRegla());
-        }
     }
 }

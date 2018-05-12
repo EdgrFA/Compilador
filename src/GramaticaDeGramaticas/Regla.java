@@ -7,28 +7,19 @@ public class Regla {
     private SimboloNoTerminal ladoIzquierdo;
     //private First firstSimbolos;
     private ArrayList<SimboloNoTerminal> listaLadosDerechos;
-    private ArrayList<SimboloNoTerminal> ladosBeta;
     
     public Regla(SimboloNoTerminal ladoIzquierdo, int numeroRegla){
         listaLadosDerechos = new ArrayList<>();
-        ladosBeta = new ArrayList<>();
         this.ladoIzquierdo = ladoIzquierdo;
         this.numeroRegla = numeroRegla;
     }
     
     public Regla(){
         listaLadosDerechos = new ArrayList<>();
-        ladosBeta = new ArrayList<>();
     }
     
     public void agregarSimbolo(SimboloNoTerminal simbolo){
         listaLadosDerechos.add(simbolo);
-    }
-    
-    public String imprimirSimbolos(){
-        String cadenaAux="";
-        cadenaAux = listaLadosDerechos.stream().map((simbolo) -> simbolo.getExpresion()+" ").reduce(cadenaAux, String::concat);
-        return cadenaAux;
     }
     
     public int comprobarSimbolo(Simbolo simboloComporbar){
@@ -37,6 +28,12 @@ public class Regla {
                 return i;
         }
         return -1;
+    }
+    
+    public String imprimirSimbolos(){
+        String cadenaAux="";
+        cadenaAux = listaLadosDerechos.stream().map((simbolo) -> simbolo.getExpresion()+" ").reduce(cadenaAux, String::concat);
+        return cadenaAux;
     }
     
     // *************** GET *****************************
