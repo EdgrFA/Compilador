@@ -88,9 +88,7 @@ public class AlgoritmoLL1 {
     public boolean validarCadena(String cadena){
         Pila pila = new Pila();
         pila.add(Gramatica.RAIZ);
-        System.out.println("snt 0 = "+simbolosNoTerminales.get(0));
         pila.add(simbolosNoTerminales.get(0));
-        System.out.println("Soy la pila "+ pila);
         Cola simbolosCadena = convertirElementos(cadena);
         TablaColumnaUnitaria tabla = new TablaColumnaUnitaria(40);
         Object[] elementoEncabezado = {"Cola","Cadena", "Accion"};
