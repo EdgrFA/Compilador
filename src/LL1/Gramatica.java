@@ -30,9 +30,9 @@ public class Gramatica {
         simbolos.add(simbolo);
     }
     
-    public int comprobarSimbolo(Simbolo simboloComporbar){
+    public int comprobarSimbolo(Simbolo simboloComprobar){
         for(int i = 0; i < simbolos.size();i++){
-            if(simbolos.get(i).equals(simboloComporbar))
+            if(simbolos.get(i).equals(simboloComprobar))
                 return i;
         }
         return -1;
