@@ -14,7 +14,19 @@ public final class TestAlgoritmoLL1 {
             "T' -> * F T'| / F T'| \\e;"+
             "F -> ( E ) | num;";
             */
-              
+            /*
+                "A -> B b | C A;"+
+                "B -> a B | \\e;"+
+                "C -> c C | \\e;";
+            
+            /*
+                "S -> a A B C;" +
+                "A -> a | b b D;"+
+                "B -> a | \\e;" +
+                "C -> b | \\e;" +
+                "D -> d | \\e;";
+            */
+            
             "Sb -> I Sb';" +
             "Sb' -> /// I Sb' | \\e;" +
             "I -> Bt I';" +
@@ -35,7 +47,7 @@ public final class TestAlgoritmoLL1 {
                 System.out.println("Análisis Sintáctico Correcto");
                 gramaticaDeGramaticaLL1.algoritmoLL1(gramatica);
                 //String expresion = "( num + num ) * num - num $";
-                String expresion = "true ^ false $";
+                String expresion = "b $";
                 boolean cadenaValida = gramaticaDeGramaticaLL1.analizarCadenaLL1(expresion);
                 if(cadenaValida)
                     System.out.println("Cadena Aceptada");
