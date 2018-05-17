@@ -28,18 +28,28 @@ public class AlgoritmoLL1 {
             Regla regla = gramatica.getListaReglas().get(i);
             SimboloNoTerminal simboloInicial = regla.getListaLadosDerechos().get(0);
             First first = new  First( regla );
+            System.out.print("\tRegla "+i+" : "+regla+"\t");
+            System.out.print("first( "+ simboloInicial +" ) = "+first.getSimbolos());
             if(AlgoritmoLL1.containsEpsilon(first.getSimbolos())){
-                Follow followAux = simboloFollowPrevio.get( regla.getLadoIzquierdo() );
+                //System.out.print(" = "+ first.getSimbolos());
+                Follow followAux = simboloFollowPrevio.get( simboloInicial );
                 if( followAux != null){
                     ArrayList<SimboloNoTerminal> simbolosFollow = new ArrayList<>(followAux.getSimbolos());
                     first.getSimbolos().addAll(simbolosFollow);
+                    System.out.print(" U {follow( "+ simboloInicial +" ) = "+ simbolosFollow +" } = "+first.getSimbolos());
+                }else{
+                    followAux = simboloFollowPrevio.get( regla.getLadoIzquierdo() );
+                    ArrayList<SimboloNoTerminal> simbolosFollow = new ArrayList<>(followAux.getSimbolos());
+                    first.getSimbolos().addAll(simbolosFollow);
+                    System.out.print(" -> follow( "+ regla.getLadoIzquierdo() +" ) = "+first.getSimbolos());
                 }
             }
             if( ! simbolosNoTerminales.contains( regla.getLadoIzquierdo() ))
                 simbolosNoTerminales.add( regla.getLadoIzquierdo() );
             crearRelacionesSimbolosNT(first.getSimbolos(), regla);
-            System.out.print("\tRegla "+i+" : "+regla+"\t");
-            System.out.println("first( "+ simboloInicial +" ) = "+first.getSimbolos());
+            System.out.println("");
+//            System.out.print("\tRegla "+i+" : "+regla+"\t");
+//            System.out.println("first( "+ simboloInicial +" ) = "+first.getSimbolos());
         }
         actualizarSimbolosTerminales();
         AlgoritmoLL1.containsEpsilon(simbolosTerminales);
@@ -84,7 +94,7 @@ public class AlgoritmoLL1 {
             if(!gramatica.getSimbolo(i).isTerminal()){
                 Follow follow = new  Follow( gramatica.getSimbolo(i), gramatica.getListaReglas() );
                 simboloFollowPrevio.put(gramatica.getSimbolo(i), follow);
-                System.out.println("follow ("+gramatica.getSimbolo(i)+") = "+follow.getSimbolos());
+                System.out.println("follow ("+gramatica.getSimbolo(i)+") = "+follow.getSimbolos() + "\n\n");
             }
         }
     }

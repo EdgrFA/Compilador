@@ -34,7 +34,8 @@ public class First {
         }
         for (Regla regla : simbolo.getReglasLadosDerechos()) {
             SimboloNoTerminal primerSimbolo = regla.getListaLadosDerechos().get(0);
-            simbolosResultado.addAll(first(primerSimbolo));
+            //if( ! primerSimbolo.equals(simbolo) )
+                simbolosResultado.addAll(first(primerSimbolo));
         }
         return simbolosResultado;
     }
