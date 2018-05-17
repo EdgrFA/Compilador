@@ -1,12 +1,13 @@
-package LL1;
+package Pruebas;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Stack;
+import GramaticaDeGramaticas.Simbolo;
+import GramaticaDeGramaticas.SimboloNoTerminal;
+import GramaticaDeGramaticas.Regla;
+import utilidades.Cola;
+import LL1.Pila;
 
 public class PruebasConObjetos {
     private ArrayList<Simbolo> simbolos;

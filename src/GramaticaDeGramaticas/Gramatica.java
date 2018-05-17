@@ -2,41 +2,69 @@ package GramaticaDeGramaticas;
 
 import java.util.ArrayList;
 
+/**
+ * Gramatica contiene un conjunto de reglas con Simbolos Terminales y Simbolos No Terminales
+ * @author Andres
+ */
 public class Gramatica {
-    private ArrayList<Nodo> reglas;
-
-    public Gramatica() {
-        this.reglas = new ArrayList<Nodo>();
+    public static final Regla POP = new Regla();
+    public static final Regla ACEPT = new Regla();
+    public static final Simbolo EPSILON = new Simbolo("\\e");
+    public static final SimboloEspecial RAIZ = new SimboloEspecial("$",ACEPT);
+    
+    public static int contadorReglas;
+    private ArrayList<Regla> listaReglas;
+    private ArrayList<SimboloNoTerminal> simbolos;
+    
+    public Gramatica(){
+        listaReglas = new ArrayList<>();
+        simbolos = new ArrayList<>();
     }
     
-    public Nodo agregarRegla(){
-        Nodo regla = new Nodo();
-        reglas.add(regla);
-        return regla;
+    public void agregarRegla(Regla regla){
+        regla.setNumeroRegla(contadorReglas++);
+        listaReglas.add(regla);
     }
     
-    public void removerRegla(Nodo regla){
-        reglas.remove(regla);
-    }
-
-    public ArrayList<Nodo> getReglas() {
-        return reglas;
+    public void agregarSimbolo(SimboloNoTerminal simbolo){
+        simbolos.add(simbolo);
     }
     
-    public void imprimirGramatica(){
-        for (Nodo regla : reglas) {
-            System.out.print(regla.getStrSimbolo() + " -> ");
-            boolean inicial = true;
-            for (ArrayList<Simbolo> listasSimbs : regla.getListasSimbs()) {
-                if (inicial)
-                    inicial = false;
-                else
-                    System.out.print("| ");
-                for (Simbolo simbolo : listasSimbs)
-                    System.out.print(simbolo.getSimbolo() + " ");
-            }
-            System.out.println(";");
+    public int comprobarSimbolo(Simbolo simboloComporbar){
+        for(int i = 0; i < simbolos.size();i++){
+            if(simbolos.get(i).equals(simboloComporbar))
+                return i;
         }
-        System.out.println("");
+        return -1;
+    }
+    
+    public void imprimirSimbolos(){
+        for(SimboloNoTerminal simbolo: simbolos){
+            System.out.println(simbolo.getExpresion()+"\tTerminal="+simbolo.isTerminal());
+
+        }
+    }
+    
+    public void imprimirReglas(){
+        for(Regla regla: listaReglas){
+            System.out.println(regla+ "\t\t"+ regla.getNumeroRegla());
+        }
+    }
+    
+    // ********************* GET ****************************************
+    public SimboloNoTerminal getSimbolo(int index){
+        return simbolos.get(index);
+    }
+    
+    public int getNumeroSimbolos(){
+        return simbolos.size();
+    }
+    
+    public ArrayList<SimboloNoTerminal> getSimbolos(){
+        return simbolos;
+    }
+    
+    public ArrayList<Regla> getListaReglas(){
+        return listaReglas;
     }
 }

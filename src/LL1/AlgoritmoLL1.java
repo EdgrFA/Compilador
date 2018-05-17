@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.HashMap;
 import utilidades.TablaColumnaUnitaria;
+import GramaticaDeGramaticas.Gramatica;
+import GramaticaDeGramaticas.Regla;
+import GramaticaDeGramaticas.SimboloNoTerminal;
+import GramaticaDeGramaticas.Simbolo;
 
 public class AlgoritmoLL1 {
     private ArrayList<SimboloNoTerminal> simbolosTerminales;
@@ -49,7 +53,6 @@ public class AlgoritmoLL1 {
     }
     
     private void crearRelacionesSimbolosT(SimboloNoTerminal simbolo){
-        System.out.println("Simbolo : "+simbolo);
         simbolo.agregarRelacion(simbolo, Gramatica.POP);
     }
     
@@ -92,7 +95,7 @@ public class AlgoritmoLL1 {
         pila.add(simbolosNoTerminales.get(0));
         Cola simbolosCadena = convertirElementos(cadena);
         TablaColumnaUnitaria tabla = new TablaColumnaUnitaria(40);
-        String[] elementoEncabezado = {"Cola","Cadena", "Accion"};
+        Object[] elementoEncabezado = {"Cola","Cadena", "Accion"};
         tabla.imprimirEncabezado(elementoEncabezado);
         for(;;){
             ArrayList<String> filaElementos = new ArrayList<>();
@@ -106,18 +109,18 @@ public class AlgoritmoLL1 {
                     simbolosCadena.remove();
                 }else if( relacion.equals( Gramatica.ACEPT ) ){
                     filaElementos.add("Acept");
-                    tabla.imprimirFila(filaElementos);
+                    tabla.imprimirFila(filaElementos.toArray());
                     return true;
                 }
                 else{
-                    filaElementos.add(relacion.getListaLadosDerechos()+","+relacion.getNumeroRegla());
+                    filaElementos.add( relacion.getListaLadosDerechos()+","+relacion.getNumeroRegla() );
                     if( ! relacion.getListaLadosDerechos().get(0).equals(Gramatica.EPSILON ) )
                         pila.addAll(Pila.invertirArraySNT(relacion.getListaLadosDerechos()) );                           
-                    tabla.imprimirFila(filaElementos);
                 }
+                tabla.imprimirFila(filaElementos.toArray());
             }else{
                 filaElementos.add("ERROR");
-                tabla.imprimirFila(filaElementos);
+                tabla.imprimirFila(filaElementos.toArray());
                 return false;
             }
         }

@@ -1,4 +1,4 @@
-package LL1;
+package GramaticaDeGramaticas;
 
 import java.util.ArrayList;
 import java.util.HashMap;

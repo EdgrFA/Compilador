@@ -1,34 +1,25 @@
-package LL1;
+package GramaticaDeGramaticas;
 
 import java.util.ArrayList;
 
 public class Regla {
     private int numeroRegla;
     private SimboloNoTerminal ladoIzquierdo;
-    private First firstSimbolos;
+    //private First firstSimbolos;
     private ArrayList<SimboloNoTerminal> listaLadosDerechos;
-    private ArrayList<SimboloNoTerminal> ladosBeta;
     
     public Regla(SimboloNoTerminal ladoIzquierdo, int numeroRegla){
         listaLadosDerechos = new ArrayList<>();
-        ladosBeta = new ArrayList<>();
         this.ladoIzquierdo = ladoIzquierdo;
         this.numeroRegla = numeroRegla;
     }
     
     public Regla(){
         listaLadosDerechos = new ArrayList<>();
-        ladosBeta = new ArrayList<>();
     }
     
     public void agregarSimbolo(SimboloNoTerminal simbolo){
         listaLadosDerechos.add(simbolo);
-    }
-    
-    public String imprimirSimbolos(){
-        String cadenaAux="";
-        cadenaAux = listaLadosDerechos.stream().map((simbolo) -> simbolo.getExpresion()+" ").reduce(cadenaAux, String::concat);
-        return cadenaAux;
     }
     
     public int comprobarSimbolo(Simbolo simboloComporbar){
@@ -37,6 +28,12 @@ public class Regla {
                 return i;
         }
         return -1;
+    }
+    
+    public String imprimirSimbolos(){
+        String cadenaAux="";
+        cadenaAux = listaLadosDerechos.stream().map((simbolo) -> simbolo.getExpresion()+" ").reduce(cadenaAux, String::concat);
+        return cadenaAux;
     }
     
     // *************** GET *****************************
@@ -56,9 +53,9 @@ public class Regla {
         return listaLadosDerechos;
     }
     
-    public First getFirstSimbolos(){
-        return firstSimbolos;
-    }
+//    public First getFirstSimbolos(){
+//        return firstSimbolos;
+//    }
     
     //**************** SET ******************************
     public void setNumeroRegla(int numeroRegla) {
@@ -73,9 +70,9 @@ public class Regla {
         this.listaLadosDerechos = listaLadosDerechos;
     }
     
-    public void setFirstSimbolos(First firstSimbolos){
-        this.firstSimbolos = firstSimbolos;
-    }
+//    public void setFirstSimbolos(First firstSimbolos){
+//        this.firstSimbolos = firstSimbolos;
+//    }
     
     @Override
     public String toString(){

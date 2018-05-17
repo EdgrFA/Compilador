@@ -1,27 +1,38 @@
 package GramaticaDeGramaticas;
 
 public class Simbolo {
-    private String simbolo;
-    private boolean esTerminal;
-
-    public Simbolo(String simbolo) {
-        this.simbolo = simbolo;
-        esTerminal = false;
+    private boolean terminal;
+    private String expresion;
+    
+    public Simbolo(String expresion){
+        this.expresion = expresion;
+        this.terminal = true;
     }
-
-    public String getSimbolo() {
-        return simbolo;
+    
+    public String getExpresion(){
+        return expresion;
     }
-
-    public void setSimbolo(String Simbolo) {
-        this.simbolo = Simbolo;
+    
+    public boolean isTerminal(){
+        return terminal;
     }
-
-    public boolean esTerminal() {
-        return esTerminal;
+    
+    public void setExpresion(String expresion){
+        this.expresion = expresion;
     }
-
-    public void setEsTerminal(boolean esTerminal) {
-        this.esTerminal = esTerminal;
+    
+    public void setTerminal(boolean terminal){
+        this.terminal = terminal;
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        Simbolo Aux = (Simbolo) obj;
+        return expresion.equals(Aux.getExpresion());
+    }
+    
+    @Override
+    public String toString(){
+        return expresion;
     }
 }

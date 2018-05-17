@@ -1,14 +1,13 @@
-package LL1;
+package GramaticaDeGramaticas;
 
 import Analizadores.AnalizadorLexico;
 import Automatas.AFD;
-import GramaticaDeGramaticas.TokensGramatica;
 
-public class AnalizadorSintacticoLL1 {
+public class AnalizadorSintactico {
     private AnalizadorLexico lexic;
-    private AFD afd;
+    private final AFD afd;
     
-    public AnalizadorSintacticoLL1(AFD afd) {
+    public AnalizadorSintactico(AFD afd) {
         this.afd = afd;
     }
     

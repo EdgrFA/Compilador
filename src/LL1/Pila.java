@@ -2,6 +2,7 @@ package LL1;
 
 import java.util.Stack;
 import java.util.ArrayList;
+import GramaticaDeGramaticas.SimboloNoTerminal;
 
 public class Pila extends Stack{
     
