@@ -14,6 +14,12 @@ public class Regla {
         this.numeroRegla = numeroRegla;
     }
     
+    public Regla(int numeroRegla, SimboloNoTerminal ladoIzquierdo, ArrayList<SimboloNoTerminal> listaLadosDerechos){
+        this.listaLadosDerechos = listaLadosDerechos;
+        this.ladoIzquierdo = ladoIzquierdo;
+        this.numeroRegla = numeroRegla;
+    }
+    
     public Regla(){
         listaLadosDerechos = new ArrayList<>();
     }
@@ -73,6 +79,25 @@ public class Regla {
 //    public void setFirstSimbolos(First firstSimbolos){
 //        this.firstSimbolos = firstSimbolos;
 //    }
+   
+    public boolean compararRegla(Regla reglaN){
+        //Comparar lado izquierdo
+        if(!reglaN.getLadoIzquierdo().getExpresion().equals(
+                ladoIzquierdo.getExpresion()))
+            break;
+
+        //Comparar numero de elementos lado derecho
+        if(regla.getListaLadosDerechos().size() !=
+                reglaEdo.getListaLadosDerechos().size())
+            break;  
+
+        //Comaparar Secuencia Simbolos lado derecho
+        for (Simbolo simbolos : regla.getListaLadosDerechos())
+            for (Simbolo simbolosEdo : reglaEdo.getListaLadosDerechos())
+                if(!simbolos.getExpresion().equals(simbolosEdo.getExpresion()))
+                    break;
+        return false;
+    }
     
     @Override
     public String toString(){
