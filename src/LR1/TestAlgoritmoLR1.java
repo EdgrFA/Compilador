@@ -1,12 +1,22 @@
-package LR0;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package LR1;
 
 import GramaticaDeGramaticas.Gramatica;
+import GramaticaDeGramaticas.SimboloNoTerminal;
+import java.util.ArrayList;
 
-public class TestAlgoritmoLR0 {
-    
-    public static void main(String[] args) {
+/**
+ *
+ * @author xXEdG
+ */
+public class TestAlgoritmoLR1 {
+        public static void main(String[] args) {
         Gramatica gramatica = new Gramatica();
-        GramaticaLR0 gramaticaDeGramaticaLR0 = new GramaticaLR0(gramatica);
+        GramaticaLR1 gramaticaDeGramaticaLR0 = new GramaticaLR1(gramatica);
         String cadena =   
             "E' -> E;" +
             "E -> E + T | T ;" +
@@ -19,7 +29,7 @@ public class TestAlgoritmoLR0 {
             boolean pasoSintactico = gramaticaDeGramaticaLR0.analisisSintactico(cadena, gramatica);
             if(pasoSintactico){
                 System.out.println("Análisis Sintáctico Correcto");
-                gramaticaDeGramaticaLR0.algoritmoLR0(gramatica);
+                gramaticaDeGramaticaLR0.algoritmoLR1(gramatica);
                 //String expresion = "( num + num ) * num - num $";
                 //String expresion = "( SIMB OR ( SIMB & SIMB ) + ) ? OR SIMB $";
                 //boolean cadenaValida = gramaticaDeGramaticaLL1.analizarCadenaLL1(expresion);
@@ -36,14 +46,12 @@ public class TestAlgoritmoLR0 {
         }else
             System.out.println("ERROR Léxico");
         
+            System.out.println("");
         //gramatica.imprimirReglas();
-        
+            for (SimboloNoTerminal simbolo : gramatica.getSimbolos()) {
+                System.out.println("Simb: " + simbolo.getExpresion() + " es Terminal: " + simbolo.isTerminal());
+            }
+
         
     }
 }
-
-//            ReglaLR reglaa = new ReglaLR(regla);
-//            reglaa.recorrerPunto();
-//            reglaa.recorrerPunto();
-//            System.out.println("indice punto regla: " + reglaa.getIndicePunto());
-//            System.out.println(reglaa+ "\t\t"+ reglaa.getNumeroRegla());

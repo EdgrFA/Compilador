@@ -1,5 +1,7 @@
 package LR0;
 
+import LR1.EstadoLR;
+import LR1.ReglaLR;
 import GramaticaDeGramaticas.Gramatica;
 import GramaticaDeGramaticas.Regla;
 import GramaticaDeGramaticas.Simbolo;

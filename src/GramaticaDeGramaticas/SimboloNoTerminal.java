@@ -28,4 +28,5 @@ public class SimboloNoTerminal extends Simbolo{
     public HashMap<SimboloNoTerminal,Regla> getRelacion(){
         return relacion;
     }
+
 }

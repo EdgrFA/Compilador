@@ -3,14 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/Automatas/AFD.java</file>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/Gramatica.java</file>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/Regla.java</file>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR0/AlgoritmoLR0.java</file>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR0/TestAlgoritmoLR0.java</file>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR0/GramaticaLR0.java</file>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR0/ReglaLR.java</file>
-            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR0/EstadoLR.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LL1/First.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR1/TestAlgoritmoLR1.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR1/ItemLR.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR1/ReglaLR.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR1/LR1.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR1/EstadoLR.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/GramaticaDeGramaticas/Simbolo.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR1/GramaticaLR1.java</file>
         </group>
     </open-files>
 </project-private>
