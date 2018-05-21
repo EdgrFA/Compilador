@@ -18,10 +18,10 @@ public class TestAlgoritmoLR1 {
         Gramatica gramatica = new Gramatica();
         GramaticaLR1 gramaticaDeGramaticaLR0 = new GramaticaLR1(gramatica);
         String cadena =   
-            "E' -> E;" +
-            "E -> E + T | T ;" +
-            "T -> T * F | F ;" +
-            "F -> ( E ) | num ;";
+            "S' -> S ;" +
+            "S -> E - E | f ;" +
+            "E -> T | E + T ;" +
+            "T -> f | T * F ;";
         
         boolean pasoLexico = gramaticaDeGramaticaLR0.analisisLexico(cadena);
         if(pasoLexico){
@@ -45,13 +45,5 @@ public class TestAlgoritmoLR1 {
                 System.out.println("ERROR SINTACTICO");
         }else
             System.out.println("ERROR Léxico");
-        
-            System.out.println("");
-        //gramatica.imprimirReglas();
-            for (SimboloNoTerminal simbolo : gramatica.getSimbolos()) {
-                System.out.println("Simb: " + simbolo.getExpresion() + " es Terminal: " + simbolo.isTerminal());
-            }
-
-        
     }
 }

@@ -36,6 +36,10 @@ public class EstadoLR {
     public void setAnalizado(boolean analizado) {
         this.analizado = analizado;
     }
+
+    public ArrayList<ItemLR> getItemsLR() {
+        return itemsLR;
+    }
     
     /**
      * Compara una lista de items con la lista de items de el estado.
@@ -58,6 +62,10 @@ public class EstadoLR {
                 return false;
         }
         return true;
+    }
+
+    public int getId() {
+        return id;
     }
     
     @Override

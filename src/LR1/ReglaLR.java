@@ -13,6 +13,11 @@ public class ReglaLR extends Regla{
         this.indicePunto = 0;
     }
     
+    public ReglaLR(ReglaLR reglaLR) {
+        super(reglaLR.getNumeroRegla(), reglaLR.getLadoIzquierdo(), reglaLR.getListaLadosDerechos());
+        this.indicePunto = reglaLR.getIndicePunto();
+    }
+    
     public boolean recorrerPunto(){
         if(indicePunto < getListaLadosDerechos().size()){
             indicePunto++;
@@ -43,21 +48,25 @@ public class ReglaLR extends Regla{
         if(!getLadoIzquierdo().getExpresion().equals(
                 reglaLR.getLadoIzquierdo().getExpresion()))
             return false;
-        
         //Comparar indice punto
         if(indicePunto != reglaLR.getIndicePunto())
             return false;
-
         //Comparar numero de elementos lado derecho
         if(getListaLadosDerechos().size() != 
                 reglaLR.getListaLadosDerechos().size())
             return false;
-
         //Comaparar Secuencia Simbolos lado derecho
-        for (Simbolo simbolos : getListaLadosDerechos())
-            for (Simbolo simbolosRLR : reglaLR.getListaLadosDerechos())
-                if(!simbolos.getExpresion().equals(simbolosRLR.getExpresion()))
-                    return false;
+        for (Simbolo simbolo : getListaLadosDerechos()){
+            boolean existio = false;
+            for (Simbolo simboloRLR : reglaLR.getListaLadosDerechos()){
+                if(simbolo.getExpresion().equals(simboloRLR.getExpresion())){
+                    existio = true;
+                    break;
+                }
+            }
+            if(!existio)
+                return false;
+        }
         return true;
     }
     

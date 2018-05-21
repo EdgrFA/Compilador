@@ -2,12 +2,15 @@ package LR1;
 
 import GramaticaDeGramaticas.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class LR1 {
     private EstadoLR estadoInicial;
     private ArrayList<EstadoLR> conjuntoEdos;
+    private FirstLR firstLR;
     private static SimboloNoTerminal RAIZ = new SimboloNoTerminal("$");
+     
     
 //    private ArrayList<SimboloNoTerminal> simbolosTerminales;
 //    private ArrayList<SimboloNoTerminal> simbolosNoTerminales;
@@ -16,15 +19,45 @@ public class LR1 {
     public LR1(Gramatica gramatica) {
         this.gramatica = gramatica;
         conjuntoEdos = new ArrayList<>();
+        firstLR = new FirstLR(gramatica);
         ArrayList<ItemLR> itemsInicial = new ArrayList<>();
         //Crear nodo raiz
         HashSet<SimboloNoTerminal> snt = new HashSet<>();
         snt.add(RAIZ);
-        itemsInicial.add(new ItemLR(new ReglaLR(gramatica.getListaReglas().get(0)), snt));
-        
-        
+        ItemLR itemAux = new ItemLR(new ReglaLR(gramatica.getListaReglas().get(0)));
+        itemAux.agregarSimbolos(snt);
+        itemsInicial.add(itemAux);        
+        opCerradura(itemsInicial);
         estadoInicial = new EstadoLR(itemsInicial);
         conjuntoEdos.add(estadoInicial);
+        //Calcular los demas estados
+        System.out.println("Algoritmo LR1:\n");
+        for(int i = 0; i < conjuntoEdos.size(); i++){
+            System.out.println("Analizando S" + conjuntoEdos.get(i).getId());
+            for (SimboloNoTerminal simbolo : gramatica.getSimbolos()) {
+                System.out.print("Ir_A(S"+conjuntoEdos.get(i).getId()+","+simbolo+") = ");
+                ArrayList<ItemLR> newItem = ir_A(conjuntoEdos.get(i), simbolo);
+                if(newItem.isEmpty()){
+                    System.out.println(" X ");
+                    continue;
+                }else {
+                    boolean esNuevo = true;
+                    for (EstadoLR estado : conjuntoEdos) {
+                        if (estado.compararItems(newItem)){
+                            conjuntoEdos.get(i).crearDerivacion(simbolo, estado);
+                            esNuevo = false;
+                            System.out.println(" S" + estado.getId());
+                            break;
+                        }
+                    }
+                    if (esNuevo) {
+                        EstadoLR newEstado = new EstadoLR(newItem);
+                        conjuntoEdos.add(newEstado);
+                        System.out.println(newEstado);
+                    }
+                }
+            }
+        }
         
         
 //        simboloFollowPrevio = new HashMap<>();
@@ -41,78 +74,81 @@ public class LR1 {
 //        }
     }
     
-    private void ir_A(){
-        
+    private ArrayList<ItemLR> ir_A(EstadoLR estado, SimboloNoTerminal snt){
+        ArrayList<ItemLR> itemsLR = new ArrayList<>();
+        for (ItemLR itemLR : estado.getItemsLR()) {
+            if(itemLR.getSimboloPunto() != null && itemLR.getSimboloPunto().getExpresion().equals(snt.getExpresion())){
+                ItemLR itemAux = new ItemLR(itemLR);
+                itemAux.recorrerPuntoRegla();
+                itemsLR.add(itemAux);
+            }
+        }
+        if(!itemsLR.isEmpty())
+            System.out.print("Ce"+itemsLR+" = ");
+        opCerradura(itemsLR);
+        return itemsLR;
     }
     
-    private ArrayList<ItemLR> opCerradura(ArrayList<ItemLR> itemsLR){
-        ArrayList<ItemLR> nuevosItems = new ArrayList<>();
-        nuevosItems.addAll(itemsLR);
-        
-        for (int i = 0; i < nuevosItems.size(); i++) {
-            SimboloNoTerminal simbolo = nuevosItems.get(i).getSimboloPunto();
-            if(simbolo != null)
+    private void opCerradura(ArrayList<ItemLR> itemsLR){
+        for (int i = 0; i < itemsLR.size(); i++) {
+            SimboloNoTerminal simbolo = itemsLR.get(i).getSimboloPunto();
+            SimboloNoTerminal nextSimbolo = itemsLR.get(i).getSiguienteSimboloPunto();
+            if(simbolo == null){
                 continue;
-            else if (simbolo.isTerminal()){
-                simbolo = nuevosItems.get(i).getSiguienteSimboloPunto();
-                nuevosItems.get(i).agregarSimbolos(first(simbolo));
+            }else if (simbolo.isTerminal()){
+                if(nextSimbolo != null){
+                    ItemLR itemAux = new ItemLR(itemsLR.get(i));
+                    itemAux.agregarSimbolos(firstLR.getFirst(nextSimbolo));
+                    if(!existeEnLista(itemsLR, itemAux))
+                        itemsLR.add(itemAux);
+                }
             }else {
-                if()
-            }
-            
-            
-            Simbolo simbolo = newReglas.get(i).getListaLadosDerechos().get(newReglas.get(i).getIndicePunto());
-            if(simbolo instanceof SimboloNoTerminal){
-                for (Regla reglaGr : gramatica.getListaReglas()) {
-                    if(reglaGr.equals(newReglas.get(i))){
-                        System.out.println("continuo");
-                        continue;
-                    
+                //Revisar reglas que conciden con simbolo
+                ArrayList<Regla> reglas = new ArrayList<>();
+                for (Regla regla : gramatica.getListaReglas()) {
+                    String ladoIzquierdo = regla.getLadoIzquierdo().getExpresion();
+                    if(ladoIzquierdo.equals(simbolo.getExpresion()))
+                        reglas.add(regla);
+                }
+                if(nextSimbolo != null){
+                    for (Regla regla : reglas){
+                        ItemLR itemAux = new ItemLR(regla);
+                        itemAux.agregarSimbolos(firstLR.getFirst(nextSimbolo));
+                        if(!existeEnLista(itemsLR, itemAux))
+                            itemsLR.add(itemAux);
+                    }                
+                }else {
+                    for (Regla regla : reglas){
+                        ItemLR itemAux = new ItemLR(regla);
+                        itemAux.agregarSimbolos(itemsLR.get(i).getSimbolosT());
+                        if(!existeEnLista(itemsLR, itemAux))
+                            itemsLR.add(itemAux);
                     }
-                    if(reglaGr.getLadoIzquierdo().getExpresion().equals(simbolo.getExpresion()))
-                        newReglas.add(new ReglaLR(reglaGr));
                 }
             }
         }
-        return nuevosItems;
+        unirItemsIguales(itemsLR);
     }
     
-    private HashSet<SimboloNoTerminal> first(SimboloNoTerminal simbolo){
-        HashSet<SimboloNoTerminal> simbolos = new HashSet<>();
-        if(simbolo.isTerminal())
-            simbolos.add(simbolo);
-        else {
-            for (Regla regla : gramatica.getListaReglas()) {
-                if(regla.getLadoIzquierdo().getExpresion().equals(simbolo.getExpresion())){
-                    ArrayList<String> simbsPasados = new ArrayList<>();
-                    SimboloNoTerminal primerSimbolo = regla.getListaLadosDerechos().get(0);
-                    simbolos.addAll(firstSR(primerSimbolo, simbsPasados));
+    private boolean existeEnLista(ArrayList<ItemLR> itemsLR, ItemLR newItem){
+        for (ItemLR itemLR : itemsLR)
+            if(itemLR.equals(newItem))
+                return true;
+        return false;
+    }
+    
+    private void unirItemsIguales(ArrayList<ItemLR> itemsLR){
+        for (int i = 0; i < itemsLR.size(); i++) {
+            for (int j = i+1; j < itemsLR.size(); j++) {
+                if(itemsLR.get(i).getRegla().equals(itemsLR.get(j).getRegla())){
+                    itemsLR.get(i).agregarSimbolos(itemsLR.get(j).getSimbolosT());
+                    itemsLR.remove(j);
+                    j--;
                 }
             }
         }
-        return simbolos;
     }
     
-    private HashSet<SimboloNoTerminal> firstSR(SimboloNoTerminal simbolo, ArrayList<String> simbsPasados){
-        HashSet<SimboloNoTerminal> simbolos = new HashSet<>();
-        if(simbolo.isTerminal())
-            simbolos.add(simbolo);
-        else {
-            ArrayList<Regla> reglas = new ArrayList<>();
-            for (Regla regla : gramatica.getListaReglas()) {
-                String ladoIzquierdo = regla.getLadoIzquierdo().getExpresion();
-                if(!simbsPasados.contains(ladoIzquierdo) && ladoIzquierdo.equals(simbolo.getExpresion()))
-                    reglas.add(regla);
-            }
-            if(!reglas.isEmpty())
-                simbsPasados.add(reglas.get(0).getLadoIzquierdo().getExpresion());
-            for (Regla regla : reglas) {
-                SimboloNoTerminal primerSimbolo = regla.getListaLadosDerechos().get(0);
-                simbolos.addAll(firstSR(primerSimbolo, simbsPasados));
-            }
-        }
-        return simbolos;
-    }
     
     public void generarTablaLR0(){
         
@@ -120,7 +156,7 @@ public class LR1 {
     
     @Override
     public String toString(){
-        String cadenaAux = "--- ESTADOS ---\n\n";
+        String cadenaAux = "************* ESTADOS *************\n";
         for (EstadoLR conjuntoEdo : conjuntoEdos)
             cadenaAux += conjuntoEdo + "\n";
         return cadenaAux;

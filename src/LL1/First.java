@@ -8,6 +8,7 @@ public class First {
     private ArrayList<SimboloNoTerminal> simbolos;
     private SimboloNoTerminal simboloInicialDer;
     
+    
     public First(SimboloNoTerminal simbolo){
         simbolos = new ArrayList<>();
         simbolos = First.firstSNT(simbolo);
