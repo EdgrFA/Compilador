@@ -21,7 +21,7 @@ public class TestAlgoritmoLR1 {
             "S' -> S ;" +
             "S -> E - E | f ;" +
             "E -> T | E + T ;" +
-            "T -> f | T * F ;";
+            "T -> f | T * f ;";
         
         boolean pasoLexico = gramaticaDeGramaticaLR0.analisisLexico(cadena);
         if(pasoLexico){

@@ -20,6 +20,7 @@ public class LR1 {
         this.gramatica = gramatica;
         conjuntoEdos = new ArrayList<>();
         firstLR = new FirstLR(gramatica);
+        System.out.println(firstLR);
         ArrayList<ItemLR> itemsInicial = new ArrayList<>();
         //Crear nodo raiz
         HashSet<SimboloNoTerminal> snt = new HashSet<>();
@@ -51,9 +52,13 @@ public class LR1 {
                         }
                     }
                     if (esNuevo) {
-                        EstadoLR newEstado = new EstadoLR(newItem);
-                        conjuntoEdos.add(newEstado);
-                        System.out.println(newEstado);
+                        if(conjuntoEdos.get(i).compararItems(newItem))
+                            conjuntoEdos.get(i).crearDerivacion(simbolo, conjuntoEdos.get(i));
+                        else{
+                            EstadoLR newEstado = new EstadoLR(newItem);
+                            conjuntoEdos.add(newEstado);
+                            System.out.println(newEstado);
+                        }
                     }
                 }
             }

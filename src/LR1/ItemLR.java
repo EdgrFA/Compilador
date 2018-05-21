@@ -54,6 +54,8 @@ public class ItemLR implements Cloneable{
         ItemLR itemLR = (ItemLR) o;
         if(!getRegla().equals(itemLR.getRegla()))
             return false;
+        if(simbolosT.size() != itemLR.getSimbolosT().size())
+            return false;
         for (SimboloNoTerminal simbolo1 : simbolosT) {
             boolean existe = false;
             for (SimboloNoTerminal simbolo2 : itemLR.getSimbolosT()) {
