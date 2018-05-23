@@ -101,12 +101,12 @@ public class LR1 {
             if(simbolo == null){
                 continue;
             }else if (simbolo.isTerminal()){
-                if(nextSimbolo != null){
-                    ItemLR itemAux = new ItemLR(itemsLR.get(i));
-                    itemAux.agregarSimbolos(firstLR.getFirst(nextSimbolo));
-                    if(!existeEnLista(itemsLR, itemAux))
-                        itemsLR.add(itemAux);
-                }
+//                if(nextSimbolo != null){
+//                    ItemLR itemAux = new ItemLR(itemsLR.get(i));
+//                    itemAux.agregarSimbolos(firstLR.getFirst(nextSimbolo));
+//                    if(!existeEnLista(itemsLR, itemAux))
+//                        itemsLR.add(itemAux);
+//                }
             }else {
                 //Revisar reglas que conciden con simbolo
                 ArrayList<Regla> reglas = new ArrayList<>();
