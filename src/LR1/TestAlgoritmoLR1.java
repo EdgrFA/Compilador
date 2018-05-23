@@ -6,8 +6,6 @@
 package LR1;
 
 import GramaticaDeGramaticas.Gramatica;
-import GramaticaDeGramaticas.SimboloNoTerminal;
-import java.util.ArrayList;
 
 /**
  *
