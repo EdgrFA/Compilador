@@ -13,8 +13,7 @@ public class Follow {
     
     public Follow(SimboloNoTerminal simbolo, ArrayList<Regla> reglas){
         simbolos = new HashSet<>();
-        this.reglas = reglas;
-        
+        this.reglas = reglas;        
         simbolos = follow(simbolo);
     }
     

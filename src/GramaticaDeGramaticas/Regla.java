@@ -8,14 +8,14 @@ public class Regla {
     //private First firstSimbolos;
     private ArrayList<SimboloNoTerminal> listaLadosDerechos;
     
-    public Regla(SimboloNoTerminal ladoIzquierdo, int numeroRegla){
-        listaLadosDerechos = new ArrayList<>();
+    public Regla(int numeroRegla, SimboloNoTerminal ladoIzquierdo, ArrayList<SimboloNoTerminal> listaLadosDerechos){
+        this.listaLadosDerechos = listaLadosDerechos;
         this.ladoIzquierdo = ladoIzquierdo;
         this.numeroRegla = numeroRegla;
     }
     
-    public Regla(int numeroRegla, SimboloNoTerminal ladoIzquierdo, ArrayList<SimboloNoTerminal> listaLadosDerechos){
-        this.listaLadosDerechos = listaLadosDerechos;
+    public Regla(SimboloNoTerminal ladoIzquierdo, int numeroRegla){
+        listaLadosDerechos = new ArrayList<>();
         this.ladoIzquierdo = ladoIzquierdo;
         this.numeroRegla = numeroRegla;
     }

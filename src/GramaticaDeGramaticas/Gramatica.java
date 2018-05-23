@@ -2,6 +2,9 @@ package GramaticaDeGramaticas;
 
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Gramatica contiene un conjunto de reglas con Simbolos Terminales y Simbolos No Terminales
@@ -37,6 +40,16 @@ public class Gramatica {
                 return i;
         }
         return -1;
+    }
+    
+    public List<SimboloNoTerminal> buscarSimbTerminales(){
+        Predicate<SimboloNoTerminal> snt = simb -> simb.isTerminal();
+        return simbolos.stream().filter(snt).collect(Collectors.toList());
+    }
+    
+    public List<SimboloNoTerminal> buscarSimbNoTerminales(){
+        Predicate<SimboloNoTerminal> snt = simb -> !simb.isTerminal();
+        return simbolos.stream().filter(snt).collect(Collectors.toList());
     }
     
     public void imprimirSimbolos(){
