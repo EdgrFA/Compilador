@@ -25,9 +25,17 @@ public class EstadoLR {
         derivacionesMap.put(simbolo, estadoDestino);
     }
     
-//    public void crearReduccion(Simbolo simbolo, EstadoLR estadoDestino){
-//        reduccionesMap.put(simbolo, estadoDestino);
-//    }
+    public int getIndiceTrancision(Simbolo simbolo){
+        if(derivacionesMap.isEmpty())
+            return -1;
+        if(derivacionesMap.get(simbolo) == null)
+            return -1;
+        return derivacionesMap.get(simbolo).getId();
+    }
+    
+    public boolean derivacionesIsEmpty(){
+        return derivacionesMap.isEmpty();
+    }
 
     public boolean isAnalizado() {
         return analizado;

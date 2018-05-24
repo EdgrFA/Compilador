@@ -55,6 +55,9 @@ public class GramaticaDeGramaticas {
         afns.crearAFN('\'');   // 4, '
         afns.cerraduraAsterisco(4);//4, (')*
         afns.concatenar(3, 4); // 3, (a-zA-z1-9)+&(')*
+        
+        afns.crearAFN((char)60,(char)61); //4
+        afns.union(3, 4); //3
     }
 
     private static void afnFlecha(AFNs afns){

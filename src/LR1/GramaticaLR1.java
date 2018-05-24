@@ -26,6 +26,7 @@ public class GramaticaLR1 extends GramaticaDeGramaticas{
         gramatica.imprimirSimbolos();
         lr = new LR1(gramatica);
         System.out.println(lr);
+        lr.imprimirTablaLR1();
         //System.out.println("\n***** TABLA  ********");
         //lr.generarTablaLR0();
         //System.out.println();

@@ -3,12 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Edgar%20Flores/Documentos/Github/Compiladores/Compilador/src/LR1/ItemLR.java</file>
             <file>file:/D:/Edgar%20Flores/Documentos/Github/Compiladores/Compilador/src/LR0/AlgoritmoLR0.java</file>
             <file>file:/D:/Edgar%20Flores/Documentos/Github/Compiladores/Compilador/src/LR1/ReglaLR.java</file>
             <file>file:/D:/Edgar%20Flores/Documentos/Github/Compiladores/Compilador/src/LR1/LR1.java</file>
             <file>file:/D:/Edgar%20Flores/Documentos/Github/Compiladores/Compilador/src/LR0/Estado.java</file>
             <file>file:/D:/Edgar%20Flores/Documentos/Github/Compiladores/Compilador/src/LR1/TestAlgoritmoLR1.java</file>
+=======
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR1/TestAlgoritmoLR1.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR1/ItemLR.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR0/AlgoritmoLR0.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR1/LR1.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR1/EstadoLR.java</file>
+            <file>file:/D:/xXEdG/Documents/Github/Compilador/src/LR1/GramaticaLR1.java</file>
+>>>>>>> edda49ca00cb0ad10840e365c4ce7347f0c45e2e
         </group>
     </open-files>
 </project-private>
