@@ -16,10 +16,15 @@ public class TestAlgoritmoLR1 {
         Gramatica gramatica = new Gramatica();
         GramaticaLR1 gramaticaDeGramaticaLR0 = new GramaticaLR1(gramatica);
         String cadena =   
-            "S' -> S ;" +
+            /*"S' -> S ;" +
             "S -> E - E | f ;" +
             "E -> T | E + T ;" +
-            "T -> f | T * f ;";
+            "T -> f | T * f ;";*/
+        
+            "E' -> E;" +
+            "E -> E + T | T ;" +
+            "T -> T * F | F ;" +
+            "F -> ( E ) | num ;";
         
         boolean pasoLexico = gramaticaDeGramaticaLR0.analisisLexico(cadena);
         if(pasoLexico){

@@ -9,8 +9,8 @@ public class TestAlgoritmoLR0 {
         GramaticaLR0 gramaticaDeGramaticaLR0 = new GramaticaLR0(gramatica);
         String cadena =   
             "E' -> E;" +
-            "E -> E + T | T ;" +
-            "T -> T * F | F ;" +
+            "E -> E + T | E - T | T ;" +
+            "T -> T * F | T / F | F ;" +
             "F -> ( E ) | num ;";
         
         boolean pasoLexico = gramaticaDeGramaticaLR0.analisisLexico(cadena);
