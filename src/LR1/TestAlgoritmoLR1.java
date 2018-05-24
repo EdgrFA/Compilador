@@ -17,7 +17,7 @@ public class TestAlgoritmoLR1 {
         GramaticaLR1 gramaticaDeGramaticaLR0 = new GramaticaLR1(gramatica);
         String cadena =   
             "S' -> S ;" +
-            "S -> E - E | f ;" +
+            "S -> E = E | f ;" +
             "E -> T | E + T ;" +
             "T -> f | T * f ;";
         
