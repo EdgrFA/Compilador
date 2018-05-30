@@ -60,7 +60,7 @@ public class AlgoritmoLR0 {
                         estadoActual.crearRelacion(simbolo, nuevoEstado);
                         contadorEstado++;
                     }else{
-                        System.out.println(" S"+edoAux.getIdEstado());
+                        System.out.println(" S "+edoAux.getIdEstado());
                         estadoActual.crearRelacion(simbolo, edoAux);
                     }
                 }

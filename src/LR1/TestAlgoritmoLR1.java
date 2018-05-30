@@ -15,14 +15,11 @@ public class TestAlgoritmoLR1 {
         public static void main(String[] args) {
         Gramatica gramatica = new Gramatica();
         GramaticaLR1 gramaticaDeGramaticaLR0 = new GramaticaLR1(gramatica);
-        String cadena =   
-<<<<<<< HEAD
+        String cadena = 
             /*"S' -> S ;" +
             "S -> E - E | f ;" +
-=======
             "S' -> S ;" +
             "S -> E = E | f ;" +
->>>>>>> edda49ca00cb0ad10840e365c4ce7347f0c45e2e
             "E -> T | E + T ;" +
             "T -> f | T * f ;";*/
         
