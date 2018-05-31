@@ -101,10 +101,13 @@ public class AlgoritmoLR0 {
         estados.stream().forEach( edo -> System.out.println("s"+edo.getIdEstado() + " = " +edo));
         System.out.println("**********************************************");
         TablaColumnaUnitaria tabla = new TablaColumnaUnitaria(10);
-        tabla.imprimirEncabezado(simbolosTerminales.toArray(),simbolosNoTerminales.toArray());
+        ArrayList<SimboloNoTerminal> encabezado = new ArrayList();
+        encabezado.add(new SimboloNoTerminal("Estados"));
+        encabezado.addAll(simbolosTerminales);
+        tabla.imprimirEncabezado(encabezado.toArray(),simbolosNoTerminales.toArray());
         for(Estado estado: estados){
             ArrayList<String> filaElementos = new ArrayList<>();
-            
+            filaElementos.add("S"+estado.getIdEstado());
             for(SimboloNoTerminal simbolo: simbolosTerminales){
                 Estado edoAux = estado.getDesplazamiento(simbolo);
                 if(edoAux != null){
