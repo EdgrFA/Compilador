@@ -114,6 +114,21 @@ public class AFNs {
         return -1;
     }
     
+    public void crearAFNSimbolo(String simbolo, int index){
+        char[] caracteres = simbolo.toCharArray();
+        int maxIndex = index;
+        for (char caracter : caracteres) {
+            AFN automata = new AFN(caracter);
+            automatas.add(automata);
+            maxIndex++;
+        }
+        maxIndex--;
+        while(maxIndex > index){
+            concatenar(maxIndex-1, maxIndex);
+            maxIndex--;
+        }
+    }
+    
     public static void main(String[] args) {
         AFNs afns = new AFNs();
         afns.crearAFN('1','1');

@@ -1,5 +1,6 @@
 package LR1;
 
+import GramaticaDeGramaticas.Regla;
 import GramaticaDeGramaticas.Simbolo;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +11,7 @@ public class EstadoLR {
     private boolean analizado;
     private ArrayList<ItemLR> itemsLR;
     private HashMap<Simbolo, EstadoLR> derivacionesMap;
-    //private HashMap<Simbolo, EstadoLR> reduccionesMap;
+    private HashMap<Simbolo, Regla> reduccionesMap;
     //Conjunto de reghlas con puntos
     
     public EstadoLR(ArrayList<ItemLR> itemsLR) {
@@ -18,11 +19,15 @@ public class EstadoLR {
         this.analizado = false;
         this.itemsLR = itemsLR;
         this.derivacionesMap = new HashMap<>();
-//        this.reduccionesMap = new HashMap<>();
+        this.reduccionesMap = new HashMap<>();
     }
     
     public void crearDerivacion(Simbolo simbolo, EstadoLR estadoDestino){
         derivacionesMap.put(simbolo, estadoDestino);
+    }
+    
+    public void crearReduccion(Simbolo simbolo, Regla regla){
+        reduccionesMap.put(simbolo, regla);
     }
     
     public int getIndiceTrancision(Simbolo simbolo){
@@ -74,6 +79,14 @@ public class EstadoLR {
 
     public int getId() {
         return id;
+    }
+    
+    public EstadoLR obtenerDerivacion(Simbolo snt){
+        return derivacionesMap.get(snt);
+    }
+
+    public Regla obtenerReduccion(Simbolo snt){
+        return reduccionesMap.get(snt);
     }
     
     @Override

@@ -6,6 +6,8 @@
 package LR1;
 
 import GramaticaDeGramaticas.Gramatica;
+import GramaticaDeGramaticas.SimboloNoTerminal;
+import java.util.List;
 
 /**
  *
@@ -27,7 +29,6 @@ public class TestAlgoritmoLR1 {
             "E -> E + T | T ;" +
             "T -> T * F | F ;" +
             "F -> ( E ) | num ;";
-        
         boolean pasoLexico = gramaticaDeGramaticaLR0.analisisLexico(cadena);
         if(pasoLexico){
             System.out.println("\nEl Analisis Léxico fue correcto\n");
@@ -35,6 +36,8 @@ public class TestAlgoritmoLR1 {
             if(pasoSintactico){
                 System.out.println("Análisis Sintáctico Correcto");
                 gramaticaDeGramaticaLR0.algoritmoLR1(gramatica);
+                gramatica.crearAFDGramatica();
+                
                 //String expresion = "( num + num ) * num - num $";
                 //String expresion = "( SIMB OR ( SIMB & SIMB ) + ) ? OR SIMB $";
                 //boolean cadenaValida = gramaticaDeGramaticaLL1.analizarCadenaLL1(expresion);

@@ -3,10 +3,12 @@ package GramaticaDeGramaticas;
 public class Simbolo {
     private boolean terminal;
     private String expresion;
+    private int idAfd;
     
     public Simbolo(String expresion){
         this.expresion = expresion;
         this.terminal = true;
+        this.idAfd = -1;
     }
     
     public String getExpresion(){
@@ -23,6 +25,14 @@ public class Simbolo {
     
     public void setTerminal(boolean terminal){
         this.terminal = terminal;
+    }
+
+    public int getIdAfd() {
+        return idAfd;
+    }
+
+    public void setIdAfd(int idAfd) {
+        this.idAfd = idAfd;
     }
     
     @Override

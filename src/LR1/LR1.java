@@ -1,9 +1,13 @@
 package LR1;
 
+import Analizadores.AnalizadorLexico;
+import Automatas.AFD;
 import GramaticaDeGramaticas.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import utilidades.Pila;
 import utilidades.TablaColumnaUnitaria;
 
 public class LR1 {
@@ -11,13 +15,10 @@ public class LR1 {
     private ArrayList<EstadoLR> estados;
     private FirstLR firstLR;
     private static final SimboloNoTerminal RAIZ = new SimboloNoTerminal("$");
-     
-    
-//    private ArrayList<SimboloNoTerminal> simbolosTerminales;
-//    private ArrayList<SimboloNoTerminal> simbolosNoTerminales;
     private Gramatica gramatica;
 
-    public LR1(Gramatica gramatica) {
+    public LR1(Gramatica gramatica){
+        gramatica.crearAFDGramatica();
         this.gramatica = gramatica;
         RAIZ.setTerminal(true);
         estados = new ArrayList<>();
@@ -212,8 +213,24 @@ public class LR1 {
                 }
             }
             tabla.imprimirFila(filaElementos.toArray());
-        }
+        }   
+    }
+    
+    public void evaluarExpresion(String expresion){
+        AnalizadorLexico al = new AnalizadorLexico(expresion, gramatica.getAfdGr());
+        Pila<Integer> pilaIndices = new Pila();
+        List<SimboloNoTerminal> simbolosNT = gramatica.buscarSimbNoTerminales();
+        pilaIndices.push(0);
         
+        int token;
+        EstadoLR estadoActual = estadoInicial;
+        while((token = al.obtenerToken()) != 0){
+            
+            
+            if(token == -1){
+                //Termino analizador
+            }
+        }
     }
     
     @Override
