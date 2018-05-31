@@ -41,7 +41,11 @@ public class EstadoLR {
     public boolean derivacionesIsEmpty(){
         return derivacionesMap.isEmpty();
     }
-
+    
+    public boolean reduccionesIsEmpty(){
+        return reduccionesMap.isEmpty();
+    }
+    
     public boolean isAnalizado() {
         return analizado;
     }

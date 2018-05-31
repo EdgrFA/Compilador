@@ -27,16 +27,12 @@ public class GramaticaLR1 extends GramaticaDeGramaticas{
         lr = new LR1(gramatica);
         System.out.println(lr);
         lr.imprimirTablaLR1();
-        //System.out.println("\n***** TABLA  ********");
-        //lr.generarTablaLR0();
-        //System.out.println();
-//        System.out.println("\n*********** FIRST ****************");
-//        ll.calcularFirstSNT();
-//        System.out.println("\n***** FIRST Y FOLLOW POR REGLAS ********");
-//        ll.calcularFirstReglas();
-//        System.out.println("\n***** TABLA  ********");
-//        ll.generarTablaLL1();
-//        System.out.println();
     }
     
+    public boolean analizarCadenaLR1(String expresion){
+        if(lr != null)
+            return lr.evaluarExpresion(expresion);
+        else 
+            return false;
+    }
 }

@@ -31,27 +31,26 @@ public class TestAlgoritmoLR1 {
             "F -> ( E ) | num ;";
         boolean pasoLexico = gramaticaDeGramaticaLR0.analisisLexico(cadena);
         if(pasoLexico){
-            System.out.println("\nEl Analisis Léxico fue correcto\n");
+            System.out.println("\nEl Analisis Léxico de las Reglas de entrada fue correcto\n");
             boolean pasoSintactico = gramaticaDeGramaticaLR0.analisisSintactico(cadena, gramatica);
             if(pasoSintactico){
-                System.out.println("Análisis Sintáctico Correcto");
+                System.out.println("Análisis Sintáctico Correcto Reglas de entrada");
                 gramaticaDeGramaticaLR0.algoritmoLR1(gramatica);
-                gramatica.crearAFDGramatica();
                 
+                //Revisar expresion con la tabla LR
+                
+                String expresion = "num + num * ( num + num ) ";
                 //String expresion = "( num + num ) * num - num $";
                 //String expresion = "( SIMB OR ( SIMB & SIMB ) + ) ? OR SIMB $";
-                //boolean cadenaValida = gramaticaDeGramaticaLL1.analizarCadenaLL1(expresion);
-                //if(cadenaValida)
-                //   System.out.println("Cadena Aceptada");
-                //else
-                //   System.out.println("ERROR cadena NO aceptada");
-                //if(cadenaValida)
-                //    System.out.println("Cadena Aceptada");
-                //else
-                //    System.out.println("ERROR cadena NO aceptada");
+                boolean cadenaValida = gramaticaDeGramaticaLR0.analizarCadenaLR1(expresion);
+                
+                if(cadenaValida)
+                   System.out.println("Cadena Aceptada");
+                else
+                   System.out.println("ERROR cadena NO aceptada");
             }else
-                System.out.println("ERROR SINTACTICO");
+                System.out.println("ERROR Sintactico Reglas de entrada");
         }else
-            System.out.println("ERROR Léxico");
+            System.out.println("ERROR Léxico Reglas de entrada");
     }
 }

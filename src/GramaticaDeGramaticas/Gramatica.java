@@ -82,7 +82,7 @@ public class Gramatica {
         for (SimboloNoTerminal simbolo : simbolos){
             simbolo.setIdAfd(afns.getTokenAFN(i++));
         }
-        afdGr.imprimirTablaTransiciones();
+        //afdGr.imprimirTablaTransiciones();
     }
 
     public AFD getAfdGr() {
