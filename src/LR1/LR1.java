@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Stack;
 import utilidades.Pila;
 import utilidades.TablaColumnaUnitaria;
 
@@ -67,20 +68,15 @@ public class LR1 {
                 }
             }
         }
-        
-        
-//        simboloFollowPrevio = new HashMap<>();
-//        simbolosTerminales = new ArrayList<>();
-//        simbolosNoTerminales = new ArrayList<>();
-        
-        
-//        ArrayList<ReglaLR> reglasIni = new ArrayList<>();
-//        reglasIni.add(new ReglaLR(gramatica.getListaReglas().get(0)));
-//        reglasIni = opCerradura(reglasIni);
-//        
-//        for(Regla regla: reglasIni){
-//            System.out.println(regla+ "\t\t"+ regla.getNumeroRegla());
-//        }
+        buscarReducciones();
+    }
+    
+    private void buscarReducciones(){
+        for (EstadoLR estado : estados)
+            for (ItemLR itemLR : estado.getItemsLR())
+                if(itemLR.puntoAlFinal())
+                    for (SimboloNoTerminal simboloNT : itemLR.getSimbolosT()) 
+                        estado.crearReduccion(simboloNT, itemLR.getRegla());
     }
     
     private ArrayList<ItemLR> ir_A(EstadoLR estado, SimboloNoTerminal snt){
@@ -172,7 +168,7 @@ public class LR1 {
     
     
     public void imprimirTablaLR1(){
-        System.out.println("**********************************************");
+        System.out.println("******************** TABLA LR1 **************************");
         TablaColumnaUnitaria tabla = new TablaColumnaUnitaria(gramatica.getSimbolos().size() + 2);
         //Encabezados
         Object[] encabezados = new Object[gramatica.getSimbolos().size() + 2];
@@ -186,51 +182,85 @@ public class LR1 {
             ArrayList<String> filaElementos = new ArrayList<>();
             filaElementos.add("S" + estado.getId());
             for (SimboloNoTerminal simbolo : simbolos) {
-                if(estado.derivacionesIsEmpty()){
-                    boolean reduccion = false;
-                    for (ItemLR itemLR : estado.getItemsLR()) {
-                        if(itemLR.contieneSimbolo(simbolo)){
-                            filaElementos.add("r" + itemLR.getRegla().getNumeroRegla());
-                            reduccion = true;
-                            break;
-                        }
+                if(!estado.reduccionesIsEmpty()){
+                    Regla regla;
+                    if((regla = estado.obtenerReduccion(simbolo)) != null){
+                        filaElementos.add("r" + regla.getNumeroRegla());
+                        continue;
                     }
-                    if(!reduccion)
+                }
+                int id = estado.getIndiceTrancision(simbolo);
+                if(simbolo.isTerminal()){
+                    if(id != -1)
+                        filaElementos.add("d" + id);
+                    else
                         filaElementos.add("");
                 }else{
-                    int id = estado.getIndiceTrancision(simbolo);
-                    if(simbolo.isTerminal()){
-                        if(id != -1)
-                            filaElementos.add("d" + id);
-                        else
-                            filaElementos.add("");
-                    }else{
-                        if(id != -1)
-                            filaElementos.add(""+id);
-                        else
-                            filaElementos.add("");
-                    }
+                    if(id != -1)
+                        filaElementos.add(""+id);
+                    else
+                        filaElementos.add("");
                 }
             }
             tabla.imprimirFila(filaElementos.toArray());
         }   
     }
     
-    public void evaluarExpresion(String expresion){
+    public boolean evaluarExpresion(String expresion){
         AnalizadorLexico al = new AnalizadorLexico(expresion, gramatica.getAfdGr());
-        Pila<Integer> pilaIndices = new Pila();
-        List<SimboloNoTerminal> simbolosNT = gramatica.buscarSimbNoTerminales();
-        pilaIndices.push(0);
-        
-        int token;
+        Stack<EstadoLR> pilaEstados = new Pila();
+        pilaEstados.push(estadoInicial);
         EstadoLR estadoActual = estadoInicial;
-        while((token = al.obtenerToken()) != 0){
-            
-            
-            if(token == -1){
-                //Termino analizador
+        int token = al.obtenerToken();
+        while(token != -1){
+            for (SimboloNoTerminal simbolo : gramatica.getSimbolos()) {
+                //Revisar si el simbolo coincide con el token o si es el fin de cadena
+                if(simbolo.getIdAfd() != token && token != 0)
+                    continue;
+                if(token == 0)
+                    simbolo = RAIZ; //Sustituir simbolo de fin de cadena 
+                //Revisar Derivaciones
+                if(!estadoActual.derivacionesIsEmpty()){
+                    //Obtener el nuevo estado obtenido de la derivacion y agregar a la pila
+                    EstadoLR estadoAux = estadoActual.obtenerDerivacion(simbolo);
+                    if(estadoAux != null){
+                        estadoActual = estadoAux;
+                        pilaEstados.push(estadoActual);
+                        token = al.obtenerToken();
+                        break;
+                    }
+                }
+                //Revisar Reducciones
+                if(!estadoActual.reduccionesIsEmpty()){
+                    //Obtener regla de la reduccion
+                    Regla regla = estadoActual.obtenerReduccion(simbolo);
+                    if(regla != null){
+                        EstadoLR estadoAux;
+                        //Quitar i elementos de la pila segun la cantidad de simbolos que contenga la regla
+                        for (int i = 0; i < regla.getListaLadosDerechos().size(); i++)
+                            pilaEstados.pop();
+                        //Revisar si la reduccion devolvio la regla 0 (Aceptar)
+                        if(regla.getNumeroRegla() == 0){ 
+                            //Revisar si la pila tiene el fin de expresion
+                            estadoAux = (EstadoLR)pilaEstados.pop();
+                            if(estadoAux.getId() == 0)
+                                return true;
+                            System.out.println("Error Sintactico (Expresion incompleta)");
+                            return false;
+                        }
+                        //Obtener derivacion del ultimo elemento de la pila utilizando el SimboloIzquierdo de la regla  **Revisar en caso de obtener null
+                        estadoAux = (EstadoLR)pilaEstados.get(pilaEstados.size()-1);
+                        estadoActual = estadoAux.obtenerDerivacion(regla.getLadoIzquierdo());
+                        pilaEstados.push(estadoActual);
+                        break;
+                    }
+                }        
+                System.out.println("Error Sintactico (No existe transicion con el simbolo '" + simbolo.getExpresion() + "')");
+                return false;
             }
         }
+        System.out.println("Error Lexico");
+        return false;
     }
     
     @Override

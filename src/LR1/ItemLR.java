@@ -55,6 +55,10 @@ public class ItemLR implements Cloneable{
         return false;
     }
     
+    public boolean puntoAlFinal(){
+        return regla.puntoAlFinal();
+    }
+    
     @Override
     public boolean equals(Object o){
         ItemLR itemLR = (ItemLR) o;
