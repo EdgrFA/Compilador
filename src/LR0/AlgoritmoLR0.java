@@ -1,18 +1,21 @@
 package LR0;
 
+import Analizadores.AnalizadorLexico;
 import GramaticaDeGramaticas.Gramatica;
 import GramaticaDeGramaticas.Regla;
 import GramaticaDeGramaticas.SimboloNoTerminal;
 import LL1.Follow;
+import LR1.EstadoLR;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
+import utilidades.Pila;
 import utilidades.TablaColumnaUnitaria;
 
 public class AlgoritmoLR0 {
     static int contadorEstado = 0;
-    
     private Gramatica gramatica;
     private Estado s0;
     private List<Estado> estados;
@@ -95,6 +98,7 @@ public class AlgoritmoLR0 {
             }
         }
     }
+
     
     public void generarTabla(){
         System.out.println("**********************************************");
